@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -40,49 +41,49 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC6uds83Ak7s_8z36AuavREU63oGemJXew',
-    appId: '1:1049660220815:web:8b109952065c3a1124d7fa',
-    messagingSenderId: '1049660220815',
-    projectId: 'e-commerce-app-2cf83',
-    authDomain: 'e-commerce-app-2cf83.firebaseapp.com',
-    storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
-    measurementId: 'G-FS0CX8VFS0',
-  );
+    static FirebaseOptions get web => FirebaseOptions(
+      apiKey: dotenv.env['WEB_API_KEY']!,
+      appId: '1:1049660220815:web:8b109952065c3a1124d7fa',
+      messagingSenderId: '1049660220815',
+      projectId: 'e-commerce-app-2cf83',
+      authDomain: 'e-commerce-app-2cf83.firebaseapp.com',
+      storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
+      measurementId: 'G-FS0CX8VFS0',
+    );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDl0-O0CTrm0NLpbQqaa7zVi5UL_h7uW4Y',
-    appId: '1:1049660220815:android:380ddd105cefb40d24d7fa',
-    messagingSenderId: '1049660220815',
-    projectId: 'e-commerce-app-2cf83',
-    storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
-  );
+    static FirebaseOptions get android => FirebaseOptions(
+      apiKey: dotenv.env['ANDROID_API_KEY']!,
+      appId: '1:1049660220815:android:380ddd105cefb40d24d7fa',
+      messagingSenderId: '1049660220815',
+      projectId: 'e-commerce-app-2cf83',
+      storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
+    );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCt7NfZn9O0ONAf-P9S-tVukRnbf6og82g',
-    appId: '1:1049660220815:ios:6b5452a860170e4524d7fa',
-    messagingSenderId: '1049660220815',
-    projectId: 'e-commerce-app-2cf83',
-    storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
-    iosBundleId: 'org.Maheresio.eCommerce',
-  );
+    static FirebaseOptions get ios => FirebaseOptions(
+      apiKey: dotenv.env['IOS_API_KEY']!,
+      appId: '1:1049660220815:ios:6b5452a860170e4524d7fa',
+      messagingSenderId: '1049660220815',
+      projectId: 'e-commerce-app-2cf83',
+      storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
+      iosBundleId: 'org.Maheresio.eCommerce',
+    );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCt7NfZn9O0ONAf-P9S-tVukRnbf6og82g',
-    appId: '1:1049660220815:ios:6b5452a860170e4524d7fa',
-    messagingSenderId: '1049660220815',
-    projectId: 'e-commerce-app-2cf83',
-    storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
-    iosBundleId: 'org.Maheresio.eCommerce',
-  );
+    static FirebaseOptions get macos => FirebaseOptions(
+      apiKey: dotenv.env['MACOS_API_KEY']!,
+      appId: '1:1049660220815:ios:6b5452a860170e4524d7fa',
+      messagingSenderId: '1049660220815',
+      projectId: 'e-commerce-app-2cf83',
+      storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
+      iosBundleId: 'org.Maheresio.eCommerce',
+    );
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyC6uds83Ak7s_8z36AuavREU63oGemJXew',
-    appId: '1:1049660220815:web:3ea9432b0d781a6224d7fa',
-    messagingSenderId: '1049660220815',
-    projectId: 'e-commerce-app-2cf83',
-    authDomain: 'e-commerce-app-2cf83.firebaseapp.com',
-    storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
-    measurementId: 'G-LHFNFM9DVC',
-  );
+    static FirebaseOptions get windows => FirebaseOptions(
+      apiKey: dotenv.env['WINDOWS_API_KEY']!,
+      appId: '1:1049660220815:web:3ea9432b0d781a6224d7fa',
+      messagingSenderId: '1049660220815',
+      projectId: 'e-commerce-app-2cf83',
+      authDomain: 'e-commerce-app-2cf83.firebaseapp.com',
+      storageBucket: 'e-commerce-app-2cf83.firebasestorage.app',
+      measurementId: 'G-LHFNFM9DVC',
+    );
 }

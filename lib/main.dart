@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/global/themes/dark/dark_theme.dart';
@@ -10,6 +11,7 @@ import 'core/utils/app_router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+  await dotenv.load(fileName: ".env");
   await firebaseInit();
   serviceLocator();
 
