@@ -54,14 +54,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       passwordController: passwordController,
                       submit: () {
                         if (_formKey.currentState!.validate()) {
-                          if (_formKey.currentState!.validate()) {
-                            BlocProvider.of<LoginBloc>(context).add(
-                              LoginButtonPressed(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              ),
-                            );
-                          }
+                          BlocProvider.of<LoginBloc>(context).add(
+                            LoginButtonPressed(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ),
+                          );
                         }
                       },
                     ),
