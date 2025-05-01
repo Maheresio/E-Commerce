@@ -11,18 +11,24 @@ class NameValidation extends ValidationValueObject<String?> {
   const NameValidation._(super.value);
 
   static Either<Failure, String> validateName(String input) {
-    const nameRegex = r"^[a-zA-Z ,.'-]+$";
+    // Support Latin letters, accented characters, spaces, and specific punctuation
+    const nameRegex = r"^[a-zA-ZÀ-ÿ ,.'-]+$";
 
     if (input.isEmpty) {
-      return left(Failure('Name cannot be empty'));
+      return left(Failure('Please enter your name. It cannot be empty.'));
     }
 
     if (input.length > 50) {
-      return left(Failure('Name is too long'));
+      return left(Failure(
+        'Your name is too long. Please keep it under 50 characters.',
+      ));
     }
 
     if (!RegExp(nameRegex).hasMatch(input)) {
-      return left(Failure('Invalid name format'));
+      return left(Failure(
+        'Names can only contain letters, spaces, commas, periods, apostrophes, and hyphens. '
+        'Special characters or numbers are not allowed.',
+      ));
     }
 
     return right(input.trim());
