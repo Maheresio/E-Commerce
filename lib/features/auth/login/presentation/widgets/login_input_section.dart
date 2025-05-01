@@ -23,6 +23,7 @@ class LoginInputSection extends StatelessWidget {
         StyledTextFormField(
           controller: emailController,
           text: AppStrings.kEmail,
+          autofillHints: [AutofillHints.email],
           validator: (value) {
             final emailValidation = EmailValidation(value).value;
             return emailValidation.fold(
@@ -37,6 +38,7 @@ class LoginInputSection extends StatelessWidget {
           isPassword: true,
           controller: passwordController,
           text: AppStrings.kPassword,
+          autofillHints: [AutofillHints.password],
           validator: (value) {
             final passwordValidation = PasswordValidation(value).value;
             return passwordValidation.fold(
@@ -52,5 +54,3 @@ class LoginInputSection extends StatelessWidget {
     );
   }
 }
-
-

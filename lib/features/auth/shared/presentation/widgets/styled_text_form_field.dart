@@ -9,6 +9,7 @@ class StyledTextFormField extends StatefulWidget {
     required this.controller,
     this.validator,
     this.isPassword = false,
+    this.autofillHints,
   });
 
   final bool isPassword;
@@ -17,6 +18,7 @@ class StyledTextFormField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final List<String>? autofillHints;
 
   @override
   State<StyledTextFormField> createState() => _StyledTextFormFieldState();
@@ -32,13 +34,14 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-
     return TextFormField(
+      autofillHints: widget.autofillHints,
       validator: widget.validator,
       controller: widget.controller,
       textInputAction: widget.textInputAction,
       obscureText: widget.isPassword && !_isPasswordVisible,
       keyboardType: widget.keyboardType,
+
       decoration: InputDecoration(
         labelText: widget.text,
 

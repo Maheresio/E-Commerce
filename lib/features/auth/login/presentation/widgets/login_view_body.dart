@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -39,33 +40,36 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       slivers: [
         SliverFillRemaining(
           hasScrollBody: false,
-          child: Form(
-            key: _formKey,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 50),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 50),
-                    child: LoginForm(
-                      emailController: emailController,
-                      passwordController: passwordController,
-                      submit: () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<LoginBloc>(context).add(
-                            LoginButtonPressed(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ),
-                          );
-                        }
-                      },
+          child: AutofillGroup(
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: LoginForm(
+                        emailController: emailController,
+                        passwordController: passwordController,
+                        submit: () {
+                          if (_formKey.currentState!.validate()) {
+                            BlocProvider.of<LoginBloc>(context).add(
+                              LoginButtonPressed(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ),
+                            );
+                            TextInput.finishAutofillContext();
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                  SocialSection(),
-                ],
+                    SocialSection(),
+                  ],
+                ),
               ),
             ),
           ),
