@@ -92,6 +92,11 @@ abstract class AppStyles {
     fontWeight: FontWeight.w700,
     color: Colors.black,
   );
+  static TextStyle font34WhiteBlack = TextStyle(
+    fontSize: 34.sp,
+    fontWeight: FontWeight.w900,
+    color: Colors.white,
+  );
 
   static TextStyle font44BlackSemiBold = TextStyle(
     fontSize: 44.sp,
