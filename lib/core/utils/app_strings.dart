@@ -56,7 +56,9 @@ class AppStrings {
   static const String kAddCard = "ADD CARD";
   static const String kSaveAddress = "SAVE ADDRESS";
   static const String kEdit = "Edit";
+  static const String kSale = "Sale";
   static const String kUseAsShippingAddress = "Use as the shipping address";
+  static const String kSuperSummerSale = "Super summer sale";
   static const String kDeleteFromList = "Delete from the list";
   static const String kLeaveFeedback = "Leave feedback";
   static const String kReorder = "Reorder";
