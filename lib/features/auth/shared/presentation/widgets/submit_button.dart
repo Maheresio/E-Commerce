@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/extensions/theme_color.extension.dart';
+import '../../../../../core/helpers/extensions/theme_color.extension.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({

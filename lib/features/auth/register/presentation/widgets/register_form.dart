@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/helpers/styled_snack_bar.dart';
+import '../../../../../core/helpers/methods/styled_snack_bar.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_styles.dart';
@@ -31,7 +31,7 @@ class RegisterForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Title
-        Text(AppStrings.kSignUp, style: AppStyles.text34Bold),
+        Text(AppStrings.kSignUp, style: AppStyles.font34BoldBlack),
         const SizedBox(height: 70),
 
         // Input Section

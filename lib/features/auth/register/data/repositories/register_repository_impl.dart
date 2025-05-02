@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../../core/error/failure.dart';
 import '../../../../../core/error/firebase_failure.dart';
 import '../../../../../core/error/socket_failure.dart';
-import '../../../../../core/type_defs.dart';
+import '../../../../../core/helpers/type_defs.dart/type_defs.dart';
 import '../../domain/repositories/register_repository.dart';
 import '../datasources/register_data_source.dart';
 

@@ -1,4 +1,4 @@
-import '../../../../../core/type_defs.dart';
+import '../../../../../core/helpers/type_defs.dart/type_defs.dart';
 
 abstract class RegisterRepository {
   AuthType registerWithEmailAndPassword({

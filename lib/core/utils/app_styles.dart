@@ -1,48 +1,106 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../global/themes/light/app_colors_light.dart';
 
 abstract class AppStyles {
-  static TextStyle base({
-    double size = 14,
-    FontWeight weight = FontWeight.normal,
-    Color? color,
-  }) {
-    return GoogleFonts.montserrat(
-      fontSize: size.sp,
-      fontWeight: weight,
-      color: color,
-    );
-  }
+  static TextStyle font10RegularBlack = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 
-  static TextStyle text11Regular = base(size: 11);
+  static TextStyle font10SemiBoldBlack = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
-  static final TextStyle text14Medium = base(size: 14, weight: FontWeight.w500);
+  static TextStyle font11RegularBlack = TextStyle(
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 
-  static final TextStyle text34Bold = base(size: 34, weight: FontWeight.bold);
+  static TextStyle font11SemiBoldBlack = TextStyle(
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
-  // static final TextStyle text10RegularBlack = base(size: 10);
-  // static final TextStyle text10SemiBoldBlack = base(size: 10, weight: FontWeight.w600);
+  static TextStyle font14RegularBlack = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 
-  // static final TextStyle text11SemiBoldBlack = base(size: 11, weight: FontWeight.w600);
+  static TextStyle font14SemiBoldBlack = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
-  // static final TextStyle text14RegularBlack = base(size: 14);
-  // static final TextStyle text14SemiBoldBlack = base(size: 14, weight: FontWeight.w600);
-  // static final TextStyle text14RegularGrey = base(size: 14, color: AppColors.kGrey);
-  // static final TextStyle text14RegularLightBlack = base(size: 14, color: AppColors.kLightBlack);
+  static TextStyle font14RegularGrey = TextStyle(
+   
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColorsLight.kGrey,
+  );
 
-  // static final TextStyle text15SemiBoldBlack = base(size: 15, weight: FontWeight.w600);
+  static TextStyle font14RegularLightBlack = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColorsLight.kLightBlack,
+  );
 
-  // static final TextStyle text16RegularBlack = base(size: 16);
-  // static final TextStyle text16SemiBoldBlack = base(size: 16, weight: FontWeight.w600);
+  static TextStyle font15SemiBoldBlack = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
-  // static final TextStyle text18SemiBoldBlack = base(size: 18, weight: FontWeight.w600);
+  static TextStyle font16RegularBlack = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 
-  // static final TextStyle text24SemiBoldBlack = base(size: 24, weight: FontWeight.w600);
+  static TextStyle font16SemiBoldBlack = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
-  // static final TextStyle text44SemiBoldBlack = base(size: 44, weight: FontWeight.w600);
+  static TextStyle font18SemiBoldBlack = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
-  // static final TextStyle text48BoldBlack = base(size: 48, weight: FontWeight.bold);
+  static TextStyle font24SemiBoldBlack = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
+
+  static TextStyle font34BoldBlack = TextStyle(
+
+    fontSize: 34.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
+
+  static TextStyle font44SemiBoldBlack = TextStyle(
+    fontSize: 44.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
+
+  static TextStyle font48BoldBlack = TextStyle(
+    fontSize: 48.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
 }
 
 //   /// Extra-light.== w200 

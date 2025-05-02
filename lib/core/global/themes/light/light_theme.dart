@@ -4,6 +4,7 @@ import '../../../utils/app_styles.dart';
 import 'app_colors_light.dart';
 
 ThemeData get lightTheme => ThemeData(
+  fontFamily: 'Metropolis',
   scaffoldBackgroundColor: AppColorsLight.kBackgroundColor,
   colorScheme: ColorScheme.light(
     primary: AppColorsLight.kPrimary,
@@ -17,11 +18,9 @@ ThemeData get lightTheme => ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: AppColorsLight.kwhite,
-    labelStyle: AppStyles.text14Medium.copyWith(color: AppColorsLight.kGrey),
+    labelStyle: AppStyles.font14RegularGrey,
 
-    floatingLabelStyle: AppStyles.text14Medium.copyWith(
-      color: AppColorsLight.kGrey,
-    ),
+    floatingLabelStyle: AppStyles.font14RegularGrey,
     border: UnderlineInputBorder(borderSide: BorderSide.none),
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(color: AppColorsLight.kPrimary),
@@ -39,7 +38,7 @@ ThemeData get lightTheme => ThemeData(
       padding: WidgetStateProperty.all(
         EdgeInsets.symmetric(horizontal: 0, vertical: 16),
       ),
-      textStyle: WidgetStateProperty.all(AppStyles.text14Medium),
+      textStyle: WidgetStateProperty.all(AppStyles.font14RegularBlack),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         return states.contains(WidgetState.pressed)
             ? AppColorsLight.kPrimary
@@ -55,7 +54,7 @@ ThemeData get lightTheme => ThemeData(
       backgroundColor: AppColorsLight.kPrimary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       foregroundColor: AppColorsLight.kwhite,
-      textStyle: AppStyles.text14Medium,
+      textStyle: AppStyles.font14RegularBlack,
       overlayColor: Colors.redAccent,
     ),
   ),
