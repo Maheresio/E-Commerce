@@ -14,7 +14,7 @@ abstract class AppRouter {
   static const kHome = '/home';
 
   static final GoRouter router = GoRouter(
-    initialLocation: kLogin,
+    initialLocation: kHome,
     routes: [
       GoRoute(
         path: kLogin,

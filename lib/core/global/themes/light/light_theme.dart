@@ -38,9 +38,9 @@ ThemeData get lightTheme => ThemeData(
       padding: WidgetStateProperty.all(
         EdgeInsets.symmetric(horizontal: 0, vertical: 16),
       ),
-      textStyle: WidgetStateProperty.all(AppStyles.font14BlackRegular.copyWith(
-        letterSpacing: 0.5,
-      )),
+      textStyle: WidgetStateProperty.all(
+        AppStyles.font14BlackRegular.copyWith(letterSpacing: 0.5),
+      ),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         return states.contains(WidgetState.pressed)
             ? AppColorsLight.kPrimary
@@ -56,9 +56,7 @@ ThemeData get lightTheme => ThemeData(
       backgroundColor: AppColorsLight.kPrimary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       foregroundColor: AppColorsLight.kwhite,
-      textStyle: AppStyles.font14BlackMedium.copyWith(
-        letterSpacing: 0.5,
-      ),
+      textStyle: AppStyles.font14BlackMedium.copyWith(letterSpacing: 0.5),
       overlayColor: Colors.redAccent,
     ),
   ),
