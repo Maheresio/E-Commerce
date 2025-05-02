@@ -5,4 +5,5 @@ class AppImages {
   static const String google = 'assets/svg/google.svg';
   static const String wrong = 'assets/svg/wrong.svg';
   static const String homeBanner = 'assets/images/home_banner.png';
+  static const String photo = 'assets/images/photo.png';
 }
