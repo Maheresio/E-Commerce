@@ -33,6 +33,11 @@ abstract class AppStyles {
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
+  static TextStyle font14BlackMedium= TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
 
   static TextStyle font14BlackSemiBold = TextStyle(
     fontSize: 14.sp,
@@ -42,7 +47,7 @@ abstract class AppStyles {
 
   static TextStyle font14GreyRegular = TextStyle(
     fontSize: 14.sp,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     color: AppColorsLight.kGrey,
   );
 
