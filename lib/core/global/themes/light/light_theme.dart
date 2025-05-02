@@ -18,9 +18,9 @@ ThemeData get lightTheme => ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: AppColorsLight.kwhite,
-    labelStyle: AppStyles.font14RegularGrey,
+    labelStyle: AppStyles.font14GreyRegular,
 
-    floatingLabelStyle: AppStyles.font14RegularGrey,
+    floatingLabelStyle: AppStyles.font14GreyRegular,
     border: UnderlineInputBorder(borderSide: BorderSide.none),
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(color: AppColorsLight.kPrimary),
@@ -38,7 +38,7 @@ ThemeData get lightTheme => ThemeData(
       padding: WidgetStateProperty.all(
         EdgeInsets.symmetric(horizontal: 0, vertical: 16),
       ),
-      textStyle: WidgetStateProperty.all(AppStyles.font14RegularBlack),
+      textStyle: WidgetStateProperty.all(AppStyles.font14BlackRegular),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         return states.contains(WidgetState.pressed)
             ? AppColorsLight.kPrimary
@@ -54,7 +54,7 @@ ThemeData get lightTheme => ThemeData(
       backgroundColor: AppColorsLight.kPrimary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       foregroundColor: AppColorsLight.kwhite,
-      textStyle: AppStyles.font14RegularBlack,
+      textStyle: AppStyles.font14BlackRegular,
       overlayColor: Colors.redAccent,
     ),
   ),

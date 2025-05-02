@@ -4,99 +4,97 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../global/themes/light/app_colors_light.dart';
 
 abstract class AppStyles {
-  static TextStyle font10RegularBlack = TextStyle(
+  static TextStyle font10BlackRegular = TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
 
-  static TextStyle font10SemiBoldBlack = TextStyle(
+  static TextStyle font10BlackSemiBold = TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font11RegularBlack = TextStyle(
+  static TextStyle font11BlackRegular = TextStyle(
     fontSize: 11.sp,
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
 
-  static TextStyle font11SemiBoldBlack = TextStyle(
+  static TextStyle font11BlackSemiBold = TextStyle(
     fontSize: 11.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font14RegularBlack = TextStyle(
+  static TextStyle font14BlackRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
 
-  static TextStyle font14SemiBoldBlack = TextStyle(
+  static TextStyle font14BlackSemiBold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font14RegularGrey = TextStyle(
-   
+  static TextStyle font14GreyRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: AppColorsLight.kGrey,
   );
 
-  static TextStyle font14RegularLightBlack = TextStyle(
+  static TextStyle font14LightBlackRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: AppColorsLight.kLightBlack,
   );
 
-  static TextStyle font15SemiBoldBlack = TextStyle(
+  static TextStyle font15BlackSemiBold = TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font16RegularBlack = TextStyle(
+  static TextStyle font16BlackRegular = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
 
-  static TextStyle font16SemiBoldBlack = TextStyle(
+  static TextStyle font16BlackSemiBold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font18SemiBoldBlack = TextStyle(
+  static TextStyle font18BlackSemiBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font24SemiBoldBlack = TextStyle(
+  static TextStyle font24BlackSemiBold = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font34BoldBlack = TextStyle(
-
+  static TextStyle font34BlackBold = TextStyle(
     fontSize: 34.sp,
     fontWeight: FontWeight.w700,
     color: Colors.black,
   );
 
-  static TextStyle font44SemiBoldBlack = TextStyle(
+  static TextStyle font44BlackSemiBold = TextStyle(
     fontSize: 44.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 
-  static TextStyle font48BoldBlack = TextStyle(
+  static TextStyle font48BlackBold = TextStyle(
     fontSize: 48.sp,
     fontWeight: FontWeight.w700,
     color: Colors.black,

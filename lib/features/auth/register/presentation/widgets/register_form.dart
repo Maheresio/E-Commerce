@@ -31,7 +31,7 @@ class RegisterForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Title
-        Text(AppStrings.kSignUp, style: AppStyles.font34BoldBlack),
+        Text(AppStrings.kSignUp, style: AppStyles.font34BlackBold),
         const SizedBox(height: 70),
 
         // Input Section

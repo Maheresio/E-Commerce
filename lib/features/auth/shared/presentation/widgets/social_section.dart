@@ -15,7 +15,7 @@ class SocialSection extends StatelessWidget {
       children: [
         Text(
           AppStrings.kSignUpWithSocialAccount,
-          style: AppStyles.font14RegularBlack,
+          style: AppStyles.font14BlackRegular,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
