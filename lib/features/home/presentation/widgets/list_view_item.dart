@@ -1,10 +1,12 @@
 import 'package:e_commerce/core/helpers/extensions/theme_color.extension.dart';
+import 'package:e_commerce/core/utils/app_router.dart';
 import 'package:e_commerce/core/utils/app_styles.dart';
 import 'package:e_commerce/features/home/domain/entities/product_entity.dart';
 import 'package:e_commerce/features/home/presentation/controller/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class ListViewItem extends StatelessWidget {
   const ListViewItem(this.product, {super.key});
@@ -14,7 +16,7 @@ class ListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => context.push(AppRouter.kProductDetails, extra: product),
       child: SizedBox(
         height: 260.h,
         width: 150.w,
