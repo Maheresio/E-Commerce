@@ -26,7 +26,7 @@ abstract class AppStyles {
     fontWeight: FontWeight.w400,
     color: AppColorsLight.kGrey,
   );
-   static TextStyle font11GreyMedium = TextStyle(
+  static TextStyle font11GreyMedium = TextStyle(
     fontSize: 11.sp,
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kGrey,
@@ -58,7 +58,7 @@ abstract class AppStyles {
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kGrey,
   );
-   static TextStyle font14PrimaryMedium = TextStyle(
+  static TextStyle font14PrimaryMedium = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kPrimary,
@@ -104,6 +104,11 @@ abstract class AppStyles {
     fontSize: 18.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
+  );
+  static TextStyle font18PrimarySemiBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColorsLight.kPrimary,
   );
 
   static TextStyle font24BlackSemiBold = TextStyle(
