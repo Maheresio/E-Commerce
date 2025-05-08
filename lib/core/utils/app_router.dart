@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/home/presentation/views/product_details_view.dart';
 import 'package:e_commerce/styled_nav_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +7,7 @@ import '../../features/auth/login/presentation/bloc/login_bloc.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
 import '../../features/auth/register/presentation/bloc/register_bloc.dart';
 import '../../features/auth/register/presentation/views/register_view.dart';
+import '../../features/home/domain/entities/product_entity.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../services/service_locator.dart';
 
@@ -15,6 +17,7 @@ abstract class AppRouter {
   static const kHome = '/home';
   static const kLanding = '/landing';
   static const kNavBar = '/navBar';
+  static const kProductDetails = '/productDetails';
 
   static final GoRouter router = GoRouter(
     initialLocation: kNavBar,
@@ -39,6 +42,12 @@ abstract class AppRouter {
       ),
       GoRoute(path: kHome, builder: (context, state) => HomeView()),
       GoRoute(path: kNavBar, builder: (context, state) => StyledNavBar()),
+      GoRoute(
+        path: kProductDetails,
+        builder:
+            (context, state) =>
+                ProductDetailsView(state.extra as ProductEntity),
+      ),
     ],
   );
 }
