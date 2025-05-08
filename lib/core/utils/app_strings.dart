@@ -75,4 +75,5 @@ class AppStrings {
   static const String kCropItem = "Crop the item";
   static const String kFindingResults = "Finding similar results...";
   static const String kVisualSearch = "Visual search";
+  static const String kNoProductsFound = "No products found";
 }
