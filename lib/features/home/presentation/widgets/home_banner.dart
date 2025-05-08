@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -10,7 +11,7 @@ class HomeBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 196,
+      height: 196.h,
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
