@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/global/themes/light/app_colors_light.dart';
+import 'package:e_commerce/core/utils/app_styles.dart';
 import 'package:e_commerce/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -37,6 +38,7 @@ class StyledNavBar extends StatelessWidget {
         icon: Icon(entry.value),
         title: entry.key,
         activeColorPrimary: AppColorsLight.kPrimary,
+        textStyle: AppStyles.font11GreyMedium,
         inactiveColorPrimary: Colors.grey,
       );
     }).toList();
