@@ -1,3 +1,4 @@
+import 'package:e_commerce/styled_nav_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,9 +13,11 @@ abstract class AppRouter {
   static const kRegister = '/register';
   static const kLogin = '/kLogin';
   static const kHome = '/home';
+  static const kLanding = '/landing';
+  static const kNavBar = '/navBar';
 
   static final GoRouter router = GoRouter(
-    initialLocation: kHome,
+    initialLocation: kNavBar,
     routes: [
       GoRoute(
         path: kLogin,
@@ -35,6 +38,7 @@ abstract class AppRouter {
         },
       ),
       GoRoute(path: kHome, builder: (context, state) => HomeView()),
+      GoRoute(path: kNavBar, builder: (context, state) => StyledNavBar()),
     ],
   );
 }
