@@ -8,8 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class ListViewItem extends StatelessWidget {
-  const ListViewItem(this.product, {super.key});
+class HomeListViewItem extends StatelessWidget {
+  const HomeListViewItem(this.product, {super.key});
 
   final ProductEntity product;
 
@@ -32,7 +32,7 @@ class ListViewItem extends StatelessWidget {
             Positioned(
               right: 0,
               bottom: 105,
-              child: FavoriteIcon(
+              child: HomeFavoriteWidget(
                 id: product.id,
                 isFavorite: product.isFavorite,
               ),
@@ -60,7 +60,7 @@ class ProductItem extends StatelessWidget {
 
         RatingAndReview(rating: product.rate, reviewCount: product.reviewCount),
         SizedBox(height: 6),
-        ProductInfo(title: product.title, category: product.category),
+        HomeProductInfo(title: product.title, category: product.category),
         SizedBox(height: 3),
         ProductPrice(
           price: product.price,
@@ -71,8 +71,12 @@ class ProductItem extends StatelessWidget {
   }
 }
 
-class ProductInfo extends StatelessWidget {
-  const ProductInfo({super.key, required this.title, required this.category});
+class HomeProductInfo extends StatelessWidget {
+  const HomeProductInfo({
+    super.key,
+    required this.title,
+    required this.category,
+  });
 
   final String title;
   final String category;
@@ -205,8 +209,12 @@ class DiscountText extends StatelessWidget {
   }
 }
 
-class FavoriteIcon extends ConsumerWidget {
-  const FavoriteIcon({super.key, required this.id, required this.isFavorite});
+class HomeFavoriteWidget extends ConsumerWidget {
+  const HomeFavoriteWidget({
+    super.key,
+    required this.id,
+    required this.isFavorite,
+  });
   final bool isFavorite;
   final String id;
 

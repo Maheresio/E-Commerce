@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 
-class ListViewHeader extends StatelessWidget {
+class HomeListViewHeader extends StatelessWidget {
   final String title;
   final String subtitle;
   final void Function()? onPressed;
-  const ListViewHeader({
+  const HomeListViewHeader({
     super.key,
     required this.title,
     required this.subtitle,
