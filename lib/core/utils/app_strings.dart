@@ -24,7 +24,9 @@ class AppStrings {
   static const String kViewAll = "View all";
   static const String kPriceRange = "Price range";
   static const String kColors = "Colors";
+  static const String kColor = "Color";
   static const String kSizes = "Sizes";
+  static const String kSize = "Size";
   static const String kCategory = "Category";
   static const String kBrand = "Brand";
   static const String kAll = "All";
@@ -39,6 +41,7 @@ class AppStrings {
   static const String kShareOpinion =
       "Please share your opinion about the product";
   static const String kAddPhotos = "Add your photos";
+  static const String kAddToCart = "Add to cart";
   static const String kCheckout = "Checkout";
   static const String kShippingAddress = "Shipping address";
   static const String kPayment = "Payment";
@@ -76,4 +79,8 @@ class AppStrings {
   static const String kFindingResults = "Finding similar results...";
   static const String kVisualSearch = "Visual search";
   static const String kNoProductsFound = "No products found";
+  static const String kShippingInfo = 'Shipping info';
+  static const String kSupport = 'Support';
+  static const String kMyCart = 'My Cart';
+  
 }
