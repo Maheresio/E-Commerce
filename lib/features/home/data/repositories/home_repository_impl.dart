@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce/core/error/failure.dart';
-import 'package:e_commerce/core/error/firestore_failure.dart';
-import 'package:e_commerce/core/error/socket_failure.dart';
-import 'package:e_commerce/features/home/data/models/product_model.dart';
-import 'package:e_commerce/features/home/domain/repositories/home_repository.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/error/firestore_failure.dart';
+import '../../../../core/error/socket_failure.dart';
+import '../models/product_model.dart';
+import '../../domain/repositories/home_repository.dart';
 
 import '../../../../core/error/server_failure.dart';
 import '../datasources/home_data_source.dart';

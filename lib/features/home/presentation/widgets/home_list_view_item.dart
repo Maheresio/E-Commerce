@@ -1,8 +1,8 @@
-import 'package:e_commerce/core/helpers/extensions/theme_color.extension.dart';
-import 'package:e_commerce/core/utils/app_router.dart';
-import 'package:e_commerce/core/utils/app_styles.dart';
-import 'package:e_commerce/features/home/domain/entities/product_entity.dart';
-import 'package:e_commerce/features/home/presentation/controller/home_provider.dart';
+import '../../../../core/helpers/extensions/theme_color.extension.dart';
+import '../../../../core/utils/app_router.dart';
+import '../../../../core/utils/app_styles.dart';
+import '../../domain/entities/product_entity.dart';
+import '../controller/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

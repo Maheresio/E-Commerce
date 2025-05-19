@@ -1,5 +1,5 @@
-import 'package:e_commerce/features/home/domain/entities/product_entity.dart';
-import 'package:e_commerce/features/home/domain/repositories/home_repository.dart';
+import '../entities/product_entity.dart';
+import '../repositories/home_repository.dart';
 
 
 class GetSaleUsecase {

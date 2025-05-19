@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/home/domain/entities/product_entity.dart';
+import '../entities/product_entity.dart';
 
 
 abstract class HomeRepository {

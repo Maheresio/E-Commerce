@@ -9,7 +9,7 @@ import '../../../../core/helpers/methods/product_lists.dart';
 import '../controller/home_provider.dart';
 import 'product_details_image_slider.dart';
 import 'product_details_info.dart';
-import 'product_info_tile.dart';
+import '../../../../core/widgets/product_info_tile.dart';
 import 'size_color_favorite_selector.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {

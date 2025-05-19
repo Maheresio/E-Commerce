@@ -1,5 +1,5 @@
-import 'package:e_commerce/core/services/firestore_sevice.dart';
-import 'package:e_commerce/core/utils/firestore_path.dart';
+import '../../../../core/services/firestore_sevice.dart';
+import '../../../../core/utils/firestore_path.dart';
 
 import '../models/product_model.dart';
 

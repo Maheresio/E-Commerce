@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/home/domain/repositories/home_repository.dart';
+import '../repositories/home_repository.dart';
 
 class UpdateProductUsecase {
   HomeRepository homeRepository;

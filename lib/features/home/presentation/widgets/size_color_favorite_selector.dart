@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/helpers/extensions/theme_color.extension.dart';
+import '../../../../core/helpers/extensions/theme_color.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,7 +6,7 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/product_entity.dart';
 import 'product_details_view_body.dart';
-import 'product_info_tile.dart';
+import '../../../../core/widgets/product_info_tile.dart';
 import 'read_only_text_field.dart';
 
 class SizeColorFavoriteSelector extends StatelessWidget {
