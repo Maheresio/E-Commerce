@@ -93,6 +93,11 @@ abstract class AppStyles {
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
+   static TextStyle font16BlackMedium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
 
   static TextStyle font16BlackSemiBold = TextStyle(
     fontSize: 16.sp,
