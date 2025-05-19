@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../utils/app_styles.dart';
 import 'app_colors_light.dart';
@@ -13,6 +14,7 @@ ThemeData get lightTheme => ThemeData(
     secondary: AppColorsLight.kGrey,
     onSecondary: AppColorsLight.kwhite,
     onTertiary: AppColorsLight.kSuccessColor,
+    primaryFixed: AppColorsLight.kBlack,
   ),
 
   inputDecorationTheme: InputDecorationTheme(
@@ -52,6 +54,7 @@ ThemeData get lightTheme => ThemeData(
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      fixedSize: Size(double.maxFinite, 48.h),
       animationDuration: const Duration(milliseconds: 200),
       backgroundColor: AppColorsLight.kPrimary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
