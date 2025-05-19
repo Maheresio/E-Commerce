@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/global/themes/light/app_colors_light.dart';
 import 'package:e_commerce/core/utils/app_styles.dart';
+import 'package:e_commerce/features/cart/presentation/views/cart_view.dart';
 import 'package:e_commerce/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -24,8 +25,8 @@ class StyledNavBar extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const HomeView(),
-      const Center(child: Text("Search Screen")),
       const Center(child: Text("Cart Screen")),
+      const CartView(),
       const Center(child: Text("Favorites Screen")),
       const Center(child: Text("Profile Screen")),
     ];

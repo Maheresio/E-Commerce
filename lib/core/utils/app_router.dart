@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/cart/presentation/views/cart_view.dart';
 import 'package:e_commerce/features/home/presentation/views/product_details_view.dart';
 import 'package:e_commerce/styled_nav_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ abstract class AppRouter {
   static const kLanding = '/landing';
   static const kNavBar = '/navBar';
   static const kProductDetails = '/productDetails';
+  static const kCart = '/cart';
 
   static final GoRouter router = GoRouter(
     initialLocation: kNavBar,
@@ -42,6 +44,7 @@ abstract class AppRouter {
       ),
       GoRoute(path: kHome, builder: (context, state) => HomeView()),
       GoRoute(path: kNavBar, builder: (context, state) => StyledNavBar()),
+      GoRoute(path: kCart, builder: (context, state) => CartView()),
       GoRoute(
         path: kProductDetails,
         builder:
