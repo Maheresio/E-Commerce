@@ -44,6 +44,7 @@ class AppStrings {
   static const String kAddToCart = "Add to cart";
   static const String kCheckout = "Checkout";
   static const String kShippingAddress = "Shipping address";
+  static const String kShippingAddresses = "Shipping addresses";
   static const String kPayment = "Payment";
   static const String kDeliveryMethod = "Delivery method";
   static const String kSubmitOrder = "SUBMIT ORDER";
@@ -82,5 +83,33 @@ class AppStrings {
   static const String kShippingInfo = 'Shipping info';
   static const String kSupport = 'Support';
   static const String kMyCart = 'My Cart';
-  
+  static const String kOrder = 'Order';
+  static const String kOrderHistory = 'Order history';
+  static const String kOrderDetails = 'Order details';
+  static const String kOrderStatus = 'Order status';
+  static const String kDelivery = 'Delivery';
+  static const String kSummary = 'Summary';
+  static const String kChange = 'Change';
+  static const String kAdddingShippingAddress = 'Adding shipping address';
+  static const String kFullName = 'Full Name';
+  static const String kCity = 'City';
+  static const String kStateOrProvinceOrRegion = 'State/Province/Region';
+  static const String kZipCodeOrPostalCode = 'Zip Code (Postal Code)';
+  static const String kCountry = 'Country';
+  static const String kPhoneNumber = 'Phone Number';
+  static const String kAddress = 'Address';
+  static const String kpaymentMethods = 'Payment methods';
+  static const String kYourPaymentCards = 'Your payment cards';
+  static const String kUseAsDefaultPaymentMethod =
+      'Use as default payment method';
+
+  static const String kAddNewCard = 'Add new card';
+  static const String kCardHolderName = 'Card Holder Name';
+  static const String kExpiyDate = 'Expiry Date';
+  static const String kCardNumber = 'Card Number';
+  static const String kSecurityCode = 'Security Code';
+  static const String kNameOnCard = 'Name on card';
+  static const String kExpireDate = 'Expire Date';
+  static const String kSecurityCodeHint = 'Security Code (CVV)';
+
 }
