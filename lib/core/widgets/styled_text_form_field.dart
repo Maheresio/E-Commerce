@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../utils/app_styles.dart';
 
 class StyledTextFormField extends StatefulWidget {
   const StyledTextFormField({
@@ -10,6 +13,7 @@ class StyledTextFormField extends StatefulWidget {
     this.validator,
     this.isPassword = false,
     this.autofillHints,
+    this.suffixIcon,
   });
 
   final bool isPassword;
@@ -19,6 +23,7 @@ class StyledTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final List<String>? autofillHints;
+  final Widget? suffixIcon;
 
   @override
   State<StyledTextFormField> createState() => _StyledTextFormFieldState();
@@ -41,8 +46,9 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
       textInputAction: widget.textInputAction,
       obscureText: widget.isPassword && !_isPasswordVisible,
       keyboardType: widget.keyboardType,
-
+      style: AppStyles.font14BlackMedium,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
         labelText: widget.text,
 
         suffixIcon:
@@ -55,7 +61,7 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
                   ),
                   onPressed: _togglePasswordVisibility,
                 )
-                : null,
+                : widget.suffixIcon,
       ),
     );
   }
