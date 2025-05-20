@@ -15,6 +15,11 @@ abstract class AppStyles {
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
+  static TextStyle font10WhiteSemiBold = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
 
   static TextStyle font11BlackRegular = TextStyle(
     fontSize: 11.sp,
@@ -69,6 +74,11 @@ abstract class AppStyles {
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
+  static TextStyle font14WhiteSemiBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
 
   static TextStyle font14GreyRegular = TextStyle(
     fontSize: 14.sp,
@@ -93,7 +103,7 @@ abstract class AppStyles {
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
-   static TextStyle font16BlackMedium = TextStyle(
+  static TextStyle font16BlackMedium = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     color: Colors.black,
@@ -120,6 +130,11 @@ abstract class AppStyles {
     fontSize: 24.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
+  );
+  static TextStyle font24WhiteSemiBold = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
   );
 
   static TextStyle font34BlackBold = TextStyle(
