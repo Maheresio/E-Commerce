@@ -1,5 +1,5 @@
 import '../../../../core/services/firestore_sevice.dart';
-import '../../../../core/utils/firestore_path.dart';
+import '../../../../core/constants/firestore_constants.dart';
 
 import '../models/product_model.dart';
 
@@ -17,7 +17,7 @@ class HomeDataSourceImpl implements HomeDataSource {
   @override
   Stream<List<ProductModel>> newProducts() {
     return firestoreServices.collectionsStream(
-      path: FirestorePath.products,
+      path: FirestoreConstants.products,
       builder: (data, documentId) => ProductModel.fromMap(data!, documentId),
     );
   }
@@ -25,7 +25,7 @@ class HomeDataSourceImpl implements HomeDataSource {
   @override
   Stream<List<ProductModel>> saleProducts() =>
       firestoreServices.collectionsStream(
-        path: FirestorePath.products,
+        path: FirestoreConstants.products,
         builder: (data, documentId) => ProductModel.fromMap(data!, documentId),
         queryBuilder: (query) => query.where('discountValue', isNotEqualTo: 0),
       );
@@ -36,7 +36,7 @@ class HomeDataSourceImpl implements HomeDataSource {
     required Map<String, dynamic> data,
   }) async {
     await firestoreServices.updateData(
-      path: FirestorePath.product(id),
+      path: FirestoreConstants.product(id),
       data: data,
     );
   }

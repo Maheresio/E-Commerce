@@ -1,15 +1,15 @@
-import 'package:e_commerce/core/helpers/extensions/theme_color.extension.dart';
-import 'package:e_commerce/core/utils/app_strings.dart';
-import 'package:e_commerce/features/home/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/extensions/theme_color.extension.dart';
 import '../../../../core/helpers/methods/product_lists.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/product_info_tile.dart';
+import '../../domain/entities/product_entity.dart';
 import '../controller/home_provider.dart';
 import 'product_details_image_slider.dart';
 import 'product_details_info.dart';
-import '../../../../core/widgets/product_info_tile.dart';
 import 'size_color_favorite_selector.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {

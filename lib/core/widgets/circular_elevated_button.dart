@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/helpers/extensions/theme_color.extension.dart';
+import '../helpers/extensions/theme_color.extension.dart';
 import 'package:flutter/material.dart';
 
 class CircularElevatedButton extends StatelessWidget {

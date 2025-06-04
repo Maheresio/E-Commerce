@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce/features/auth/shared/domain/entity/user_entity.dart';
+
+import '../../domain/entity/user_entity.dart';
 
 class UserModel extends UserEntity {
   UserModel({

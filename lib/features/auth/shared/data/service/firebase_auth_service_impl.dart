@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/constants/firestore_constants.dart';
-import 'package:e_commerce/core/services/firestore_sevice.dart';
-import 'package:e_commerce/features/auth/shared/data/model/user_model.dart';
-import 'package:e_commerce/features/auth/shared/domain/entity/user_entity.dart';
+import '../../../../../core/constants/firestore_constants.dart';
+import '../../../../../core/services/firestore_sevice.dart';
+import '../model/user_model.dart';
+import '../../domain/entity/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../../core/services/firebase_auth_service.dart';

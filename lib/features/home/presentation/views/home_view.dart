@@ -1,9 +1,9 @@
-import 'package:e_commerce/core/global/themes/light/app_colors_light.dart';
-import 'package:e_commerce/core/routing/app_router.dart';
-import 'package:e_commerce/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/global/themes/light/app_colors_light.dart';
+import '../../../../core/routing/app_router.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../widgets/home_view_body.dart';
 
 class HomeView extends StatelessWidget {

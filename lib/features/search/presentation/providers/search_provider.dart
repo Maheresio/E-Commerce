@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce/core/network/dio_client.dart';
-import 'package:e_commerce/core/services/supabase_storage_service.dart';
-import 'package:e_commerce/features/search/data/repositories/search_repository_impl.dart';
-import 'package:e_commerce/features/search/domain/repositories/search_repository.dart';
+import '../../../../core/network/dio_client.dart';
+import '../../../../core/services/supabase_storage_service.dart';
+import '../../data/repositories/search_repository_impl.dart';
+import '../../domain/repositories/search_repository.dart';
 import 'package:e_commerce/features/search/domain/usecases/get_clothes_tags_usecase.dart';
 import 'package:e_commerce/features/search/domain/usecases/upload_image_usecase.dart';
 import 'package:flutter/foundation.dart';

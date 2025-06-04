@@ -1,11 +1,12 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce/core/network/dio_client.dart';
-import 'package:e_commerce/core/services/supabase_storage_service.dart';
-import 'package:e_commerce/features/search/data/datasources/search_remote_data_source.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/network/dio_client.dart';
+import '../../../../core/services/supabase_storage_service.dart';
+import '../../data/datasources/search_remote_data_source.dart';
 import '../../data/repositories/search_repository_impl.dart';
 
 class CropImageState {

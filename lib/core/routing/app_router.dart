@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/routing/refresh_stream.dart';
-import 'package:e_commerce/features/checkout/presentation/views/payment_methods_view.dart';
-import 'package:e_commerce/features/search/presentation/views/crop_image_view.dart';
-import 'package:e_commerce/features/search/presentation/widgets/search_result_view.dart';
+import 'refresh_stream.dart';
+import '../../features/checkout/presentation/views/payment_methods_view.dart';
+import '../../features/search/presentation/views/crop_image_view.dart';
+import '../../features/search/presentation/widgets/search_result_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

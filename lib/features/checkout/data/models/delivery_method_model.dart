@@ -26,11 +26,11 @@ List<DeliveryMethodModel> deliveryMethods = [
     duration: '2-3 days',
     image: AppImages.paypal,
   ),
-  DeliveryMethodModel(
-    name: 'USPS Delivery',
-    duration: '2-3 days',
-    image: AppImages.dhl,
-  ),
+  // DeliveryMethodModel(
+  //   name: 'USPS Delivery',
+  //   duration: '2-3 days',
+  //   image: AppImages.dhl,
+  // ),
 ];
 
 class DeliveryMethodModel {

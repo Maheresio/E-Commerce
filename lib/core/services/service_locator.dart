@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/network/dio_client.dart';
-import 'package:e_commerce/core/services/firestore_sevice.dart';
-import 'package:e_commerce/core/services/supabase_storage_service.dart';
+import '../network/dio_client.dart';
+import 'firestore_sevice.dart';
+import 'supabase_storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 

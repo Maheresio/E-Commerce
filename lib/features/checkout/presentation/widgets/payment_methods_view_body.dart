@@ -1,8 +1,8 @@
-import 'package:e_commerce/core/utils/app_strings.dart';
-import 'package:e_commerce/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/app_styles.dart';
 import 'visa_card_item.dart';
 
 class PaymentMethodsViewBody extends StatelessWidget {

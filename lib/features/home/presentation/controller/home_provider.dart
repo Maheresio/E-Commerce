@@ -1,12 +1,12 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../data/datasources/home_data_source.dart';
 import '../../data/repositories/home_repository_impl.dart';
 import '../../domain/entities/product_entity.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../../domain/usecases/get_new_usecase.dart';
 import '../../domain/usecases/get_sale_usecase.dart';
 import '../../domain/usecases/update_product_usecase.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../data/datasources/home_data_source.dart';
 
 final homeDataSourceProvider = Provider<HomeDataSource>(
   (ref) => HomeDataSourceImpl(),

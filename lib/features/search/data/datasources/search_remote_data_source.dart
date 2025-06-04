@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce/core/constants/api_constants.dart';
-import 'package:e_commerce/core/network/dio_client.dart';
 
+import '../../../../core/constants/api_constants.dart';
+import '../../../../core/network/dio_client.dart';
 import '../../../../core/services/supabase_storage_service.dart';
 
 abstract class SearchRemoteDataSource {

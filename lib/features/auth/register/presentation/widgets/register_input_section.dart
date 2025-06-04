@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/widgets/styled_text_form_field.dart';
 import '../../../shared/domain/entity/email_validation.dart';
 import '../../../shared/domain/entity/name_validation.dart';
 import '../../../shared/domain/entity/password_validation.dart';
-import '../../../../../core/widgets/styled_text_form_field.dart';
 
 class RegisterInputSection extends StatelessWidget {
   const RegisterInputSection({
