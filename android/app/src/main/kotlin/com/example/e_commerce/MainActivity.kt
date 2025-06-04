@@ -1,4 +1,4 @@
-package org.Maheresio.e_commerce
+package com.example.e_commerce
 
 import io.flutter.embedding.android.FlutterActivity
 
