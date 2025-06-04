@@ -1,3 +1,6 @@
+import 'package:e_commerce/core/network/dio_client.dart';
+import 'package:e_commerce/core/services/firestore_sevice.dart';
+import 'package:e_commerce/core/services/supabase_storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -18,8 +21,19 @@ final GetIt sl = GetIt.instance;
 
 void serviceLocator() {
   // Core services
+  sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+  sl.registerLazySingleton<FirestoreServices>(() => FirestoreServices.instance);
+
   sl.registerLazySingleton<FirebaseAuthService>(
-    () => FirebaseAuthServiceImpl(FirebaseAuth.instance),
+    () => FirebaseAuthServiceImpl(
+      firebaseAuth: sl<FirebaseAuth>(),
+      firestoreServices: sl<FirestoreServices>(),
+    ),
+  );
+
+  sl.registerLazySingleton<DioClient>(() => DioClient());
+  sl.registerLazySingleton<SupabaseStorageService>(
+    () => SupabaseStorageService(),
   );
 
   // Auth Feature
@@ -50,5 +64,4 @@ void serviceLocator() {
   sl.registerFactory<LoginBloc>(
     () => LoginBloc(sl<LoginWithEmailAndPasswordUseCase>()),
   );
-  
 }

@@ -1,10 +1,18 @@
+import 'package:e_commerce/core/constants/firestore_constants.dart';
+import 'package:e_commerce/core/services/firestore_sevice.dart';
+import 'package:e_commerce/features/auth/shared/data/model/user_model.dart';
+import 'package:e_commerce/features/auth/shared/domain/entity/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../../core/services/firebase_auth_service.dart';
 
 class FirebaseAuthServiceImpl implements FirebaseAuthService {
   final FirebaseAuth firebaseAuth;
-  const FirebaseAuthServiceImpl(this.firebaseAuth);
+  final FirestoreServices firestoreServices;
+  const FirebaseAuthServiceImpl({
+    required this.firebaseAuth,
+    required this.firestoreServices,
+  });
 
   @override
   Future<void> loginWithEmailAndPassword({
@@ -28,13 +36,42 @@ class FirebaseAuthServiceImpl implements FirebaseAuthService {
       password: password,
     );
     await userCredential.user?.updateDisplayName(name);
+
+    final uid = userCredential.user!.uid;
+
+    final user = UserModel(
+      uid: uid,
+      email: email,
+      name: name,
+      createdAt: DateTime.now(),
+    );
+
+    await firestoreServices.setData(
+      path: FirestoreConstants.user(uid),
+      data: user.toMap(),
+    );
   }
 
   @override
   Stream<User?> authStateChanges() => firebaseAuth.authStateChanges();
 
   @override
-  User? get currentUser => firebaseAuth.currentUser;
+  Future<UserEntity?> currentUser() async {
+    final user = firebaseAuth.currentUser;
+    if (user == null) return null;
+
+    final docStream = firestoreServices.documentsStream(
+      path: FirestoreConstants.user(user.uid),
+      builder: (data, documentId) {
+        if (data == null) return null;
+        return UserModel.fromMap(data, documentId);
+      },
+    );
+
+    final doc = await docStream.first;
+
+    return doc;
+  }
 
   @override
   Future<void> logOut() async {

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/helpers/methods/styled_snack_bar.dart';
-import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../shared/presentation/widgets/header_section.dart';
 import '../../../shared/presentation/widgets/navigation_button.dart';

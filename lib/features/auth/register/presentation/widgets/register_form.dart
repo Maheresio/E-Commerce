@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/helpers/methods/styled_snack_bar.dart';
-import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../shared/presentation/widgets/navigation_button.dart';
@@ -60,10 +60,8 @@ class RegisterForm extends StatelessWidget {
                 text: AppStrings.kSuccessRegister,
                 type: SnackBarType.success,
               );
-              Future.delayed(Duration(seconds: 2), () {
-                if (!context.mounted) return;
-                GoRouter.of(context).go(AppRouter.kLogin);
-              });
+              if (!context.mounted) return;
+              GoRouter.of(context).go(AppRouter.kLogin);
             } else if (state is RegisterFailure) {
               openStyledSnackBar(
                 context,
