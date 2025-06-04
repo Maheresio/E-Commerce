@@ -14,4 +14,6 @@ class AppImages {
   static const String visa = 'assets/images/visa.png';
   static const String homeBanner = 'assets/images/home_banner.png';
   static const String photo = 'assets/images/photo.png';
+  static const String searchBackground = 'assets/images/search_background.png';
+  static const String searchLottie = 'assets/lotties/search_lottie.json';
 }

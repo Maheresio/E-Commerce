@@ -1,5 +1,5 @@
 import '../../../../core/helpers/extensions/theme_color.extension.dart';
-import '../../../../core/utils/app_router.dart';
+import '../../../../core/routing/app_router.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/product_entity.dart';
 import '../controller/home_provider.dart';

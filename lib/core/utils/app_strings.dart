@@ -111,5 +111,8 @@ class AppStrings {
   static const String kNameOnCard = 'Name on card';
   static const String kExpireDate = 'Expire Date';
   static const String kSecurityCodeHint = 'Security Code (CVV)';
-
+  static const String kTakePhoto = 'Take A Photo';
+  static const String kUploadAnImage = 'Upload an image';
+  static const String kSearchForAnOutfit =
+      'Search for an outfit by taking a photo or uploading an image';
 }
