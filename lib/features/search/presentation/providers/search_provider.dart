@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/core/services/firestore_sevice.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../../core/services/supabase_storage_service.dart';
 import '../../data/repositories/search_repository_impl.dart';
@@ -14,14 +15,12 @@ import '../../../../core/services/service_locator.dart';
 import '../../data/datasources/search_remote_data_source.dart';
 
 class SearchNotifier extends AsyncNotifier<List<String>> {
-  late final UploadImageUsecase _uploadImageUsecase;
-  late final GetClothesTagsUsecase _getClothesTagsUsecase;
-
   Future<void> processImage(Uint8List bytes) async {
     state = const AsyncLoading();
 
     late final String url;
-    final uploadResult = await _uploadImageUsecase.execute(bytes);
+    final uploadImageUsecase = ref.read(uploadImageUsecaseProvider);
+    final uploadResult = await uploadImageUsecase.execute(bytes);
     uploadResult.fold(
       (failure) {
         state = AsyncError(failure.message, StackTrace.current);
@@ -32,7 +31,8 @@ class SearchNotifier extends AsyncNotifier<List<String>> {
     );
 
     late final List<String> tags;
-    final tagsResult = await _getClothesTagsUsecase.execute(url);
+    final getClothesTagsUsecase = ref.read(getClothesTagsUsecaseProvider);
+    final tagsResult = await getClothesTagsUsecase.execute(url);
     tagsResult.fold(
       (failure) {
         state = AsyncError(failure.message, StackTrace.current);
@@ -52,18 +52,14 @@ class SearchNotifier extends AsyncNotifier<List<String>> {
   }
 
   @override
-  FutureOr<List<String>> build() {
-    _uploadImageUsecase = ref.read(uploadImageUsecaseProvider);
-    _getClothesTagsUsecase = ref.read(getClothesTagsUsecaseProvider);
-    return [];
-  }
+  FutureOr<List<String>> build() => [];
 }
 
 final searchRemoteDataSourceProvider = Provider<SearchRemoteDataSource>((_) {
   return SearchRemoteDataSourceImpl(
     storageService: sl<SupabaseStorageService>(),
     dioClient: sl<DioClient>(),
-    firestore: sl<FirebaseFirestore>(),
+    firestore: sl<FirestoreServices>(),
   );
 });
 final searchRepositoryProvider = Provider<SearchRepository>((ref) {

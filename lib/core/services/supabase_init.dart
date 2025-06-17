@@ -1,9 +1,10 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> supabaseInit() async {
   await Supabase.initialize(
-    url: 'https://rnyzefjhvgyoilciapuh.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJueXplZmpodmd5b2lsY2lhcHVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg0NDI5ODYsImV4cCI6MjA2NDAxODk4Nn0.QDn_ADW8wo9CqglON2WTrTWl2iNed2GL74pwmnBAtpI',
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 }
 // Get a reference your Supabase client

@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/services/firestore_sevice.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/datasources/home_data_source.dart';
@@ -8,8 +9,12 @@ import '../../domain/usecases/get_new_usecase.dart';
 import '../../domain/usecases/get_sale_usecase.dart';
 import '../../domain/usecases/update_product_usecase.dart';
 
+final firestoreServicesProvider = Provider<FirestoreServices>(
+  (ref) => FirestoreServices.instance,
+);
+
 final homeDataSourceProvider = Provider<HomeDataSource>(
-  (ref) => HomeDataSourceImpl(),
+  (ref) => HomeDataSourceImpl(ref.read(firestoreServicesProvider)),
 );
 final homeRepositoryProvider = Provider<HomeRepository>(
   (ref) => HomeRepositoryImpl(ref.read(homeDataSourceProvider)),

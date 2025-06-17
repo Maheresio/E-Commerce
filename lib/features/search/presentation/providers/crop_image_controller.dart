@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/core/services/firestore_sevice.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/network/dio_client.dart';
@@ -69,10 +69,7 @@ class CropImageController extends AutoDisposeNotifier<CropImageState> {
   }
 }
 
-
-
-
-// TODO: Recfactor this code  
+// TODO: Recfactor this code
 
 final cropImageControllerProvider =
     NotifierProvider.autoDispose<CropImageController, CropImageState>(
@@ -81,11 +78,8 @@ final cropImageControllerProvider =
           SearchRemoteDataSourceImpl(
             dioClient: DioClient(),
             storageService: SupabaseStorageService(),
-            firestore: FirebaseFirestore.instance,
+            firestore: FirestoreServices.instance,
           ),
         ),
       ),
     );
-
-
-

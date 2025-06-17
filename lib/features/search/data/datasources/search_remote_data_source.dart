@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/core/services/firestore_sevice.dart';
 
 import '../../../../core/constants/api_constants.dart';
 import '../../../../core/network/dio_client.dart';
@@ -16,7 +17,7 @@ abstract class SearchRemoteDataSource {
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   final SupabaseStorageService storageService;
   final DioClient dioClient;
-  final FirebaseFirestore firestore;
+  final FirestoreServices firestore;
 
   SearchRemoteDataSourceImpl({
     required this.storageService,

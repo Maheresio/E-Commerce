@@ -32,7 +32,7 @@ class ProductDetailsInfo extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: Text(
-                    product.title,
+                    product.name,
                     style: AppStyles.font11GreyRegular,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -40,7 +40,7 @@ class ProductDetailsInfo extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 RatingAndReview(
-                  rating: product.rate,
+                  rating: product.rating.floor(),
                   reviewCount: product.reviewCount,
                 ),
               ],

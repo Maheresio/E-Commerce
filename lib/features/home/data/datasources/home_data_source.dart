@@ -13,12 +13,16 @@ abstract class HomeDataSource {
 }
 
 class HomeDataSourceImpl implements HomeDataSource {
-  final firestoreServices = FirestoreServices.instance;
+  final FirestoreServices firestoreServices;
+
+  HomeDataSourceImpl(this.firestoreServices);
   @override
   Stream<List<ProductModel>> newProducts() {
     return firestoreServices.collectionsStream(
       path: FirestoreConstants.products,
       builder: (data, documentId) => ProductModel.fromMap(data!, documentId),
+      queryBuilder:
+          (query) => query.orderBy('createdAt', descending: true).limit(10),
     );
   }
 
@@ -27,7 +31,8 @@ class HomeDataSourceImpl implements HomeDataSource {
       firestoreServices.collectionsStream(
         path: FirestoreConstants.products,
         builder: (data, documentId) => ProductModel.fromMap(data!, documentId),
-        queryBuilder: (query) => query.where('discountValue', isNotEqualTo: 0),
+        queryBuilder:
+            (query) => query.where('discountValue', isNotEqualTo: 0).limit(10),
       );
 
   @override

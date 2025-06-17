@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../core/helpers/extensions/theme_color.extension.dart';
 import '../../../../core/routing/app_router.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/product_entity.dart';
 import '../controller/home_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeListViewItem extends StatelessWidget {
   const HomeListViewItem(this.product, {super.key});
@@ -23,11 +24,11 @@ class HomeListViewItem extends StatelessWidget {
         child: Stack(
           children: [
             ProductItem(product),
-            if (product.discountValue != 0)
+            if (product.discountValue != null && product.discountValue != 0)
               Positioned(
                 top: 8,
                 left: 8,
-                child: DiscountText(product.discountValue),
+                child: DiscountText(product.discountValue!),
               ),
             Positioned(
               right: 0,
@@ -55,16 +56,19 @@ class ProductItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ProductImage(product.imgUrl),
+        ProductImage(product.imageUrls.entries.first.value.first),
         SizedBox(height: 7),
 
-        RatingAndReview(rating: product.rate, reviewCount: product.reviewCount),
+        RatingAndReview(
+          rating: product.rating.floor(),
+          reviewCount: product.reviewCount,
+        ),
         SizedBox(height: 6),
-        HomeProductInfo(title: product.title, category: product.category),
+        HomeProductInfo(title: product.name, category: product.category),
         SizedBox(height: 3),
         ProductPrice(
           price: product.price,
-          discountValue: product.discountValue,
+          discountValue: product.discountValue ?? 0,
         ),
       ],
     );
