@@ -17,24 +17,40 @@ class AppStrings {
   static const String kSignUpWithSocialAccount =
       "Or sign up with social account";
   static const String kAlreadyHaveAccount = "Already have an account?";
+  static const String kSortBy = "Sort by";
   static const String kDontHaveAccount = "Don't have an account?";
   static const String kStreetClothes = "Street clothes";
   static const String kNew = "New";
   static const String kNeverSeenBefore = "You’ve never seen it before!";
+  static const String kUpTo50PercentOff = "Up to 50% off";
+  static const String kDateOfBirth = "Date of Birth";
   static const String kViewAll = "View all";
+  static const String kViewAllItems = "View all items";
+  static const String kChooseCategory = "Choose category";
   static const String kPriceRange = "Price range";
+  static const String kCancel = "Cancel";
   static const String kColors = "Colors";
   static const String kColor = "Color";
   static const String kSizes = "Sizes";
   static const String kSize = "Size";
+  static const String kOrderInformation = "Order Information";
   static const String kCategory = "Category";
+  static const String kCategories = "Categories";
   static const String kBrand = "Brand";
   static const String kAll = "All";
   static const String kApply = "Apply";
+  static const String kPriceLowestToHigh = "Price: Lowest to High";
+  static const String kPriceHighestToLow = "Price: Highest to Low";
+  static const String kPopular = "Popular";
+  static const String kNewest = "Newest";
+  static const String kCustomerReview = "Customer Review";
+  static const String kSelectBrands = "Select brands";
   static const String kDiscard = "Discard";
+  static const String kDiscount = "Discount";
+  static const String kColorInfo = 'Color Info';
   static const String kFilters = "Filters";
   static const String kSearch = "Search";
-  static const String kRatingAndReviews = "Rating and reviews";
+  static const String kRatingAndReviews = "Rating&Reviews";
   static const String kSendReview = "SEND REVIEW";
   static const String kWhatIsYourRate = "What is your rate?";
   static const String kYourReview = "Your review";
@@ -48,7 +64,7 @@ class AppStrings {
   static const String kPayment = "Payment";
   static const String kDeliveryMethod = "Delivery method";
   static const String kSubmitOrder = "SUBMIT ORDER";
-  static const String kTotalAmount = "Total amount:";
+  static const String kTotalAmount = "Total amount";
   static const String kSuccessRegister = "Registration successful!";
   static const String kSuccessLogin = "Login successful!";
   static const String kContinueShopping = "Continue shopping";
@@ -56,13 +72,17 @@ class AppStrings {
   static const String kEnterPromoCode = "Enter your promo code";
   static const String kAddToFavorites = "ADD TO FAVORITES";
   static const String kSelectSize = "Select size";
+  static const String kSelectColor = "Select color";
   static const String kSizeInfo = "Size info";
   static const String kAddCard = "ADD CARD";
   static const String kSaveAddress = "SAVE ADDRESS";
   static const String kEdit = "Edit";
   static const String kSale = "Sale";
+  static const String kNoSizesAvailable = "No sizes available";
+  static const String kNoColorsAvailable = "No colors available";
   static const String kUseAsShippingAddress = "Use as the shipping address";
   static const String kSuperSummerSale = "Super summer sale";
+  static const String kSummerSales = "Summer sales";
   static const String kDeleteFromList = "Delete from the list";
   static const String kLeaveFeedback = "Leave feedback";
   static const String kReorder = "Reorder";
@@ -99,10 +119,12 @@ class AppStrings {
   static const String kPhoneNumber = 'Phone Number';
   static const String kAddress = 'Address';
   static const String kpaymentMethods = 'Payment methods';
+  static const String kpaymentMethod = 'Payment method';
   static const String kYourPaymentCards = 'Your payment cards';
   static const String kUseAsDefaultPaymentMethod =
       'Use as default payment method';
 
+  static const String kPersonalInformation = 'Personal Information';
   static const String kAddNewCard = 'Add new card';
   static const String kCardHolderName = 'Card Holder Name';
   static const String kExpiyDate = 'Expiry Date';
@@ -115,4 +137,59 @@ class AppStrings {
   static const String kUploadAnImage = 'Upload an image';
   static const String kSearchForAnOutfit =
       'Search for an outfit by taking a photo or uploading an image';
+
+  static const String kWithPhoto = 'With Photo';
+  static const String kHelpful = 'Helpful';
+  static const String kNoReviewsYet = 'No reviews yet';
+  static const String kWriteAReview = 'Write a review';
+  static const String kPleaseShareYourOpinionAboutTheProduct =
+      'Please share your opinion about the product';
+
+  static const String kAddYourPhotos = 'Add your photos';
+  static const String kFavorites = 'Favorites';
+  static const String kNoFavoritesYet = 'No favorites yet';
+  static const String kNoItemsInCart = 'No items in cart';
+  static const String kNoItemsInFavorites = 'No items in favorites';
+  static const String kNoItemsInOrderHistory = 'No items in order history';
+  static const String kNoItemsInOrderDetails = 'No items in order details';
+  static const String kNoItemsInOrderStatus = 'No items in order status';
+  static const String kNoItemsInDelivery = 'No items in delivery';
+  static const String kNoItemsInSummary = 'No items in summary';
+  static const String kMyOrders = 'My Orders';
+  static const String kOrderDetailsTitle = 'Order Details';
+  static const String kOrderHistoryTitle = 'Order History';
+  static const String kOrderStatusTitle = 'Order Status';
+  static const String kDeliveryTitle = 'Delivery';
+  static const String kSummaryTitle = 'Summary';
+  static const String kOrderHistorySubtitle = 'View your order history';
+  static const String kOrderDetailsSubtitle = 'View details of your order';
+  static const String kOrderStatusSubtitle = 'Check the status of your order';
+  static const String kDeliverySubtitle = 'View delivery information';
+  static const String kSummarySubtitle = 'View order summary';
+  static const String kMyOrdersSubtitle = 'View your orders';
+  static const String kMyProfileSubtitle = 'View and edit your profile';
+  static const String kSettingsSubtitle = 'Manage your settings';
+  static const String kNotificationsSubtitle = 'View your notifications';
+  static const String kPasswordChangeSubtitle = 'Change your password';
+  static const String kSavePasswordSubtitle = 'Save your new password';
+  static const String kOldPasswordSubtitle = 'Enter your old password';
+  static const String kNewPasswordSubtitle = 'Enter your new password';
+
+  static const String kDelivered = "Delivered";
+  static const String kProcessing = "Processing";
+  static const String kCancelled = "Cancelled";
+  static const String kTrackingNumber = "Tracking Number";
+  static const String kQuantity = "Quantity";
+  static const String kPrice = "Price";
+  static const String kTotal = "Total";
+  static const String kOrderDate = "Order Date";
+  static const String kOrderNumber = "Order Number";
+  static const String kPaymentMethod = "Payment Method";
+  static const String kShippingMethod = "Shipping Method";
+  static const String kDetails = "Details";
+  static const String kBillingAddress = "Billing Address";
+  static const String kUnits = 'Units';
+  static const String kSales = 'Sales';
+  static const String kNewArrivals = 'New Arrivals';
+  static const String kDeliveryStatusChanges = 'Delivery Status Changes';
 }
