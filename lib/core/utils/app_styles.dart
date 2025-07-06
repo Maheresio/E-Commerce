@@ -42,16 +42,36 @@ abstract class AppStyles {
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
+  static TextStyle font11BlackMedium = TextStyle(
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
   static TextStyle font11WhiteSemiBold = TextStyle(
     fontSize: 11.sp,
     fontWeight: FontWeight.w600,
     color: Colors.white,
+  );
+  static TextStyle font12BlackMedium = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
+  static TextStyle font12GreyMedium = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColorsLight.kGrey,
   );
 
   static TextStyle font14BlackRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: Colors.black,
+  );
+  static TextStyle font14WhiteMedium = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
   );
   static TextStyle font14BlackMedium = TextStyle(
     fontSize: 14.sp,
@@ -67,6 +87,11 @@ abstract class AppStyles {
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kPrimary,
+  );
+  static TextStyle font14GreenMedium = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColorsLight.kSuccessColor,
   );
 
   static TextStyle font14BlackSemiBold = TextStyle(
@@ -108,11 +133,26 @@ abstract class AppStyles {
     fontWeight: FontWeight.w500,
     color: Colors.black,
   );
+  static TextStyle font16WhiteMedium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+  static TextStyle font16GreyRegular = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColorsLight.kGrey,
+  );
 
   static TextStyle font16BlackSemiBold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
+  );
+  static TextStyle font16PrimarySemiBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColorsLight.kPrimary,
   );
 
   static TextStyle font18BlackSemiBold = TextStyle(
