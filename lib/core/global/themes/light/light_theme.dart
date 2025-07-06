@@ -6,15 +6,16 @@ import 'app_colors_light.dart';
 
 ThemeData get lightTheme => ThemeData(
   fontFamily: 'Metropolis',
-  scaffoldBackgroundColor: AppColorsLight.kBackgroundColor,
   colorScheme: ColorScheme.light(
     primary: AppColorsLight.kPrimary,
-    error: AppColorsLight.kErrorColor,
     onPrimary: AppColorsLight.kLightBlack,
     secondary: AppColorsLight.kGrey,
     onSecondary: AppColorsLight.kwhite,
+    error: AppColorsLight.kErrorColor,
     onTertiary: AppColorsLight.kSuccessColor,
     primaryFixed: AppColorsLight.kBlack,
+    surface: AppColorsLight.kBackgroundColor,
+    tertiary: AppColorsLight.kAmber,
   ),
 
   inputDecorationTheme: InputDecorationTheme(
@@ -63,4 +64,7 @@ ThemeData get lightTheme => ThemeData(
       overlayColor: Colors.redAccent,
     ),
   ),
+
+  //for the text fields value
+  textTheme: TextTheme(bodyLarge: AppStyles.font14BlackMedium),
 );

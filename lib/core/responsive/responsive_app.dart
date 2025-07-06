@@ -1,4 +1,3 @@
-// lib/core/widgets/responsive_app.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,12 +20,11 @@ class ResponsiveApp extends StatelessWidget {
       designSize: designSize,
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, __) {
+      builder: (_, _) {
         return Builder(
           builder: (context) {
             final deviceType = getDeviceTypeFromContext(context);
             DeviceTypeHolder.init(deviceType);
-
             return builder(context);
           },
         );

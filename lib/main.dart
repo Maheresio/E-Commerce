@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:e_commerce/core/global/themes/app_theme_context.dart';
 import 'package:e_commerce/core/responsive/responsive_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -69,6 +70,9 @@ class MyApp extends StatelessWidget {
                   darkTheme: darkTheme,
                   themeMode: ThemeMode.system,
                   routerConfig: AppRouter.router,
+                  builder:
+                      (context, child) =>
+                          ThemeContextInitializer(child: child!),
                 ),
               ),
         );
