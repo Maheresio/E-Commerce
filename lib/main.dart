@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:e_commerce/core/responsive/responsive_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,9 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/global/themes/dark/dark_theme.dart';
 import 'core/global/themes/light/light_theme.dart';
-import 'core/responsive/device_type.dart';
-import 'core/responsive/device_type_detector.dart';
-import 'core/responsive/device_type_holder.dart';
 import 'core/routing/app_router.dart';
 import 'core/services/firebase_init.dart';
 import 'core/services/service_locator.dart';
@@ -61,22 +59,18 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, _) {
-        return Builder(
-          builder: (context) {
-            final deviceType = getDeviceTypeFromContext(context);
-            DeviceTypeHolder.init(deviceType);
-
-            return GestureDetector(
-              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-              child: MaterialApp.router(
-                debugShowCheckedModeBanner: false,
-                theme: lightTheme,
-                darkTheme: darkTheme,
-                themeMode: ThemeMode.system,
-                routerConfig: AppRouter.router,
+        return ResponsiveApp(
+          builder:
+              (context) => GestureDetector(
+                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                child: MaterialApp.router(
+                  debugShowCheckedModeBanner: false,
+                  theme: lightTheme,
+                  darkTheme: darkTheme,
+                  themeMode: ThemeMode.system,
+                  routerConfig: AppRouter.router,
+                ),
               ),
-            );
-          },
         );
       },
     );
