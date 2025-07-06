@@ -9,6 +9,7 @@ class AppColorsLight {
   static const kErrorColor = Color(0xFFF01F0E);
   static const kBackgroundColor = Color(0xFFF9F9F9);
   static const kSuccessColor = Color(0xFF2AA952);
+  static const kAmber = Color(0xFFFFBA49);
 }
 
 
