@@ -1,9 +1,10 @@
+import 'package:e_commerce/core/responsive/responsive_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/helpers/extensions/theme_color.extension.dart';
+import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../../../../core/routing/app_router.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/product_entity.dart';
@@ -19,25 +20,17 @@ class HomeListViewItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.push(AppRouter.kProductDetails, extra: product),
       child: SizedBox(
-        height: 260.h,
-        width: 150.w,
+        width: responsiveValue(mobile: 150.w, tablet: 250.w),
         child: Stack(
           children: [
             ProductItem(product),
-            if (product.discountValue != null && product.discountValue != 0)
-              Positioned(
-                top: 8,
-                left: 8,
-                child: DiscountText(product.discountValue!),
+            if (product.discountValue != 0)
+              Positioned.directional(
+                textDirection: TextDirection.ltr,
+                top: responsiveValue(mobile: 16.h, tablet: 24.h),
+                start: responsiveValue(mobile: 16.w, tablet: 24.w),
+                child: DiscountText(product.discountValue),
               ),
-            Positioned(
-              right: 0,
-              bottom: 105,
-              child: HomeFavoriteWidget(
-                id: product.id,
-                isFavorite: product.isFavorite,
-              ),
-            ),
           ],
         ),
       ),
@@ -53,22 +46,42 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 8,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ProductImage(product.imageUrls.entries.first.value.first),
-        SizedBox(height: 7),
+        Stack(
+          children: [
+            ProductImage(product.imageUrls.entries.first.value.first),
 
-        RatingAndReview(
-          rating: product.rating.floor(),
-          reviewCount: product.reviewCount,
+            Positioned.directional(
+              textDirection: TextDirection.ltr,
+              bottom: 0,
+              end: 0,
+              child: HomeFavoriteWidget(
+                id: product.id,
+                isFavorite: product.isFavorite,
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: 6),
-        HomeProductInfo(title: product.name, category: product.category),
-        SizedBox(height: 3),
-        ProductPrice(
-          price: product.price,
-          discountValue: product.discountValue ?? 0,
+
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: [
+            RatingAndReview(
+              rating: product.rating.floor(),
+              reviewCount: product.reviewCount,
+            ),
+            SizedBox(height: 6),
+            HomeProductInfo(title: product.name, category: product.category),
+            SizedBox(height: 3),
+            ProductPrice(
+              price: product.price,
+              discountValue: product.discountValue,
+            ),
+          ],
         ),
       ],
     );
@@ -91,14 +104,14 @@ class HomeProductInfo extends StatelessWidget {
       children: [
         Text(
           category,
-          style: AppStyles.font11GreyMedium.copyWith(height: 1),
+          style: AppStyles.font11GreyMedium(context).copyWith(height: 1),
 
           overflow: TextOverflow.ellipsis,
         ),
         SizedBox(height: 5),
         Text(
           title,
-          style: AppStyles.font16BlackSemiBold.copyWith(height: 1.2),
+          style: AppStyles.font16BlackSemiBold(context).copyWith(height: 1.2),
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
         ),
@@ -122,20 +135,20 @@ class ProductPrice extends StatelessWidget {
     return Text.rich(
       TextSpan(
         text: '${price.toStringAsFixed(2)}\$ ',
-        style: AppStyles.font14GreyMedium.copyWith(
-          decoration:
-              discountValue != 0
-                  ? TextDecoration.lineThrough
-                  : TextDecoration.none,
-        ),
+        style:
+            discountValue != 0
+                ? AppStyles.font14GreyMedium(
+                  context,
+                ).copyWith(decoration: TextDecoration.lineThrough)
+                : AppStyles.font14PrimaryMedium(context),
         children: [
           if (discountValue != 0)
             TextSpan(
               text:
                   '${(price - (price * discountValue / 100)).toStringAsFixed(2)}\$',
-              style: AppStyles.font14PrimaryMedium.copyWith(
-                decoration: TextDecoration.none,
-              ),
+              style: AppStyles.font14PrimaryMedium(
+                context,
+              ).copyWith(decoration: TextDecoration.none),
             ),
         ],
       ),
@@ -159,11 +172,15 @@ class RatingAndReview extends StatelessWidget {
       children: [
         Row(
           children: List.generate(rating, (index) {
-            return Icon(Icons.star, color: Colors.amber, size: 16);
+            return Icon(
+              Icons.star,
+              color: context.color.tertiary,
+              size: responsiveValue(mobile: 16.w, tablet: 32.w),
+            );
           }),
         ),
         SizedBox(width: 4),
-        Text('($reviewCount)', style: AppStyles.font11BlackRegular),
+        Text('($reviewCount)', style: AppStyles.font11BlackRegular(context)),
       ],
     );
   }
@@ -176,12 +193,14 @@ class ProductImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 184.h,
-      width: 148.w,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(imgUrl, fit: BoxFit.cover),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+      child: AspectRatio(
+        aspectRatio: responsiveValue(mobile: .8, tablet: 1),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(imgUrl, fit: BoxFit.cover),
+        ),
       ),
     );
   }
@@ -193,9 +212,11 @@ class DiscountText extends StatelessWidget {
   final int discountValue;
   @override
   Widget build(BuildContext context) {
+    //  height: 24.h,
+    //   width: 40,
     return SizedBox(
-      height: 24,
-      width: 40,
+      height: responsiveValue(mobile: 24.h, tablet: 50.h),
+      width: responsiveValue(mobile: 40.w, tablet: 80.w),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.color.primary,
@@ -204,7 +225,7 @@ class DiscountText extends StatelessWidget {
         child: Center(
           child: Text(
             '-$discountValue%',
-            style: AppStyles.font11WhiteSemiBold,
+            style: AppStyles.font11WhiteSemiBold(context),
             textAlign: TextAlign.center,
           ),
         ),
@@ -226,13 +247,16 @@ class HomeFavoriteWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
+        debugPrint('Favorite tapped for product ID: $id');
         ref.read(
           updateProductProvider(
             UpdateParams(id: id, data: {'isFavorite': !isFavorite}),
           ),
         );
       },
-      child: DecoratedBox(
+      child: Container(
+        width: responsiveValue(mobile: 32.w, tablet: 60.w),
+        height: responsiveValue(mobile: 32.h, tablet: 60.h),
         decoration: BoxDecoration(
           color: context.color.onSecondary,
           shape: BoxShape.circle,
@@ -244,12 +268,17 @@ class HomeFavoriteWidget extends ConsumerWidget {
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child:
-              isFavorite
-                  ? Icon(Icons.favorite, color: context.color.primary)
-                  : Icon(Icons.favorite_border, color: context.color.secondary),
+        child: FittedBox(
+          child: Padding(
+            padding: EdgeInsets.all(8.w),
+            child:
+                isFavorite
+                    ? Icon(Icons.favorite, color: context.color.primary)
+                    : Icon(
+                      Icons.favorite_border,
+                      color: context.color.secondary,
+                    ),
+          ),
         ),
       ),
     );

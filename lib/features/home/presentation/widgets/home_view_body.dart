@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/app_strings.dart';
+import '../controller/home_provider.dart';
 import 'home_banner.dart';
-import 'home_new_section.dart';
-import 'home_sale_section.dart';
+import 'home_horizontal_list_view_section.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -15,13 +16,24 @@ class HomeViewBody extends StatelessWidget {
           HomeBanner(),
           SizedBox(height: 30),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: Column(
-              spacing: 20,
-              children: [HomeSaleSection(), HomeNewSection()],
-            ),
+          Column(
+            children: [
+              HomeHorizontalListViewSection(
+                title: AppStrings.kSale,
+                subtitle: AppStrings.kSuperSummerSale,
+                onSeeAll: () {},
+                productProvider: saleProductsProvider,
+              ),
+
+              HomeHorizontalListViewSection(
+                title: AppStrings.kNew,
+                subtitle: AppStrings.kNeverSeenBefore,
+                onSeeAll: () {},
+                productProvider: newProductsProvider,
+              ),
+            ],
           ),
+          SizedBox(height: 30),
         ],
       ),
     );

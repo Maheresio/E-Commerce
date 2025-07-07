@@ -1,3 +1,5 @@
+import 'package:e_commerce/core/responsive/responsive_value.dart';
+import 'package:e_commerce/core/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +13,7 @@ class HomeBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 196.h,
+      height: responsiveValue(mobile: 196.h, tablet: 280.h),
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -22,10 +24,13 @@ class HomeBanner extends StatelessWidget {
       child: Align(
         alignment: AlignmentDirectional.bottomStart,
         child: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 16, bottom: 10),
+          padding: EdgeInsetsDirectional.only(
+            start: AppConstants.horizontalPadding16,
+            bottom: 10,
+          ),
           child: Text(
             AppStrings.kStreetClothes,
-            style: AppStyles.font34WhiteBlack,
+            style: AppStyles.font34WhiteBlack(context),
           ),
         ),
       ),
