@@ -1,203 +1,205 @@
+import 'package:e_commerce/core/helpers/extensions/context_extensions.dart';
+import 'package:e_commerce/core/responsive/responsive_font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../global/themes/light/app_colors_light.dart';
 
 abstract class AppStyles {
-  static TextStyle font10BlackRegular = TextStyle(
+  static TextStyle font10BlackRegular(BuildContext context) => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeight.w400,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
 
-  static TextStyle font10BlackSemiBold = TextStyle(
+  static TextStyle font10BlackSemiBold(BuildContext context) => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeight.w600,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font10WhiteSemiBold = TextStyle(
+  static TextStyle font10WhiteSemiBold(BuildContext context) => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeight.w600,
-    color: Colors.white,
+    color: context.color.onSecondary,
   );
 
-  static TextStyle font11BlackRegular = TextStyle(
-    fontSize: 11.sp,
+  static TextStyle font11BlackRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 11, tablet: 22),
     fontWeight: FontWeight.w400,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font11GreyRegular = TextStyle(
-    fontSize: 11.sp,
+  static TextStyle font11GreyRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 11, tablet: 22),
     fontWeight: FontWeight.w400,
     color: AppColorsLight.kGrey,
   );
-  static TextStyle font11GreyMedium = TextStyle(
-    fontSize: 11.sp,
+  static TextStyle font11GreyMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 11, tablet: 22),
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kGrey,
   );
 
-  static TextStyle font11BlackSemiBold = TextStyle(
-    fontSize: 11.sp,
+  static TextStyle font11BlackSemiBold(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 11, tablet: 22),
     fontWeight: FontWeight.w600,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font11BlackMedium = TextStyle(
-    fontSize: 11.sp,
+  static TextStyle font11BlackMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 11, tablet: 22),
     fontWeight: FontWeight.w500,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font11WhiteSemiBold = TextStyle(
-    fontSize: 11.sp,
+  static TextStyle font11WhiteSemiBold(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 11, tablet: 22),
     fontWeight: FontWeight.w600,
-    color: Colors.white,
+    color: context.color.onSecondary,
   );
-  static TextStyle font12BlackMedium = TextStyle(
+  static TextStyle font12BlackMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 12, tablet: 24),
+    fontWeight: FontWeight.w500,
+    color: context.color.primaryFixed,
+  );
+  static TextStyle font12GreyMedium(BuildContext context) => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,
-    color: Colors.black,
-  );
-  static TextStyle font12GreyMedium = TextStyle(
-    fontSize: 12.sp,
-    fontWeight: FontWeight.w500,
     color: AppColorsLight.kGrey,
   );
 
-  static TextStyle font14BlackRegular = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14BlackRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w400,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font14WhiteMedium = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14WhiteMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w500,
-    color: Colors.white,
+    color: context.color.onSecondary,
   );
-  static TextStyle font14BlackMedium = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14BlackMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w500,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font14GreyMedium = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14GreyMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kGrey,
   );
-  static TextStyle font14PrimaryMedium = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14PrimaryMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kPrimary,
   );
-  static TextStyle font14GreenMedium = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14GreenMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kSuccessColor,
   );
 
-  static TextStyle font14BlackSemiBold = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14BlackSemiBold(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w600,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font14WhiteSemiBold = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14WhiteSemiBold(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w600,
-    color: Colors.white,
+    color: context.color.onSecondary,
   );
 
-  static TextStyle font14GreyRegular = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14GreyRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w500,
-    color: AppColorsLight.kGrey,
+    color: context.color.secondary,
   );
 
-  static TextStyle font14LightBlackRegular = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font14LightBlackRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 14, tablet: 28),
     fontWeight: FontWeight.w400,
     color: AppColorsLight.kLightBlack,
   );
 
-  static TextStyle font15BlackSemiBold = TextStyle(
+  static TextStyle font15BlackSemiBold(BuildContext context) => TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeight.w600,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
 
-  static TextStyle font16BlackRegular = TextStyle(
-    fontSize: 16.sp,
+  static TextStyle font16BlackRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 16, tablet: 28),
     fontWeight: FontWeight.w400,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font16BlackMedium = TextStyle(
-    fontSize: 16.sp,
+  static TextStyle font16BlackMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 16, tablet: 28),
     fontWeight: FontWeight.w500,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font16WhiteMedium = TextStyle(
-    fontSize: 16.sp,
+  static TextStyle font16WhiteMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 16, tablet: 28),
     fontWeight: FontWeight.w500,
-    color: Colors.white,
+    color: context.color.onSecondary,
   );
-  static TextStyle font16GreyRegular = TextStyle(
-    fontSize: 16.sp,
+  static TextStyle font16GreyRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 16, tablet: 28),
     fontWeight: FontWeight.w400,
     color: AppColorsLight.kGrey,
   );
 
-  static TextStyle font16BlackSemiBold = TextStyle(
-    fontSize: 16.sp,
+  static TextStyle font16BlackSemiBold(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 16, tablet: 28),
     fontWeight: FontWeight.w600,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font16PrimarySemiBold = TextStyle(
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w600,
-    color: AppColorsLight.kPrimary,
-  );
-
-  static TextStyle font18BlackSemiBold = TextStyle(
-    fontSize: 18.sp,
-    fontWeight: FontWeight.w600,
-    color: Colors.black,
-  );
-  static TextStyle font18PrimarySemiBold = TextStyle(
-    fontSize: 18.sp,
+  static TextStyle font16PrimarySemiBold(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 16, tablet: 28),
     fontWeight: FontWeight.w600,
     color: AppColorsLight.kPrimary,
   );
 
-  static TextStyle font24BlackSemiBold = TextStyle(
-    fontSize: 24.sp,
+  static TextStyle font18BlackSemiBold(BuildContext context) => TextStyle(
+    fontSize: 18.sp,
     fontWeight: FontWeight.w600,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font24WhiteSemiBold = TextStyle(
-    fontSize: 24.sp,
+  static TextStyle font18PrimarySemiBold(BuildContext context) => TextStyle(
+    fontSize: 18.sp,
     fontWeight: FontWeight.w600,
-    color: Colors.white,
+    color: AppColorsLight.kPrimary,
   );
 
-  static TextStyle font34BlackBold = TextStyle(
-    fontSize: 34.sp,
+  static TextStyle font24BlackSemiBold(BuildContext context) => TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w600,
+    color: context.color.primaryFixed,
+  );
+  static TextStyle font24WhiteSemiBold(BuildContext context) => TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w600,
+    color: context.color.onSecondary,
+  );
+
+  static TextStyle font34BlackBold(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 34, tablet: 70),
     fontWeight: FontWeight.w700,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
-  static TextStyle font34WhiteBlack = TextStyle(
-    fontSize: 34.sp,
+  static TextStyle font34WhiteBlack(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 34, tablet: 70),
     fontWeight: FontWeight.w900,
-    color: Colors.white,
+    color: context.color.onSecondary,
   );
 
-  static TextStyle font44BlackSemiBold = TextStyle(
+  static TextStyle font44BlackSemiBold(BuildContext context) => TextStyle(
     fontSize: 44.sp,
     fontWeight: FontWeight.w600,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
 
-  static TextStyle font48BlackBold = TextStyle(
+  static TextStyle font48BlackBold(BuildContext context) => TextStyle(
     fontSize: 48.sp,
     fontWeight: FontWeight.w700,
-    color: Colors.black,
+    color: context.color.primaryFixed,
   );
 }
 

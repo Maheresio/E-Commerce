@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppConstants {
+abstract class AppConstants {
+  static final horizontalPadding16 = 16.w;
 }
