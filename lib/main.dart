@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:e_commerce/core/global/themes/app_theme_context.dart';
 import 'package:e_commerce/core/responsive/responsive_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +42,10 @@ void main() async {
   //     data: product.toMap(id),
   //   );
   // }
-
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(
     DevicePreview(
       enabled: true,
@@ -55,28 +59,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_, _) {
-        return ResponsiveApp(
-          builder:
-              (context) => GestureDetector(
-                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                child: MaterialApp.router(
-                  debugShowCheckedModeBanner: false,
-                  theme: lightTheme,
-                  darkTheme: darkTheme,
-                  themeMode: ThemeMode.system,
-                  routerConfig: AppRouter.router,
-                  builder:
-                      (context, child) =>
-                          ThemeContextInitializer(child: child!),
-                ),
-              ),
-        );
-      },
+    return ResponsiveApp(
+      builder:
+          (context) => GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              theme: lightTheme(context),
+              darkTheme: darkTheme,
+              themeMode: ThemeMode.system,
+              routerConfig: AppRouter.router,
+              builder:
+                  (context, child) => ThemeContextInitializer(child: child!),
+            ),
+          ),
     );
   }
 }
