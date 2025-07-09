@@ -20,15 +20,15 @@ class HomeListViewItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.push(AppRouter.kProductDetails, extra: product),
       child: SizedBox(
-        width: responsiveValue(mobile: 150.w, tablet: 250.w),
+        width: context.responsive(mobile: 150.w, tablet: 250.w),
         child: Stack(
           children: [
             ProductItem(product),
             if (product.discountValue != 0)
               Positioned.directional(
                 textDirection: TextDirection.ltr,
-                top: responsiveValue(mobile: 16.h, tablet: 24.h),
-                start: responsiveValue(mobile: 16.w, tablet: 24.w),
+                top: context.responsive(mobile: 16.h, tablet: 24.h),
+                start: context.responsive(mobile: 16.w, tablet: 24.w),
                 child: DiscountText(product.discountValue),
               ),
           ],
@@ -68,15 +68,15 @@ class ProductItem extends StatelessWidget {
 
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-
+          spacing: context.responsive(mobile: 8, tablet: 12),
           children: [
             RatingAndReview(
               rating: product.rating.floor(),
               reviewCount: product.reviewCount,
             ),
-            SizedBox(height: 6),
+            // SizedBox(height: 6),
             HomeProductInfo(title: product.name, category: product.category),
-            SizedBox(height: 3),
+            // SizedBox(height: 3),
             ProductPrice(
               price: product.price,
               discountValue: product.discountValue,
@@ -108,7 +108,7 @@ class HomeProductInfo extends StatelessWidget {
 
           overflow: TextOverflow.ellipsis,
         ),
-        SizedBox(height: 5),
+        SizedBox(height: context.responsive(mobile: 8, tablet: 12)),
         Text(
           title,
           style: AppStyles.font16BlackSemiBold(context).copyWith(height: 1.2),
@@ -133,6 +133,7 @@ class ProductPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text.rich(
+      style: TextStyle(height: 1),
       TextSpan(
         text: '${price.toStringAsFixed(2)}\$ ',
         style:
@@ -175,7 +176,7 @@ class RatingAndReview extends StatelessWidget {
             return Icon(
               Icons.star,
               color: context.color.tertiary,
-              size: responsiveValue(mobile: 16.w, tablet: 32.w),
+              size: context.responsive(mobile: 16.w, tablet: 32.w),
             );
           }),
         ),
@@ -196,7 +197,7 @@ class ProductImage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
       child: AspectRatio(
-        aspectRatio: responsiveValue(mobile: .8, tablet: 1),
+        aspectRatio: context.responsive(mobile: .8, tablet: 1),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.network(imgUrl, fit: BoxFit.cover),
@@ -215,8 +216,8 @@ class DiscountText extends StatelessWidget {
     //  height: 24.h,
     //   width: 40,
     return SizedBox(
-      height: responsiveValue(mobile: 24.h, tablet: 50.h),
-      width: responsiveValue(mobile: 40.w, tablet: 80.w),
+      height: context.responsive(mobile: 24.h, tablet: 50.h),
+      width: context.responsive(mobile: 40.w, tablet: 80.w),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.color.primary,
@@ -255,8 +256,8 @@ class HomeFavoriteWidget extends ConsumerWidget {
         );
       },
       child: Container(
-        width: responsiveValue(mobile: 32.w, tablet: 60.w),
-        height: responsiveValue(mobile: 32.h, tablet: 60.h),
+        width: context.responsive(mobile: 32.w, tablet: 60.w),
+        height: context.responsive(mobile: 32.h, tablet: 60.h),
         decoration: BoxDecoration(
           color: context.color.onSecondary,
           shape: BoxShape.circle,

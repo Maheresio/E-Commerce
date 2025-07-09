@@ -13,7 +13,7 @@ class HomeBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: responsiveValue(mobile: 196.h, tablet: 280.h),
+      height: context.responsive(mobile: 196.h, tablet: 280.h),
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(

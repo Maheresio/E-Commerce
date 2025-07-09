@@ -27,6 +27,7 @@ class HomeHorizontalListViewSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 6,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
@@ -38,9 +39,8 @@ class HomeHorizontalListViewSection extends StatelessWidget {
             onSeeAll: onSeeAll,
           ),
         ),
-        SizedBox(height: 20),
         SizedBox(
-          height: responsiveValue(mobile: 320.h, tablet: 450.h),
+          height: context.responsive(mobile: 320.h, tablet: 480.h),
           child: Consumer(
             builder: (context, ref, child) {
               return ref
