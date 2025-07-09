@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../responsive/device_type_detector.dart';
-import '../responsive/device_type_holder.dart';
+import 'device_type.dart';
+import 'responsive_provider.dart';
 
 class ResponsiveApp extends StatelessWidget {
-  final Widget Function(BuildContext context) builder;
+  final WidgetBuilder builder;
   final Size designSize;
 
   const ResponsiveApp({
@@ -20,12 +20,16 @@ class ResponsiveApp extends StatelessWidget {
       designSize: designSize,
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, _) {
-        return Builder(
-          builder: (context) {
-            final deviceType = getDeviceTypeFromContext(context);
-            DeviceTypeHolder.init(deviceType);
-            return builder(context);
+      builder: (_, __) {
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final width = constraints.maxWidth;
+            final deviceType = getDeviceTypeFromWidth(width);
+
+            return ResponsiveProvider(
+              deviceType: deviceType,
+              child: Builder(builder: builder),
+            );
           },
         );
       },
