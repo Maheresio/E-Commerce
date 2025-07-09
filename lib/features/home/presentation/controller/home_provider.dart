@@ -1,5 +1,4 @@
 import 'package:e_commerce/core/services/firestore_sevice.dart';
-import 'package:e_commerce/features/home/data/models/product_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/datasources/home_data_source.dart';
