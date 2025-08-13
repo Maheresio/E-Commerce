@@ -1,5 +1,5 @@
-import 'package:e_commerce/core/helpers/extensions/context_extensions.dart';
-import 'package:e_commerce/core/responsive/responsive_font_size.dart';
+import '../helpers/extensions/context_extensions.dart';
+import '../responsive/responsive_font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -63,6 +63,19 @@ abstract class AppStyles {
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,
     color: AppColorsLight.kGrey,
+  );
+
+
+
+static TextStyle font13BlackMedium(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 13, tablet: 28),
+    fontWeight: FontWeight.w500,
+    color: context.color.primaryFixed,
+  );
+  static TextStyle font13BlackRegular(BuildContext context) => TextStyle(
+    fontSize: responsiveFontSize(context, mobile: 13, tablet: 28),
+    fontWeight: FontWeight.w400,
+    color: context.color.primaryFixed,
   );
 
   static TextStyle font14BlackRegular(BuildContext context) => TextStyle(
@@ -158,7 +171,7 @@ abstract class AppStyles {
   );
 
   static TextStyle font18BlackSemiBold(BuildContext context) => TextStyle(
-    fontSize: 18.sp,
+    fontSize: responsiveFontSize(context, mobile: 18,tablet: 28) ,
     fontWeight: FontWeight.w600,
     color: context.color.primaryFixed,
   );
