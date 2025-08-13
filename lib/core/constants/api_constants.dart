@@ -12,7 +12,7 @@ class ApiConstants {
   static String getModelEndpoint() =>
       '$baseUrl/users/$userId/apps/$appId/models/$modelId/versions/$modelVersionId/outputs';
 
-  static Map<String, String> get headers => {
+  static Map<String, String> get headers => <String, String>{
     'Authorization': 'Key $apiKey',
     'Content-Type': 'application/json',
   };
