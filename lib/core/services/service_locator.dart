@@ -31,9 +31,9 @@ void serviceLocator() {
     ),
   );
 
-  sl.registerLazySingleton<DioClient>(() => DioClient());
+  sl.registerLazySingleton<DioClient>(DioClient.new);
   sl.registerLazySingleton<SupabaseStorageService>(
-    () => SupabaseStorageService(),
+    SupabaseStorageService.new,
   );
 
   // Auth Feature
