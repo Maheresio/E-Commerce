@@ -6,7 +6,7 @@ ThemeData get darkTheme => ThemeData.dark().copyWith(
   textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Metropolis'),
   scaffoldBackgroundColor: AppColorsDark.kBackgroundColor,
 
-  colorScheme: ColorScheme.light(
+  colorScheme: const ColorScheme.light(
     primary: AppColorsDark.kPrimary,
     error: AppColorsDark.kErrorColor,
     onPrimary: AppColorsDark.kLightWhite,

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../utils/app_styles.dart';
 import 'app_colors_light.dart';
 
 ThemeData lightTheme(BuildContext context) => ThemeData(
   fontFamily: 'Metropolis',
-  colorScheme: ColorScheme.light(
+  colorScheme: const ColorScheme.light(
     primary: AppColorsLight.kPrimary,
     onPrimary: AppColorsLight.kLightBlack,
     secondary: AppColorsLight.kGrey,
@@ -32,14 +31,14 @@ ThemeData lightTheme(BuildContext context) => ThemeData(
       fontWeight: FontWeight.w500,
       color: AppColorsLight.kGrey,
     ),
-    border: UnderlineInputBorder(borderSide: BorderSide.none),
-    focusedBorder: UnderlineInputBorder(
+    border: const UnderlineInputBorder(borderSide: BorderSide.none),
+    focusedBorder: const UnderlineInputBorder(
       borderSide: BorderSide(color: AppColorsLight.kPrimary),
     ),
-    errorBorder: UnderlineInputBorder(
+    errorBorder: const UnderlineInputBorder(
       borderSide: BorderSide(color: AppColorsLight.kErrorColor),
     ),
-    focusedErrorBorder: UnderlineInputBorder(
+    focusedErrorBorder: const UnderlineInputBorder(
       borderSide: BorderSide(color: AppColorsLight.kErrorColor),
     ),
   ),
@@ -47,7 +46,7 @@ ThemeData lightTheme(BuildContext context) => ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       padding: WidgetStateProperty.all(
-        EdgeInsets.symmetric(horizontal: 0, vertical: 16),
+        const EdgeInsets.symmetric(vertical: 16),
       ),
       textStyle: WidgetStateProperty.all(
         TextStyle(
@@ -57,11 +56,9 @@ ThemeData lightTheme(BuildContext context) => ThemeData(
           letterSpacing: 0.5,
         ),
       ),
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
-        return states.contains(WidgetState.pressed)
+      foregroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) => states.contains(WidgetState.pressed)
             ? AppColorsLight.kPrimary
-            : AppColorsLight.kBlack;
-      }),
+            : AppColorsLight.kBlack),
       overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),
   ),
