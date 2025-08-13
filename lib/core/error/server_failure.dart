@@ -9,20 +9,20 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromDioError(DioException dioError) {
     switch (dioError.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure(
+        return const ServerFailure(
           'Connection to the server timed out. Please check your internet connection and try again.',
         );
       case DioExceptionType.sendTimeout:
-        return ServerFailure(
+        return const ServerFailure(
           'Sending data to the server took too long. Please try again later.',
         );
       case DioExceptionType.receiveTimeout:
-        return ServerFailure(
+        return const ServerFailure(
           'Receiving data from the server took too long. Please try again later.',
         );
       case DioExceptionType.badCertificate:
-        return ServerFailure(
-          'There was a problem with the server\'s security certificate. Please contact support.',
+        return const ServerFailure(
+          "There was a problem with the server's security certificate. Please contact support.",
         );
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
@@ -30,14 +30,14 @@ class ServerFailure extends Failure {
           dioError.response?.data,
         );
       case DioExceptionType.cancel:
-        return ServerFailure('The request was canceled.');
+        return const ServerFailure('The request was canceled.');
       case DioExceptionType.connectionError:
-        return ServerFailure(
+        return const ServerFailure(
           'There was a connection error. Please check your internet connection.',
         );
       case DioExceptionType.unknown:
         if (dioError.error is SocketException) {
-          return ServerFailure(
+          return const ServerFailure(
             'No internet connection. Please connect to the internet and try again.',
           );
         } else {
@@ -49,10 +49,46 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    String message = 'Unexpected error occurred.';
+    var message = 'Unexpected error occurred.';
 
     if (statusCode == null) {
       message = 'Received invalid response from the server.';
+    }
+    // ✅ Handle Stripe API error responses
+    else if (response is Map && response.containsKey('error')) {
+      final  error = response['error'];
+      if (error is Map) {
+        // Stripe API error format
+        final stripeMessage = error['message'] ?? 'Stripe error occurred';
+        final stripeType = error['type'];
+
+        if (stripeType != null) {
+          switch (stripeType) {
+            case 'card_error':
+              message = 'Card error: $stripeMessage';
+              break;
+            case 'invalid_request_error':
+              message = 'Invalid request: $stripeMessage';
+              break;
+            case 'api_error':
+              message = 'Payment service error. Please try again.';
+              break;
+            case 'authentication_error':
+              message = 'Authentication failed. Please try again.';
+              break;
+            case 'rate_limit_error':
+              message = 'Too many requests. Please wait and try again.';
+              break;
+            default:
+              message = stripeMessage;
+          }
+        } else {
+          message = stripeMessage;
+        }
+      } else if (error is String) {
+        // Simple error string format (Next.js API)
+        message = error;
+      }
     }
     // ✅ Handle Clarifai-style error structure
     else if (response is Map && response.containsKey('status')) {

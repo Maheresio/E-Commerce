@@ -6,11 +6,11 @@ class SocketFailure extends Failure {
   factory SocketFailure.fromCode(String code) {
     switch (code) {
       case 'network-request-failed':
-        return SocketFailure(
+        return const SocketFailure(
           'A network error occurred. Please check your connection.',
         );
       default:
-        return SocketFailure('An unknown error occurred.');
+        return const SocketFailure('An unknown error occurred.');
     }
   }
 }
