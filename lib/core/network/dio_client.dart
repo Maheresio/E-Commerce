@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 
 class DioClient {
-  final Dio _dio;
 
   DioClient({Dio? dio})
       : _dio = dio ??
@@ -11,16 +10,16 @@ class DioClient {
                 receiveTimeout: const Duration(seconds: 10),
               ),
             );
+  final Dio _dio;
 
   Future<Response> post({
     required String url,
     Map<String, dynamic>? data,
     Map<String, String>? headers,
-  }) async {
-    return await _dio.post(
+    Options? options,
+  }) async => await _dio.post(
       url,
       data: data,
-      options: Options(headers: headers),
+      options: options?.copyWith(headers: headers) ?? Options(headers: headers),
     );
-  }
 }
