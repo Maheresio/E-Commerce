@@ -1,4 +1,267 @@
+import 'package:flutter/material.dart';
 
-List<String> sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+Map<String, Map<String, dynamic>> categoryData = <String, Map<String, dynamic>>{
+  'Women': <String, dynamic>{
+    'categories': <String, String>{
+      'New': 'assets/images/women_clothes4.jpg',
+      'Clothes': 'assets/images/women_clothes5.jpg',
+      'Shoes': 'assets/images/women_shoes.jpg',
+      'Accessories': 'assets/images/women_acess.jpg',
+    },
+    'subCategories': <String, List<String>>{
+      'Clothes': <String>[
+        'Tops',
+        'Shirts & Blouses',
+        'Cardigans & Sweaters',
+        'Knitwear',
+        'Blazers',
+        'Outerwear',
+        'Pants',
+        'Jeans',
+        'Shorts',
+        'Skirts',
+        'Dresses',
+        'Jumpsuits',
+      ],
+      'Shoes': <String>['Heels', 'Flats', 'Sneakers', 'Boots', 'Sandals'],
+      'Accessories': <String>[
+        'Bags',
+        'Belts',
+        'Jewelry',
+        'Hats',
+        'Scarves',
+        'Sunglasses',
+        'Watches',
+      ],
+    },
+  },
+  'Men': <String, dynamic>{
+    'categories': <String, String>{
+      'New': 'assets/images/men_clothes.jpg',
+      'Clothes': 'assets/images/men_new.jpg',
+      'Shoes': 'assets/images/men_shoes.jpg',
+      'Accessories': 'assets/images/men_access.jpg',
+    },
+    'subCategories': <String, List<String>>{
+      'Clothes': <String>[
+        'T-Shirts',
+        'Shirts',
+        'Sweatshirts & Hoodies',
+        'Blazers',
+        'Jackets & Coats',
+        'Trousers',
+        'Jeans',
+        'Shorts',
+        'Suits',
+        'Knitwear',
+      ],
+      'Shoes': <String>['Sneakers', 'Loafers', 'Boots', 'Sandals', 'Formal Shoes'],
+      'Accessories': <String>[
+        'Belts',
+        'Wallets',
+        'Bags',
+        'Watches',
+        'Hats',
+        'Ties',
+        'Sunglasses',
+      ],
+    },
+  },
+  'Kids': <String, dynamic>{
+    'categories': <String, String>{
+      'New': 'assets/images/kids_clothes.jpg',
+      'Clothes': 'assets/images/kids_clothes2.jpg',
+      'Shoes': 'assets/images/kids_shoes.jpg',
+      'Accessories': 'assets/images/kids_access.jpg',
+    },
+    'subCategories': <String, List<String>>{
+      'Clothes': <String>[
+        'T-Shirts',
+        'Tops',
+        'Dresses',
+        'Pants & Jeans',
+        'Shorts',
+        'Skirts',
+        'Hoodies & Jackets',
+        'Pajamas',
+        'Bodysuits',
+      ],
+      'Shoes': <String>['Sneakers', 'Sandals', 'Boots', 'School Shoes', 'Slippers'],
+      'Accessories': <String>[
+        'Hats',
+        'Backpacks',
+        'Hair Accessories',
+        'Sunglasses',
+        'Socks & Tights',
+      ],
+    },
+  },
+};
 
+final List<Color> uiColors = <Color>[
+  Colors.black,
+  Colors.white,
+  Colors.blue,
+  Colors.red,
+  Colors.pink,
+  Colors.green,
+  Colors.grey,
+  Colors.purple,
+  const Color(0xFFF5F5DC), // Beige
+  Colors.orange,
+  Colors.brown, // For Multi
+  const Color(0xFFFFD700), // Gold
+  const Color(0xFFC0C0C0), // Silver
+  Colors.lightBlueAccent, // Wash (was incorrect before)
+  const Color(0xFF0A0E21), // Dark Night
+];
 
+/// Each UI color maps to a set of color name strings (internal logic)
+final Map<Color, List<String>> colorLogicMap = <Color, List<String>>{
+  Colors.black: <String>[
+    'Black',
+    'Black Ash',
+    'Black Nubuck',
+    'Core Black',
+    'TNF Black',
+    'Black White',
+  ],
+  Colors.white: <String>[
+    'White',
+    'Bright White Leather',
+    'Cloud Cream',
+    'Cream',
+    'White/Blue',
+    'Winter Rose Leather',
+  ],
+  Colors.blue: <String>[
+    'Blue',
+    'Navy',
+    'Collegiate Navy',
+    'Estate Blue',
+    'Dark Sapphire',
+    'Oxford Gray',
+    'Pool',
+    'Shok',
+    'Medium Wash',
+    'Aspen Wash',
+    'Nova Wash',
+    'Light Blue',
+  ],
+  Colors.red: <String>['Red', 'Deep Rouge', 'Raspberry Rose', 'Persimmon'],
+  Colors.pink: <String>[
+    'Pink',
+    'Lucid Pink',
+    'Hot Fuchsia',
+    'Hyper Pink',
+    'Light Pink',
+    'Lavender Pearl',
+    'Razzle',
+  ],
+  Colors.green: <String>['Green', 'Linen Green', 'Green Garden Suede', 'Dark Leaf'],
+  Colors.grey: <String>[
+    'Gray',
+    'Mist',
+    'Grey',
+    'Heather',
+    'Light Smoke Grey',
+    'Oxford Gray',
+  ],
+  Colors.purple: <String>['Purple', 'Lavender'],
+  const Color(0xFFF5F5DC): <String>[
+    'Beige',
+    'Light Beige',
+    'Tan',
+    'Chestnut',
+    'Mustard Seed',
+  ],
+  Colors.orange: <String>['Orange', 'Peach', 'Semi Coral'],
+  Colors.brown: <String>['Multi Pack 1', 'Multi Pack 2', 'Multi Pack 3'],
+  const Color(0xFFFFD700): <String>['Gold Frame/Green Lens'],
+  const Color(0xFFC0C0C0): <String>['Silver Frame/Ornage Lens'],
+  Colors.lightBlueAccent: <String>[
+    'Dark Wash',
+    'Light Wash',
+    'Medium Wash',
+    'Aspen Wash',
+    'Nova Wash',
+  ],
+  const Color(0xFF0A0E21): <String>['Dark Night'],
+};
+
+const List<String> uiSizes = <String>['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const Map<String, List<String>> sizeFilterMapping = <String, List<String>>{
+  'XS': <String>['XS (4)', '3M', '6M', '9M', '12M'],
+  'S': <String>['S', 'S (5-6)', 'S (6)', 'S (8)', '2T', '3T', '4T'],
+  'M': <String>[
+    'M',
+    'M (7-8)',
+    'M (8)',
+    'M (10-12)',
+    '5',
+    '5 Toddler',
+    '6 Toddler',
+    '6-7Y',
+    '7 3/4',
+    '8',
+    '30',
+    '32',
+    '34',
+    '15.5 32/33',
+  ],
+  'L': <String>[
+    'L',
+    'L (10)',
+    'L (14)',
+    '7 Toddler',
+    '8 Toddler',
+    '8-9Y',
+    '9',
+    '10',
+    '36',
+    '16 34/35',
+    '17 34/35',
+  ],
+  'XL': <String>[
+    'XL',
+    'XL (12)',
+    'XL (16)',
+    '9 Toddler',
+    '10 Toddler',
+    '10-11Y',
+    '11',
+    '12',
+    '38',
+    '18 36/37',
+  ],
+  'XXL': <String>['XXL'],
+};
+
+const List<String> brands = <String>[
+  'Adidas',
+  'Carhartt',
+  'Champion',
+  'Columbia',
+  'H&M',
+  "Levi's",
+  'New Era',
+  'Nike',
+  'Ray-Ban',
+  'The North Face',
+  'Timberland',
+  'Under Armour',
+  'Van Heusen',
+  "Carter's",
+  'Disney',
+  'Marvel',
+  'OshKosh B’gosh',
+  'Stride Rite',
+  'Nickelodeon',
+  "The Children's Place",
+  'Nike Jordan',
+  "D'Daniela",
+  'Gap',
+  'PUMA',
+];
+
+const List<String> uiCategories = <String>['All', 'Women', 'Men', 'Kids', 'Unisex'];
