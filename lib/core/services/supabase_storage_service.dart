@@ -11,7 +11,7 @@ class SupabaseStorageService {
     required File file,
     required String filePathInBucket,
   }) async {
-    final StorageFileApi storageRef = _supabase.storage.from(_bucketName);
+    final storageRef = _supabase.storage.from(_bucketName);
 
     await storageRef.upload(
       filePathInBucket,
@@ -28,7 +28,7 @@ class SupabaseStorageService {
     required String filePathInBucket,
     String contentType = 'image/png',
   }) async {
-    final storageRef = _supabase.storage.from(_bucketName);
+    final StorageFileApi storageRef = _supabase.storage.from(_bucketName);
 
     await storageRef.uploadBinary(
       filePathInBucket,
@@ -37,5 +37,28 @@ class SupabaseStorageService {
     );
 
     return storageRef.getPublicUrl(filePathInBucket);
+  }
+
+  // ✅ Method to delete uploaded images
+  Future<void> deleteFile(String filePathInBucket) async {
+    final StorageFileApi storageRef = _supabase.storage.from(_bucketName);
+
+    await storageRef.remove(<String>[filePathInBucket]);
+  }
+
+  // ✅ Method to clear all files in the bucket
+  Future<void> clearAllFiles() async {
+    final StorageFileApi storageRef = _supabase.storage.from(_bucketName);
+
+    // List all files in the bucket
+    final List<FileObject> filesList = await storageRef.list();
+
+    if (filesList.isNotEmpty) {
+      // Extract file names from the list
+      final List<String> fileNames = filesList.map((FileObject file) => file.name).toList();
+
+      // Remove all files at once
+      await storageRef.remove(fileNames);
+    }
   }
 }
