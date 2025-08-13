@@ -27,8 +27,9 @@ void openStyledSnackBar(
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: backgroundColor,
+      
       content: Row(
-        children: [
+        children: <Widget>[
           Icon(icon, color: Colors.white),
           const SizedBox(width: 5),
           Expanded(child: Text(text)),
