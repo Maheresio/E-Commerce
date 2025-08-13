@@ -1,5 +1,5 @@
 // lib/core/theme/app_theme_context.dart
-import 'package:e_commerce/core/responsive/responsive_provider.dart';
+import '../../responsive/responsive_provider.dart';
 import 'package:flutter/material.dart';
 import '../../responsive/device_type.dart';
 
@@ -11,9 +11,9 @@ class AppThemeContext {
 }
 
 class ThemeContextInitializer extends StatelessWidget {
-  final Widget child;
 
   const ThemeContextInitializer({super.key, required this.child});
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

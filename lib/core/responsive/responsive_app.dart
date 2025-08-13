@@ -5,18 +5,17 @@ import 'device_type.dart';
 import 'responsive_provider.dart';
 
 class ResponsiveApp extends StatelessWidget {
-  final WidgetBuilder builder;
-  final Size designSize;
 
   const ResponsiveApp({
     super.key,
     required this.builder,
     this.designSize = const Size(375, 812),
   });
+  final WidgetBuilder builder;
+  final Size designSize;
 
   @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
+  Widget build(BuildContext context) => ScreenUtilInit(
       designSize: designSize,
       minTextAdapt: true,
       splitScreenMode: true,
@@ -34,5 +33,4 @@ class ResponsiveApp extends StatelessWidget {
         );
       },
     );
-  }
 }

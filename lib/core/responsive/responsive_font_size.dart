@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/responsive/device_type.dart';
+import 'device_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' hide DeviceType;
 
@@ -9,10 +9,10 @@ double responsiveFontSize(
   double? desktop,
   double? largeDesktop,
 }) {
-  final width = MediaQuery.of(context).size.width;
-  final deviceType = getDeviceTypeFromWidth(width);
+  final double width = MediaQuery.of(context).size.width;
+  final DeviceType deviceType = getDeviceTypeFromWidth(width);
 
-  final base = switch (deviceType) {
+  final double base = switch (deviceType) {
     DeviceType.mobile => mobile,
     DeviceType.tablet => tablet ?? mobile,
     DeviceType.desktop => desktop ?? tablet ?? mobile,

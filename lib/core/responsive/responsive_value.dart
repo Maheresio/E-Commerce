@@ -9,7 +9,7 @@ T responsiveValue<T>({
   T? desktop,
   T? largeDesktop,
 }) {
-  final type = ResponsiveProvider.of(context);
+  final DeviceType type = ResponsiveProvider.of(context);
 
   switch (type) {
     case DeviceType.largeDesktop:
@@ -24,13 +24,11 @@ T responsiveValue<T>({
 }
 
 extension ResponsiveX on BuildContext {
-  T responsive<T>({required T mobile, T? tablet, T? desktop, T? largeDesktop}) {
-    return responsiveValue(
+  T responsive<T>({required T mobile, T? tablet, T? desktop, T? largeDesktop}) => responsiveValue(
       context: this,
       mobile: mobile,
       tablet: tablet,
       desktop: desktop,
       largeDesktop: largeDesktop,
     );
-  }
 }
