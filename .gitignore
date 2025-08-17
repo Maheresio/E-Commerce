@@ -1,3 +1,6 @@
+# Secrets
+android/secrets.properties
+
 # Miscellaneous
 *.class
 *.log

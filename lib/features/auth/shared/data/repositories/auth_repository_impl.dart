@@ -13,7 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, UserEntity?>> signInWithGoogle() async {
     return handleAuthRepositoryExceptions(
-      () => authDataSource.signInWithGoogle(),
+      () async => authDataSource.signInWithGoogle(),
     );
   }
 

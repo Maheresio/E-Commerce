@@ -1,3 +1,10 @@
+// Load secrets from properties file
+val secretsProperties = java.util.Properties()
+val secretsFile = rootProject.file("secrets.properties")
+if (secretsFile.exists()) {
+    secretsProperties.load(java.io.FileInputStream(secretsFile))
+}
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -6,7 +13,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.e_commerce"
+    namespace = "com.example.e_commerce_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -20,12 +27,17 @@ android {
     }
 
     defaultConfig {
-    applicationId = "com.example.e_commerce"
-    minSdk = flutter.minSdkVersion
-    targetSdk = flutter.targetSdkVersion
-    versionCode = flutter.versionCode
-    versionName = flutter.versionName
-}
+        applicationId = "com.example.e_commerce_app"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        
+        // Set placeholders for secrets
+        resValue("string", "facebook_app_id", "${secretsProperties["facebookAppId"] ?: ""}")
+        resValue("string", "facebook_client_token", "${secretsProperties["facebookClientToken"] ?: ""}")
+        resValue("string", "default_web_client_id", "${secretsProperties["webClientId"] ?: ""}")
+    }
 
     buildTypes {
         release {

@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../../../../core/services/firestore_sevice.dart';
 import '../../../../../core/constants/firestore_constants.dart';
 import '../model/user_model.dart';
@@ -30,7 +32,9 @@ class AuthDataSourceImpl implements AuthDataSource {
   bool _isGoogleSignInInitialized = false;
 
   Future<void> _initializeGoogleSignIn() async {
-    await _googleSignIn.initialize();
+    await _googleSignIn.initialize(
+      serverClientId: dotenv.env['GOOGLE_SERVER_CLIENT_ID'],
+    );
     _isGoogleSignInInitialized = true;
   }
 
@@ -57,78 +61,53 @@ class AuthDataSourceImpl implements AuthDataSource {
 
   @override
   Future<UserEntity?> signInWithGoogle() async {
-   
-      await _ensureGoogleSignInInitialized();
+    await _ensureGoogleSignInInitialized();
 
-      // Use the new authenticate() method with scopeHint
-      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate(
-        scopeHint: ['email', 'profile'],
-      );
+    // Use the new authenticate() method with scopeHint
+    final GoogleSignInAccount googleUser = await _googleSignIn.authenticate(
+      scopeHint: ['email', 'profile'],
+    );
 
-      // Authentication is now synchronous in v7
-      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
-      final String? idToken = googleAuth.idToken;
+    // Authentication is now synchronous in v7
+    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+    final String? idToken = googleAuth.idToken;
 
-      if (idToken == null) throw Exception('Google ID token was null.');
+    if (idToken == null) throw Exception('Google ID token was null.');
 
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        idToken: idToken,
-      );
-      return await _signInWithCredential(credential);
-    
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: idToken,
+    );
+    return await _signInWithCredential(credential);
   }
-
-  // @override
-  // Future<UserEntity?> signInWithFacebook() async {
-  //   final LoginResult result = await FacebookAuth.instance.login(
-  //     permissions: const ['email', 'public_profile'],
-  //   );
-
-  //   if (result.status != LoginStatus.success) {
-  //     throw Exception('Facebook login failed: ${result.message}');
-  //   }
-
-  //   final accessToken = result.accessToken?.tokenString;
-  //   if (accessToken == null || accessToken.isEmpty) {
-  //     throw Exception('Missing Facebook access token.');
-  //   }
-
-  //   final OAuthCredential credential = FacebookAuthProvider.credential(
-  //     accessToken,
-  //   );
-  //   return await _signInWithCredential(credential);
-  // }
-
 
   @override
-Future<UserEntity?> signInWithFacebook() async {
-  final LoginResult result = await FacebookAuth.instance.login(
-    permissions: const ['email', 'public_profile'],
-    // optional but often nicer UX:
-    // loginBehavior: LoginBehavior.dialogOnly,
-  );
+  Future<UserEntity?> signInWithFacebook() async {
+    final LoginResult result = await FacebookAuth.instance.login(
+      permissions: const ['email', 'public_profile'],
+    );
 
-  switch (result.status) {
-    case LoginStatus.success:
-      final accessToken = result.accessToken;
-      final token = accessToken?.tokenString; 
-      if (token == null || token.isEmpty) {
-        throw Exception('Missing Facebook access token.');
-      }
-      final credential = FacebookAuthProvider.credential(token);
-      return _signInWithCredential(credential);
+    switch (result.status) {
+      case LoginStatus.success:
+        final accessToken = result.accessToken;
+        final token = accessToken?.tokenString;
+        if (token == null || token.isEmpty) {
+          throw Exception('Missing Facebook access token.');
+        }
+        final credential = FacebookAuthProvider.credential(token);
+        return await _signInWithCredential(credential);
 
-    case LoginStatus.cancelled:
-      throw const AuthCanceledException('facebook');
+      case LoginStatus.cancelled:
+        throw const AuthCanceledException('facebook');
 
-    case LoginStatus.failed:
-    default:
-      final msg = result.message?.isNotEmpty == true
-          ? result.message
-          : 'Facebook login failed';
-      throw Exception(msg);
+      case LoginStatus.failed:
+      default:
+        final msg =
+            result.message?.isNotEmpty == true
+                ? result.message
+                : 'Facebook login failed';
+        throw Exception(msg);
+    }
   }
-}
 
   @override
   Future<UserEntity?> getCurrentUserData() async {
@@ -142,13 +121,9 @@ Future<UserEntity?> signInWithFacebook() async {
     final UserCredential userCredential = await firebaseAuth
         .signInWithCredential(credential);
     final User? firebaseUser = userCredential.user;
-
     if (firebaseUser == null) return null;
 
-    final UserEntity? existingUser = await _getUserFromFirestore(
-      firebaseUser.uid,
-    );
-    if (existingUser != null) return existingUser;
+    await _waitUntilAuthVisibleToFirestore(firebaseUser);
 
     final newUser = UserModel(
       uid: firebaseUser.uid,
@@ -163,19 +138,24 @@ Future<UserEntity?> signInWithFacebook() async {
       data: newUser.toMap(),
     );
 
-    return newUser;
+    await firebaseAuth.currentUser?.reload();
+    final UserEntity? ensured = await _getUserFromFirestore(firebaseUser.uid);
+    return ensured ?? newUser;
   }
 
   /// Helper method to get user data from Firestore
   Future<UserEntity?> _getUserFromFirestore(String uid) async {
-    final docStream = firestoreServices.documentsStream(
-      path: FirestoreConstants.user(uid),
-      builder: (Map<String, dynamic>? data, String documentId) {
-        if (data == null) return null;
-        return UserModel.fromMap(data, documentId);
-      },
-    );
+    final doc = await FirebaseFirestore.instance
+        .doc(FirestoreConstants.user(uid))
+        .get(const GetOptions(source: Source.server)); // force server read
+    if (!doc.exists) return null;
+    final data = doc.data() as Map<String, dynamic>;
+    return UserModel.fromMap(data, doc.id);
+  }
 
-    return await docStream.first;
+  Future<void> _waitUntilAuthVisibleToFirestore(User user) async {
+    // Ensure token is minted & broadcast to Firestore
+    await user.getIdToken(true);
+    await firebaseAuth.idTokenChanges().firstWhere((u) => u?.uid == user.uid);
   }
 }
