@@ -20,7 +20,7 @@ class RegisterInputSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-    spacing: 4,
+    spacing: 12,
     children: [
       StyledTextFormField(
         text: AppStrings.kName,
