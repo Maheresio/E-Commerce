@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 enum SnackBarType { success, error, info }
@@ -27,12 +28,15 @@ void openStyledSnackBar(
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: backgroundColor,
-      
+
       content: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Icon(icon, color: Colors.white),
           const SizedBox(width: 5),
-          Expanded(child: Text(text)),
+          Expanded(
+            child: Text(text, style: AppStyles.font14WhiteSemiBold(context)),
+          ),
         ],
       ),
       duration: const Duration(milliseconds: 2500),
