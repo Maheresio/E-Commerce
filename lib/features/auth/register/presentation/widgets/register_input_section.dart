@@ -19,48 +19,46 @@ class RegisterInputSection extends StatelessWidget {
   final TextEditingController passwordController;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 4,
-      children: [
-        StyledTextFormField(
-          text: AppStrings.kName,
-          controller: nameController,
-          validator: (value) {
-            final validation = NameValidation(value).value;
-            return validation.fold((failure) => failure.message, (_) => null);
-          },
+  Widget build(BuildContext context) => Column(
+    spacing: 4,
+    children: [
+      StyledTextFormField(
+        text: AppStrings.kName,
+        controller: nameController,
+        validator: (value) {
+          final validation = NameValidation(value).value;
+          return validation.fold((failure) => failure.message, (_) => null);
+        },
 
-          keyboardType: TextInputType.name,
-        ),
-        StyledTextFormField(
-          controller: emailController,
-          text: AppStrings.kEmail,
-          validator: (value) {
-            final emailValidation = EmailValidation(value).value;
-            return emailValidation.fold(
-              (failure) => failure.message,
-              (_) => null,
-            );
-          },
-          keyboardType: TextInputType.emailAddress,
-        ),
-        StyledTextFormField(
-          isPassword: true,
+        keyboardType: TextInputType.name,
+      ),
+      StyledTextFormField(
+        controller: emailController,
+        text: AppStrings.kEmail,
+        validator: (value) {
+          final emailValidation = EmailValidation(value).value;
+          return emailValidation.fold(
+            (failure) => failure.message,
+            (_) => null,
+          );
+        },
+        keyboardType: TextInputType.emailAddress,
+      ),
+      StyledTextFormField(
+        isPassword: true,
 
-          controller: passwordController,
-          text: AppStrings.kPassword,
-          validator: (value) {
-            final passwordValidation = PasswordValidation(value).value;
-            return passwordValidation.fold(
-              (failure) => failure.message,
-              (_) => null,
-            );
-          },
-          keyboardType: TextInputType.visiblePassword,
-          textInputAction: TextInputAction.done,
-        ),
-      ],
-    );
-  }
+        controller: passwordController,
+        text: AppStrings.kPassword,
+        validator: (value) {
+          final passwordValidation = PasswordValidation(value).value;
+          return passwordValidation.fold(
+            (failure) => failure.message,
+            (_) => null,
+          );
+        },
+        keyboardType: TextInputType.visiblePassword,
+        textInputAction: TextInputAction.done,
+      ),
+    ],
+  );
 }

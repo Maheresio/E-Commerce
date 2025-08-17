@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../shared/presentation/widgets/social_section.dart';
+import '../../../shared/presentation/widgets/social_auth_provider.dart';
 import '../bloc/register_bloc.dart';
 import 'register_form.dart';
 
@@ -12,10 +12,10 @@ class RegisterViewBody extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = useMemoized(() => GlobalKey<FormState>());
-    final emailController = useTextEditingController();
-    final passwordController = useTextEditingController();
-    final nameController = useTextEditingController();
+    final GlobalKey<FormState> formKey = useMemoized(GlobalKey<FormState>.new);
+    final TextEditingController emailController = useTextEditingController();
+    final TextEditingController passwordController = useTextEditingController();
+    final TextEditingController nameController = useTextEditingController();
 
     return SafeArea(
       child: Padding(
@@ -23,12 +23,12 @@ class RegisterViewBody extends HookWidget {
         child: Form(
           key: formKey,
           child: CustomScrollView(
-            slivers: [
+            slivers: <Widget>[
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(top: 50),
                       child: RegisterForm(
@@ -49,7 +49,7 @@ class RegisterViewBody extends HookWidget {
                       ),
                     ),
 
-                    SocialSection(),
+                    const SocialAuthProvider(),
                   ],
                 ),
               ),

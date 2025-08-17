@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/helpers/extensions/theme_color.extension.dart';
+import '../../../../../core/helpers/extensions/context_extensions.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({
@@ -15,39 +15,36 @@ class SubmitButton extends StatelessWidget {
   final bool isLoading;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 48,
-      child: ElevatedButton(
-        onPressed:
-            isLoading
-                ? null
-                : () {
+  Widget build(BuildContext context) => SizedBox(
+    width: double.infinity,
+    height: 48,
+    child: ElevatedButton(
+      onPressed:
+          isLoading
+              ? null
+              : () {
+                FocusManager.instance.primaryFocus?.unfocus();
+                if (onPressed != null) {
+                  onPressed!();
+                }
+              },
 
-                  FocusManager.instance.primaryFocus?.unfocus();
-                  if (onPressed != null) {
-                    onPressed!();
-                  }
-                },
-
-        child: Row(
-          spacing: 12,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(text),
-            if (isLoading)
-              SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 1.5,
-                  color: context.color.onSecondary,
-                ),
+      child: Row(
+        spacing: 12,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(text),
+          if (isLoading)
+            SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 1.5,
+                color: context.color.onSecondary,
               ),
-          ],
-        ),
+            ),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }

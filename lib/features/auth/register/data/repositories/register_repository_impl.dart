@@ -11,8 +11,8 @@ import '../../domain/repositories/register_repository.dart';
 import '../datasources/register_data_source.dart';
 
 class RegisterRepositoryImpl implements RegisterRepository {
-  final RegisterDataSource registerDataSource;
   RegisterRepositoryImpl(this.registerDataSource);
+  final RegisterDataSource registerDataSource;
 
   @override
   AuthType registerWithEmailAndPassword({
@@ -21,7 +21,7 @@ class RegisterRepositoryImpl implements RegisterRepository {
     required String password,
   }) async {
     try {
-      registerDataSource.registerWithEmailAndPassword(
+      await registerDataSource.registerWithEmailAndPassword(
         email: email,
         name: name,
         password: password,

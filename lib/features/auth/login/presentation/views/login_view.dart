@@ -6,10 +6,8 @@ class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(child: LoginViewBody()),
-    );
-  }
+  Widget build(BuildContext context) => const Scaffold(
+    resizeToAvoidBottomInset: false,
+    body: SafeArea(child: LoginViewBody()),
+  );
 }

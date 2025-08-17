@@ -8,7 +8,6 @@ class HeaderSection extends StatelessWidget {
 
   final String text;
   @override
-  Widget build(BuildContext context) {
-    return Text(AppStrings.kLogin, style: AppStyles.font34BlackBold);
-  }
+  Widget build(BuildContext context) =>
+      Text(AppStrings.kLogin, style: AppStyles.font34BlackBold(context));
 }

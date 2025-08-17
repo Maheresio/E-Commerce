@@ -8,6 +8,7 @@ part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final RegisterWithEmailAndPasswordUsecase registerWithEmailAndPasswordUsecase;
+
   RegisterBloc(this.registerWithEmailAndPasswordUsecase)
     : super(RegisterInitial()) {
     on<RegisterButtonPressed>((event, emit) async {

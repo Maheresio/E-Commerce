@@ -9,8 +9,8 @@ import '../../domain/repositories/login_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
-  LoginDataSource loginDataSource;
   LoginRepositoryImpl(this.loginDataSource);
+  LoginDataSource loginDataSource;
 
   @override
   Future<Either<Failure, void>> loginWithEmailAndPassword({

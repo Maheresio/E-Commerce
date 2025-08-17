@@ -6,20 +6,20 @@ import '../../../shared/domain/entity/password_validation.dart';
 import '../repositories/login_repository.dart';
 
 class LoginWithEmailAndPasswordUseCase {
-  LoginRepository loginRepository;
   LoginWithEmailAndPasswordUseCase(this.loginRepository);
+  LoginRepository loginRepository;
   Future<Either<Failure, void>> execute({
     required String email,
     required String password,
   }) async {
-    final emailOrFailure = EmailValidation(email);
-    final passwordOrFailure = PasswordValidation(password);
+    final EmailValidation emailOrFailure = EmailValidation(email);
+    final PasswordValidation passwordOrFailure = PasswordValidation(password);
 
     return emailOrFailure.value.fold(
-      (emailFailure) => left(emailFailure),
+      left,
       (_) => passwordOrFailure.value.fold(
-        (passwordFailure) => left(passwordFailure),
-        (_) async => await loginRepository.loginWithEmailAndPassword(
+        left,
+        (_) async => loginRepository.loginWithEmailAndPassword(
           email: email,
           password: password,
         ),

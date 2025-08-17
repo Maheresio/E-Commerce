@@ -7,7 +7,6 @@ class NavigationButton extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) {
-    return TextButton(onPressed: onPressed, child: Text(text));
-  }
+  Widget build(BuildContext context) =>
+      TextButton(onPressed: onPressed, child: Text(text));
 }

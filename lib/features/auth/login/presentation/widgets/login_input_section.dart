@@ -16,41 +16,39 @@ class LoginInputSection extends StatelessWidget {
   final TextEditingController passwordController;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 16,
-      children: [
-        StyledTextFormField(
-          controller: emailController,
-          text: AppStrings.kEmail,
-          autofillHints: [AutofillHints.email],
-          validator: (value) {
-            final emailValidation = EmailValidation(value).value;
-            return emailValidation.fold(
-              (failure) => failure.message,
-              (_) => null,
-            );
-          },
+  Widget build(BuildContext context) => Column(
+    spacing: 16,
+    children: [
+      StyledTextFormField(
+        controller: emailController,
+        text: AppStrings.kEmail,
+        autofillHints: const [AutofillHints.email],
+        validator: (value) {
+          final emailValidation = EmailValidation(value).value;
+          return emailValidation.fold(
+            (failure) => failure.message,
+            (_) => null,
+          );
+        },
 
-          keyboardType: TextInputType.emailAddress,
-        ),
-        StyledTextFormField(
-          isPassword: true,
-          controller: passwordController,
-          text: AppStrings.kPassword,
-          autofillHints: [AutofillHints.password],
-          validator: (value) {
-            final passwordValidation = PasswordValidation(value).value;
-            return passwordValidation.fold(
-              (failure) => failure.message,
-              (_) => null,
-            );
-          },
+        keyboardType: TextInputType.emailAddress,
+      ),
+      StyledTextFormField(
+        isPassword: true,
+        controller: passwordController,
+        text: AppStrings.kPassword,
+        autofillHints: const [AutofillHints.password],
+        validator: (value) {
+          final passwordValidation = PasswordValidation(value).value;
+          return passwordValidation.fold(
+            (failure) => failure.message,
+            (_) => null,
+          );
+        },
 
-          keyboardType: TextInputType.visiblePassword,
-          textInputAction: TextInputAction.done,
-        ),
-      ],
-    );
-  }
+        keyboardType: TextInputType.visiblePassword,
+        textInputAction: TextInputAction.done,
+      ),
+    ],
+  );
 }

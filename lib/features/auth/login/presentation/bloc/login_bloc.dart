@@ -7,8 +7,6 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final LoginWithEmailAndPasswordUseCase loginWithEmailAndPasswordUseCase;
-
   LoginBloc(this.loginWithEmailAndPasswordUseCase) : super(LoginInitial()) {
     on<LoginButtonPressed>((event, emit) async {
       emit(LoginLoading());
@@ -22,4 +20,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     });
   }
+
+  final LoginWithEmailAndPasswordUseCase loginWithEmailAndPasswordUseCase;
 }

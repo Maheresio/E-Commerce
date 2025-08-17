@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../shared/presentation/widgets/social_section.dart';
+import '../../../shared/presentation/widgets/social_auth_provider.dart';
 import '../bloc/login_bloc.dart';
 import 'login_form.dart';
 
@@ -13,12 +13,12 @@ class LoginViewBody extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = useMemoized(() => GlobalKey<FormState>());
-    final emailController = useTextEditingController();
-    final passwordController = useTextEditingController();
+    final GlobalKey<FormState> formKey = useMemoized(GlobalKey<FormState>.new);
+    final TextEditingController emailController = useTextEditingController();
+    final TextEditingController passwordController = useTextEditingController();
     return CustomScrollView(
-      physics: BouncingScrollPhysics(),
-      slivers: [
+      physics: const BouncingScrollPhysics(),
+      slivers: <Widget>[
         SliverFillRemaining(
           hasScrollBody: false,
           child: AutofillGroup(
@@ -29,7 +29,7 @@ class LoginViewBody extends HookWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(top: 50),
                       child: LoginForm(
@@ -48,7 +48,7 @@ class LoginViewBody extends HookWidget {
                         },
                       ),
                     ),
-                    SocialSection(),
+                    const SocialAuthProvider(),
                   ],
                 ),
               ),

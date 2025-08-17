@@ -20,13 +20,15 @@ class PasswordValidation extends ValidationValueObject<String?> {
 
     // 1. Check if password is empty
     if (input.isEmpty) {
-      return left(Failure('Please enter a password. It cannot be empty.'));
+      return left(
+        const Failure('Please enter a password. It cannot be empty.'),
+      );
     }
 
     // 2. Check for whitespace
     if (RegExp(r'\s').hasMatch(input)) {
       return left(
-        Failure(
+        const Failure(
           'Your password cannot contain spaces. Please remove any spaces.',
         ),
       );
@@ -35,7 +37,7 @@ class PasswordValidation extends ValidationValueObject<String?> {
     // 3. Check minimum length (8 characters)
     if (input.length < 8) {
       return left(
-        Failure(
+        const Failure(
           'Your password is too short. Please use at least 8 characters.',
         ),
       );
@@ -44,20 +46,20 @@ class PasswordValidation extends ValidationValueObject<String?> {
     // 4. Check maximum length (128 characters)
     if (input.length > 128) {
       return left(
-        Failure(
+        const Failure(
           'Your password is too long. Please use no more than 128 characters.',
         ),
       );
     }
 
     // 5. Validate character requirements using helper function
-    final validations = [
+    final List<Either<Failure, void>> validations = <Either<Failure, void>>[
       validatePattern(
-        RegExp(r'[A-Z]'),
+        RegExp('[A-Z]'),
         'Your password must include at least one uppercase letter (e.g., A-Z).',
       ),
       validatePattern(
-        RegExp(r'[a-z]'),
+        RegExp('[a-z]'),
         'Your password must include at least one lowercase letter (e.g., a-z).',
       ),
       validatePattern(
@@ -66,14 +68,14 @@ class PasswordValidation extends ValidationValueObject<String?> {
       ),
       validatePattern(
         RegExp(r'[!@#$%^&*(),.?":{}|<>]'),
-        'Your password must include at least one special character (e.g., ! @ # \$ % ^ & *).',
+        r'Your password must include at least one special character (e.g., ! @ # $ % ^ & *).',
       ),
     ];
 
     // Return the first failure encountered
-    for (final validation in validations) {
+    for (final Either<Failure, void> validation in validations) {
       if (validation.isLeft()) {
-        return validation.fold((failure) => left(failure), (_) => right(''));
+        return validation.fold(left, (_) => right(''));
       }
     }
 

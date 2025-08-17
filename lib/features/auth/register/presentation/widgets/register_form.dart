@@ -26,61 +26,65 @@ class RegisterForm extends StatelessWidget {
   final void Function()? onPressed;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Title
-        Text(AppStrings.kSignUp, style: AppStyles.font34BlackBold),
-        const SizedBox(height: 70),
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      // Title
+      Text(AppStrings.kSignUp, style: AppStyles.font34BlackBold(context)),
+      const SizedBox(height: 70),
 
-        // Input Section
-        RegisterInputSection(
-          nameController: nameController,
-          emailController: emailController,
-          passwordController: passwordController,
-        ),
+      // Input Section
+      RegisterInputSection(
+        nameController: nameController,
+        emailController: emailController,
+        passwordController: passwordController,
+      ),
 
-        // Navigation Button
-        Align(
-          alignment: AlignmentDirectional.centerEnd,
-          child: NavigationButton(
-            text: AppStrings.kAlreadyHaveAccount,
-            onPressed: () => GoRouter.of(context).go(AppRouter.kLogin),
-          ),
+      // Navigation Button
+      Align(
+        alignment: AlignmentDirectional.centerEnd,
+        child: NavigationButton(
+          text: AppStrings.kAlreadyHaveAccount,
+          onPressed: () => context.go(AppRouter.kLogin),
         ),
-        const SizedBox(height: 20),
+      ),
+      const SizedBox(height: 20),
 
-        // Submit Button with BlocConsumer
-        BlocConsumer<RegisterBloc, RegisterState>(
-          listener: (context, state) {
-            if (state is RegisterSuccess) {
-              openStyledSnackBar(
-                context,
-                text: AppStrings.kSuccessRegister,
-                type: SnackBarType.success,
-              );
-              if (!context.mounted) return;
-              GoRouter.of(context).go(AppRouter.kLogin);
-            } else if (state is RegisterFailure) {
-              openStyledSnackBar(
-                context,
-                text: state.message,
-                type: SnackBarType.error,
-              );
-            }
-          },
-          builder: (context, state) {
-            if (state is RegisterLoading) {
-              return const SubmitButton(
-                isLoading: true,
-                text: AppStrings.kSignUp,
-              );
-            }
-            return SubmitButton(text: AppStrings.kSignUp, onPressed: onPressed);
-          },
-        ),
-      ],
-    );
-  }
+      // Submit Button with BlocConsumer
+      BlocConsumer<RegisterBloc, RegisterState>(
+        listenWhen: (previous, current) {
+          return current is RegisterSuccess || current is RegisterFailure;
+        },
+        listener: (context, state) {
+          if (state is RegisterSuccess) {
+            openStyledSnackBar(
+              context,
+              text: AppStrings.kSuccessRegister,
+              type: SnackBarType.success,
+            );
+            if (!context.mounted) return;
+            context.go(AppRouter.kNavBar);
+          } else if (state is RegisterFailure) {
+            openStyledSnackBar(
+              context,
+              text: state.message,
+              type: SnackBarType.error,
+            );
+          }
+        },
+        buildWhen: (previous, current) {
+          return (previous is RegisterLoading) != (current is RegisterLoading);
+        },
+        builder: (context, state) {
+          if (state is RegisterLoading) {
+            return const SubmitButton(
+              isLoading: true,
+              text: AppStrings.kSignUp,
+            );
+          }
+          return SubmitButton(text: AppStrings.kSignUp, onPressed: onPressed);
+        },
+      ),
+    ],
+  );
 }

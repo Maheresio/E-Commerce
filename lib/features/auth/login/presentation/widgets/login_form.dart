@@ -24,66 +24,67 @@ class LoginForm extends StatelessWidget {
   final void Function()? submit;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        HeaderSection(text: AppStrings.kLogin),
-        SizedBox(height: 70),
-        LoginInputSection(
-          emailController: emailController,
-          passwordController: passwordController,
-        ),
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const HeaderSection(text: AppStrings.kLogin),
+      const SizedBox(height: 70),
+      LoginInputSection(
+        emailController: emailController,
+        passwordController: passwordController,
+      ),
 
-        Align(
-          alignment: AlignmentDirectional.centerEnd,
-          child: NavigationButton(
-            text: AppStrings.kForgotPassword,
-            onPressed: () {},
-          ),
+      Align(
+        alignment: AlignmentDirectional.centerEnd,
+        child: NavigationButton(
+          text: AppStrings.kForgotPassword,
+          onPressed: () {},
         ),
-        SizedBox(height: 20),
+      ),
+      const SizedBox(height: 20),
 
-        BlocConsumer<LoginBloc, LoginState>(
-          listener: (context, state) {
-            if (state is LoginSuccess) {
-              openStyledSnackBar(
-                context,
-                text: AppStrings.kSuccessLogin,
-                type: SnackBarType.success,
-              );
-              Future.delayed(Duration(seconds: 2), () {
-                if (!context.mounted) return;
-                GoRouter.of(context).go(AppRouter.kHome);
-              });
-            } else if (state is LoginFailure) {
-              openStyledSnackBar(
-                context,
-                text: state.message,
-                type: SnackBarType.error,
-              );
-            }
-          },
-          builder: (context, state) {
-            if (state is LoginLoading) {
-              return const SubmitButton(
-                isLoading: true,
-                text: AppStrings.kLogin,
-              );
-            }
-            return SubmitButton(text: AppStrings.kLogin, onPressed: submit);
+      BlocConsumer<LoginBloc, LoginState>(
+        listenWhen: (previous, current) {
+          return current is LoginSuccess || current is LoginFailure;
+        },
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            openStyledSnackBar(
+              context,
+              text: AppStrings.kSuccessLogin,
+              type: SnackBarType.success,
+            );
+            Future.delayed(const Duration(seconds: 2), () {
+              if (!context.mounted) return;
+              context.go(AppRouter.kNavBar);
+            });
+          } else if (state is LoginFailure) {
+            openStyledSnackBar(
+              context,
+              text: state.message,
+              type: SnackBarType.error,
+            );
+          }
+        },
+        buildWhen: (previous, current) {
+          return (previous is LoginLoading) != (current is LoginLoading);
+        },
+        builder: (context, state) {
+          if (state is LoginLoading) {
+            return const SubmitButton(isLoading: true, text: AppStrings.kLogin);
+          }
+          return SubmitButton(text: AppStrings.kLogin, onPressed: submit);
+        },
+      ),
+      Align(
+        alignment: AlignmentDirectional.center,
+        child: NavigationButton(
+          text: AppStrings.kDontHaveAccount,
+          onPressed: () {
+            context.go(AppRouter.kRegister);
           },
         ),
-        Align(
-          alignment: AlignmentDirectional.center,
-          child: NavigationButton(
-            text: AppStrings.kDontHaveAccount,
-            onPressed: () {
-              GoRouter.of(context).go(AppRouter.kRegister);
-            },
-          ),
-        ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
 }
