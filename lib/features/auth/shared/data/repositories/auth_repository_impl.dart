@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../../core/error/failure.dart';
-import '../../../../../core/error/handle_repository_exceptions.dart';
+import '../auth_handle_repository_exceptions.dart';
 import '../../domain/entity/user_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../data_source/auth_data_source.dart';
@@ -12,19 +12,21 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, UserEntity?>> signInWithGoogle() async {
-    return handleRepositoryExceptions(() => authDataSource.signInWithGoogle());
+    return handleAuthRepositoryExceptions(
+      () => authDataSource.signInWithGoogle(),
+    );
   }
 
   @override
   Future<Either<Failure, UserEntity?>> signInWithFacebook() async {
-    return handleRepositoryExceptions(
+    return handleAuthRepositoryExceptions(
       () => authDataSource.signInWithFacebook(),
     );
   }
 
   @override
   Future<Either<Failure, void>> logOut() async {
-    return handleRepositoryExceptions(() async {
+    return handleAuthRepositoryExceptions(() async {
       await authDataSource.logOut();
       return;
     });
@@ -48,7 +50,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, UserEntity?>> getCurrentUserData() async {
-    return handleRepositoryExceptions(
+    return handleAuthRepositoryExceptions(
       () => authDataSource.getCurrentUserData(),
     );
   }

@@ -5,6 +5,7 @@ import '../../../../../core/services/firestore_sevice.dart';
 import '../../../../../core/constants/firestore_constants.dart';
 import '../model/user_model.dart';
 import '../../domain/entity/user_entity.dart';
+import '../service/auth_cancel_exception.dart';
 
 abstract class AuthDataSource {
   Future<void> logOut();
@@ -56,45 +57,78 @@ class AuthDataSourceImpl implements AuthDataSource {
 
   @override
   Future<UserEntity?> signInWithGoogle() async {
-    await _ensureGoogleSignInInitialized();
+   
+      await _ensureGoogleSignInInitialized();
 
-    // Use the new authenticate() method with scopeHint
-    final GoogleSignInAccount googleUser = await _googleSignIn.authenticate(
-      scopeHint: ['email', 'profile'],
-    );
+      // Use the new authenticate() method with scopeHint
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate(
+        scopeHint: ['email', 'profile'],
+      );
 
-    // Authentication is now synchronous in v7
-    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
-    final String? idToken = googleAuth.idToken;
+      // Authentication is now synchronous in v7
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final String? idToken = googleAuth.idToken;
 
-    if (idToken == null) throw Exception('Google ID token was null.');
+      if (idToken == null) throw Exception('Google ID token was null.');
 
-    final OAuthCredential credential = GoogleAuthProvider.credential(
-      idToken: idToken,
-    );
-    return await _signInWithCredential(credential);
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        idToken: idToken,
+      );
+      return await _signInWithCredential(credential);
+    
   }
+
+  // @override
+  // Future<UserEntity?> signInWithFacebook() async {
+  //   final LoginResult result = await FacebookAuth.instance.login(
+  //     permissions: const ['email', 'public_profile'],
+  //   );
+
+  //   if (result.status != LoginStatus.success) {
+  //     throw Exception('Facebook login failed: ${result.message}');
+  //   }
+
+  //   final accessToken = result.accessToken?.tokenString;
+  //   if (accessToken == null || accessToken.isEmpty) {
+  //     throw Exception('Missing Facebook access token.');
+  //   }
+
+  //   final OAuthCredential credential = FacebookAuthProvider.credential(
+  //     accessToken,
+  //   );
+  //   return await _signInWithCredential(credential);
+  // }
+
 
   @override
-  Future<UserEntity?> signInWithFacebook() async {
-    final LoginResult result = await FacebookAuth.instance.login(
-      permissions: const ['email', 'public_profile'],
-    );
+Future<UserEntity?> signInWithFacebook() async {
+  final LoginResult result = await FacebookAuth.instance.login(
+    permissions: const ['email', 'public_profile'],
+    // optional but often nicer UX:
+    // loginBehavior: LoginBehavior.dialogOnly,
+  );
 
-    if (result.status != LoginStatus.success) {
-      throw Exception('Facebook login failed: ${result.message}');
-    }
+  switch (result.status) {
+    case LoginStatus.success:
+      final accessToken = result.accessToken;
+      final token = accessToken?.tokenString; 
+      if (token == null || token.isEmpty) {
+        throw Exception('Missing Facebook access token.');
+      }
+      final credential = FacebookAuthProvider.credential(token);
+      return _signInWithCredential(credential);
 
-    final accessToken = result.accessToken?.tokenString;
-    if (accessToken == null || accessToken.isEmpty) {
-      throw Exception('Missing Facebook access token.');
-    }
+    case LoginStatus.cancelled:
+      throw const AuthCanceledException('facebook');
 
-    final OAuthCredential credential = FacebookAuthProvider.credential(
-      accessToken,
-    );
-    return await _signInWithCredential(credential);
+    case LoginStatus.failed:
+    default:
+      final msg = result.message?.isNotEmpty == true
+          ? result.message
+          : 'Facebook login failed';
+      throw Exception(msg);
   }
+}
 
   @override
   Future<UserEntity?> getCurrentUserData() async {
