@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 import '../error/failure.dart';
 
 abstract class ValidationValueObject<T> extends Equatable {
-  final Either<Failure, T> value;
 
   const ValidationValueObject(this.value);
+  final Either<Failure, T> value;
 
   // Safely extract the value, throwing an exception if invalid
   // T get() =>
@@ -16,5 +16,5 @@ abstract class ValidationValueObject<T> extends Equatable {
   bool isValid() => value.isRight();
 
   @override
-  List<Object?> get props => [value];
+  List<Object?> get props => <Object?>[value];
 }
