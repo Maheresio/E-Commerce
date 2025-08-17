@@ -1,15 +1,14 @@
-// Load secrets from properties file
-val secretsProperties = java.util.Properties()
-val secretsFile = rootProject.file("secrets.properties")
-if (secretsFile.exists()) {
-    secretsProperties.load(java.io.FileInputStream(secretsFile))
-}
+import java.util.Properties
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+val secrets = Properties().apply {
+    val f = rootProject.file("secrets.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
 }
 
 android {
@@ -21,10 +20,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
+    kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
 
     defaultConfig {
         applicationId = "com.example.e_commerce_app"
@@ -32,22 +28,22 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        
-        // Set placeholders for secrets
-        resValue("string", "facebook_app_id", "${secretsProperties["facebookAppId"] ?: ""}")
-        resValue("string", "facebook_client_token", "${secretsProperties["facebookClientToken"] ?: ""}")
-        resValue("string", "default_web_client_id", "${secretsProperties["webClientId"] ?: ""}")
+
+        val fbAppId = secrets.getProperty("FACEBOOK_APP_ID", "")
+        val fbClient = secrets.getProperty("FACEBOOK_CLIENT_TOKEN", "")
+        val webClient = secrets.getProperty("DEFAULT_WEB_CLIENT_ID", "")
+
+        resValue("string", "facebook_app_id", fbAppId)
+        resValue("string", "facebook_client_token", fbClient)
+        resValue("string", "default_web_client_id", webClient)
+        resValue("string", "fb_login_protocol_scheme", "fb$fbAppId")
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
     }
 }
 
-flutter {
-    source = "../.."
-}
+flutter { source = "../.." }
