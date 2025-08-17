@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/app_styles.dart';
@@ -14,6 +15,8 @@ class StyledTextFormField extends StatefulWidget {
     this.isPassword = false,
     this.autofillHints,
     this.suffixIcon,
+    this.textCapitalization = TextCapitalization.none,
+    this.inputFormatters,
   });
 
   final bool isPassword;
@@ -24,6 +27,8 @@ class StyledTextFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final List<String>? autofillHints;
   final Widget? suffixIcon;
+  final TextCapitalization textCapitalization;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<StyledTextFormField> createState() => _StyledTextFormFieldState();
@@ -38,15 +43,16 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return TextFormField(
+  Widget build(BuildContext context) => TextFormField(
       autofillHints: widget.autofillHints,
+      textCapitalization: widget.textCapitalization,
+      inputFormatters: widget.inputFormatters,
       validator: widget.validator,
       controller: widget.controller,
       textInputAction: widget.textInputAction,
       obscureText: widget.isPassword && !_isPasswordVisible,
       keyboardType: widget.keyboardType,
-      style: AppStyles.font14BlackMedium,
+      style: AppStyles.font14BlackMedium(context),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
         labelText: widget.text,
@@ -64,5 +70,4 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
                 : widget.suffixIcon,
       ),
     );
-  }
 }
