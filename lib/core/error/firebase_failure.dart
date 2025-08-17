@@ -34,7 +34,7 @@ class FirebaseFailure extends Failure {
           "It seems there's an issue with your network connection. Please check your internet and try again.",
         );
       case 'invalid-credential':
-      case 'INVALID_LOGIN_CREDENTIALS': 
+      case 'INVALID_LOGIN_CREDENTIALS':
         return const FirebaseFailure(
           'The login credentials you provided are not valid. Please check and try again.',
         );
@@ -65,6 +65,44 @@ class FirebaseFailure extends Failure {
       case 'expired-action-code':
         return const FirebaseFailure(
           'The action code has expired. Please request a new one.',
+        );
+      case 'quota-exceeded':
+        return const FirebaseFailure(
+          'Service quota exceeded. Please try again later.',
+        );
+      case 'app-not-authorized':
+        return const FirebaseFailure(
+          'This app is not authorized to use Firebase Authentication.',
+        );
+      case 'invalid-api-key':
+        return const FirebaseFailure(
+          'Invalid API key. Please contact support.',
+        );
+      case 'timeout':
+        return const FirebaseFailure('Request timed out. Please try again.');
+      case 'internal-error':
+        return const FirebaseFailure(
+          'An internal error occurred. Please try again later.',
+        );
+      case 'missing-email':
+        return const FirebaseFailure(
+          'Email address is required. Please provide a valid email.',
+        );
+      case 'credential-already-in-use':
+        return const FirebaseFailure(
+          'This credential is already associated with a different user account.',
+        );
+      case 'billing-not-enabled':
+        return const FirebaseFailure(
+          'Billing must be enabled for this feature. Please check the Firebase console.',
+        );
+      case 'invalid-phone-number':
+        return const FirebaseFailure(
+          'The phone number is invalid. Please enter a valid phone number.',
+        );
+      case 'invalid-verification-code':
+        return const FirebaseFailure(
+          'The verification code is invalid. Please try again.',
         );
       default:
         return const FirebaseFailure(

@@ -156,6 +156,30 @@ class StripeFailure extends Failure {
         return const StripeFailure(
           'Failed to initialize payment. Please try again.',
         );
+      case 'do_not_honor':
+        return const StripeFailure(
+          'Your card was declined by the bank. Please contact your bank.',
+        );
+      case 'incorrect_pin':
+        return const StripeFailure(
+          'Incorrect PIN. Please try again.',
+        );
+      case 'lost_card':
+        return const StripeFailure(
+          'This card has been reported lost. Please use a different card.',
+        );
+      case 'stolen_card':
+        return const StripeFailure(
+          'This card has been reported stolen. Please use a different card.',
+        );
+      case 'pickup_card':
+        return const StripeFailure(
+          'The card cannot be used. Please contact your bank.',
+        );
+      case 'issuer_not_available':
+        return const StripeFailure(
+          'The card issuer could not be reached. Please try again later.',
+        );
       default:
         return const StripeFailure(
           'Payment failed. Please try again or contact support if the issue persists.',

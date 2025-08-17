@@ -57,6 +57,34 @@ class FirestoreFailure extends Failure {
         return const FirestoreFailure(
           'An unknown error occurred. Please try again or contact support.',
         );
+      case 'out-of-range':
+        return const FirestoreFailure(
+          'The operation is out of range. Please check your parameters.',
+        );
+      case 'unimplemented':
+        return const FirestoreFailure(
+          'This operation is not implemented or supported.',
+        );
+      case 'cancelled':
+        return const FirestoreFailure(
+          'The operation was cancelled. Please try again.',
+        );
+      case 'quota-exceeded':
+        return const FirestoreFailure(
+          'Quota exceeded. Please try again later or contact support.',
+        );
+      case 'offline':
+        return const FirestoreFailure(
+          'You are currently offline. Please check your internet connection.',
+        );
+      case 'invalid-token':
+        return const FirestoreFailure(
+          'Authentication token is invalid. Please log in again.',
+        );
+      case 'retry-limit-exceeded':
+        return const FirestoreFailure(
+          'Maximum retry attempts exceeded. Please try again later.',
+        );
       default:
         return const FirestoreFailure(
           'An unexpected Firestore error occurred. Please try again or contact support.',
