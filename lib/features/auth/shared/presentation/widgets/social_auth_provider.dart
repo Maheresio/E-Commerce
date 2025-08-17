@@ -19,17 +19,17 @@ class SocialAuthProvider extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is AuthSuccess) {
-          // Handle successful authentication
           openStyledSnackBar(
             context,
             text: 'Welcome ${state.user.name}!',
             type: SnackBarType.success,
           );
 
-          // Navigate to home screen
-          context.go(AppRoutes.navBar);
+          Future.delayed(const Duration(seconds: 2), () {
+            if (!context.mounted) return;
+            context.go(AppRoutes.navBar);
+          });
         } else if (state is AuthFailure) {
-          // Handle authentication failure
           openStyledSnackBar(
             context,
             text: state.message,

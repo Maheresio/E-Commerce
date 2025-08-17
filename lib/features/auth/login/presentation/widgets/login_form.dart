@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/routing/app_route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -56,7 +57,7 @@ class LoginForm extends StatelessWidget {
             );
             Future.delayed(const Duration(seconds: 2), () {
               if (!context.mounted) return;
-              context.go(AppRouter.kNavBar);
+              context.go(AppRoutes.navBar);
             });
           } else if (state is LoginFailure) {
             openStyledSnackBar(
