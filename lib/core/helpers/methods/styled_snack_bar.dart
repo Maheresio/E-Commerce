@@ -35,7 +35,11 @@ void openStyledSnackBar(
           Icon(icon, color: Colors.white),
           const SizedBox(width: 5),
           Expanded(
-            child: Text(text, style: AppStyles.font14WhiteSemiBold(context)),
+            child: Text(
+              text,
+              style: AppStyles.font14WhiteSemiBold(context),
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),
