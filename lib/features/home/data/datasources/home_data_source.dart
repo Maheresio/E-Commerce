@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../../core/services/firestore_sevice.dart';
 import '../../../../core/constants/firestore_constants.dart';
 
@@ -10,29 +12,32 @@ abstract class HomeDataSource {
     required String id,
     required Map<String, dynamic> data,
   });
+  Future<ProductModel> getProductById(String productId);
 }
 
 class HomeDataSourceImpl implements HomeDataSource {
-  final FirestoreServices firestoreServices;
 
   HomeDataSourceImpl(this.firestoreServices);
+  final FirestoreServices firestoreServices;
   @override
-  Stream<List<ProductModel>> newProducts() {
-    return firestoreServices.collectionsStream(
+  Stream<List<ProductModel>> newProducts() => firestoreServices.collectionsStream(
       path: FirestoreConstants.products,
-      builder: (data, documentId) => ProductModel.fromMap(data!, documentId),
+      builder:
+          (data, documentId, snapshot) =>
+              ProductModel.fromMap(data!, documentId, snapshot),
       queryBuilder:
           (query) => query.orderBy('createdAt', descending: true).limit(10),
     );
-  }
 
   @override
   Stream<List<ProductModel>> saleProducts() =>
       firestoreServices.collectionsStream(
         path: FirestoreConstants.products,
-        builder: (data, documentId) => ProductModel.fromMap(data!, documentId),
+        builder:
+            (Map<String, dynamic>? data, String documentId, DocumentSnapshot<Object?> snapshot) =>
+                ProductModel.fromMap(data!, documentId, snapshot),
         queryBuilder:
-            (query) => query.where('discountValue', isNotEqualTo: 0).limit(10),
+            (Query<Object?> query) => query.where('discountValue', isNotEqualTo: 0).limit(10),
       );
 
   @override
@@ -44,5 +49,18 @@ class HomeDataSourceImpl implements HomeDataSource {
       path: FirestoreConstants.product(id),
       data: data,
     );
+  }
+
+  @override
+  Future<ProductModel> getProductById(String productId) async {
+    final DocumentSnapshot<Map<String, dynamic>> doc = await firestoreServices.getDocument(
+      path: FirestoreConstants.product(productId),
+    );
+
+    if (!doc.exists) {
+      throw Exception('Product not found');
+    }
+
+    return ProductModel.fromMap(doc.data()!, doc.id, doc);
   }
 }

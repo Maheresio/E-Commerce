@@ -1,13 +1,11 @@
 import '../repositories/home_repository.dart';
 
 class UpdateProductUsecase {
-  HomeRepository homeRepository;
   UpdateProductUsecase(this.homeRepository);
+  HomeRepository homeRepository;
 
   Future<void> execute({
     required String id,
     required Map<String, dynamic> data,
-  }) {
-    return homeRepository.updateProduct(id: id, data: data);
-  }
+  }) => homeRepository.updateProduct(id: id, data: data);
 }

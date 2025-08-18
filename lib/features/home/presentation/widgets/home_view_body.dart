@@ -1,41 +1,54 @@
+import '../../../../core/routing/app_route_constants.dart';
+import '../../../shop/presentation/controller/filter_models.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../controller/home_provider.dart';
 import 'home_banner.dart';
 import 'home_horizontal_list_view_section.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends ConsumerWidget {
   const HomeViewBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          HomeBanner(),
-          SizedBox(height: 30),
+  Widget build(BuildContext context, WidgetRef ref) => SingleChildScrollView(
+    child: Column(
+      children: [
+        const HomeBanner(),
+        const SizedBox(height: 30),
 
-          Column(
-            children: [
-              HomeHorizontalListViewSection(
-                title: AppStrings.kSale,
-                subtitle: AppStrings.kSuperSummerSale,
-                onSeeAll: () {},
-                productProvider: saleProductsProvider,
-              ),
+        Column(
+          children: [
+            HomeHorizontalListViewSection(
+              title: AppStrings.kSale,
+              subtitle: AppStrings.kSuperSummerSale,
 
-              HomeHorizontalListViewSection(
-                title: AppStrings.kNew,
-                subtitle: AppStrings.kNeverSeenBefore,
-                onSeeAll: () {},
-                productProvider: newProductsProvider,
-              ),
-            ],
-          ),
-          SizedBox(height: 30),
-        ],
-      ),
-    );
-  }
+              onSeeAll: () {
+                ref
+                    .read(filterParamsProvider.notifier)
+                    .update((state) => state.copyWith(gender: 'all'));
+                context.push(AppRoutes.seeAll, extra: {'type': 'sale'});
+              },
+              productProvider: saleProductsProvider,
+            ),
+
+            HomeHorizontalListViewSection(
+              title: AppStrings.kNew,
+              subtitle: AppStrings.kNeverSeenBefore,
+              onSeeAll: () {
+                ref
+                    .read(filterParamsProvider.notifier)
+                    .update((state) => state.copyWith(gender: 'all'));
+                context.push(AppRoutes.seeAll, extra: {'type': 'all'});
+              },
+              productProvider: newProductsProvider,
+            ),
+          ],
+        ),
+        const SizedBox(height: 30),
+      ],
+    ),
+  );
 }

@@ -58,9 +58,10 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(widget.radius),
           child: Shimmer.fromColors(
-            baseColor: Colors.grey[200]!,
-            highlightColor: Colors.white,
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
             period: const Duration(milliseconds: 1500),
+
             direction: ShimmerDirection.ltr,
             child: Container(
               width: widget.width,
