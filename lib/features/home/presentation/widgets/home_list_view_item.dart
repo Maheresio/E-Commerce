@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../../../core/widgets/cached_image_widget.dart';
 import '../../../favorite/presentation/controller/favorite_controller.dart';
 import '../../domain/entities/product_entity.dart';
 
@@ -20,12 +21,17 @@ class HomeListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-    onTap: () => context.push(AppRoutes.productDetails, extra: product),
+    onTap: () {
+      context.push(AppRoutes.productDetails, extra: product);
+    },
     child: SizedBox(
       width: context.responsive(mobile: 150.w, tablet: 250.w),
       child: Stack(
         children: [
-          ProductItem(product, favoriteIcon: favoriteIcon),
+          Hero(
+            tag: product.id,
+            child: ProductItem(product, favoriteIcon: favoriteIcon),
+          ),
           if (product.discountValue != 0)
             Positioned.directional(
               textDirection: TextDirection.ltr,
@@ -189,7 +195,7 @@ class ProductImage extends StatelessWidget {
       aspectRatio: context.responsive(mobile: .8, tablet: 1),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Image.network(imgUrl, fit: BoxFit.cover),
+        child: CacheImageWidget(imgUrl: imgUrl),
       ),
     ),
   );

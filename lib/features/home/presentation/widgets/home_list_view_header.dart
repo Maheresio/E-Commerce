@@ -27,7 +27,7 @@ class HomeListViewHeader extends StatelessWidget {
       onTap: onSeeAll,
       child: Text(
         AppStrings.kViewAll,
-        style: AppStyles.font12BlackMedium(context),
+        style: AppStyles.font14BlackMedium(context),
       ),
     ),
   );

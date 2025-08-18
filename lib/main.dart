@@ -1,3 +1,5 @@
+import 'package:e_commerce/core/utils/app_images.dart';
+
 import 'core/global/themes/app_theme_context.dart';
 import 'core/responsive/responsive_app.dart';
 import 'package:flutter/material.dart';
@@ -35,13 +37,17 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => ResponsiveApp(
+  Widget build(BuildContext context) {
+    _cacheImages(context);
+
+    return ResponsiveApp(
       builder:
-          ( context) => GestureDetector(
+          (context) => GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: MaterialApp.router(
               debugShowCheckedModeBanner: false,
               theme: lightTheme(context),
+
               darkTheme: darkTheme,
               routerConfig: AppRouter.router,
               builder:
@@ -49,4 +55,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
     );
+  }
+
+  Future<void> _cacheImages(BuildContext context) =>
+      precacheImage(const AssetImage(AppImages.homeBanner), context);
 }

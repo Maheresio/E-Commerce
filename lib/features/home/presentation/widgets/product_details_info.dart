@@ -1,4 +1,7 @@
+import 'package:e_commerce/core/routing/app_route_constants.dart';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/product_entity.dart';
@@ -10,58 +13,59 @@ class ProductDetailsInfo extends StatelessWidget {
   final ProductEntity product;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
+  Widget build(BuildContext context) => Column(
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child: Text(
-                    product.category,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppStyles.font24BlackSemiBold.copyWith(height: 1),
-                  ),
+                Text(
+                  product.brand,
+                  overflow: TextOverflow.visible,
+
+                  style: AppStyles.font24BlackSemiBold(
+                    context,
+                  ).copyWith(height: 1),
                 ),
-                SizedBox(height: 4),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child: Text(
-                    product.name,
-                    style: AppStyles.font11GreyRegular,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                const SizedBox(height: 4),
+                Text(
+                  product.name,
+                  style: AppStyles.font12GreyMedium(context),
+                  overflow: TextOverflow.visible,
                 ),
-                SizedBox(height: 8),
-                RatingAndReview(
-                  rating: product.rating.floor(),
-                  reviewCount: product.reviewCount,
+                const SizedBox(height: 4),
+                GestureDetector(
+                  onTap: () {
+                    context.push(AppRoutes.review, extra: product);
+                  },
+                  child: RatingAndReview(
+                    rating: product.rating.floor(),
+                    reviewCount: product.reviewCount,
+                  ),
                 ),
               ],
             ),
-            Flexible(
-              child: FittedBox(
-                child: Text(
-                  '\$${product.price}',
-                  style: AppStyles.font24BlackSemiBold,
-                ),
+          ),
+          Flexible(
+            child: FittedBox(
+              child: Text(
+                '\$${product.price}',
+                style: AppStyles.font24BlackSemiBold(context),
               ),
             ),
-          ],
-        ),
-        SizedBox(height: 16),
-        Text(
-          'Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.',
-          textAlign: TextAlign.start,
-          style: AppStyles.font14BlackRegular.copyWith(height: 1.5),
-        ),
-      ],
-    );
-  }
+          ),
+        ],
+      ),
+      const SizedBox(height: 16),
+      Text(
+        product.description,
+        textAlign: TextAlign.start,
+        style: AppStyles.font14BlackMedium(context).copyWith(height: 1.5),
+      ),
+    ],
+  );
 }

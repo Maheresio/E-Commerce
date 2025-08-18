@@ -1,8 +1,6 @@
+import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../core/helpers/extensions/theme_color.extension.dart';
-import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/product_entity.dart';
 import '../widgets/product_details_view_body.dart';
 
@@ -11,28 +9,8 @@ class ProductDetailsView extends StatelessWidget {
 
   final ProductEntity product;
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(context),
+  Widget build(BuildContext context)=> Scaffold(
+      appBar: styledAppBar(context, title: product.name, icon: Icons.share),
       body: ProductDetailsViewBody(product),
     );
-  }
-
-  AppBar _appBar(BuildContext context) {
-    return AppBar(
-      surfaceTintColor: context.color.onSecondary,
-      title: Text(product.name
-      , style: AppStyles.font18BlackSemiBold),
-      centerTitle: true,
-      backgroundColor: context.color.onSecondary,
-      elevation: 2,
-      automaticallyImplyLeading: false,
-      shadowColor: context.color.onSecondary,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios),
-        onPressed: () => context.pop(),
-      ),
-      actions: [IconButton(icon: const Icon(Icons.share), onPressed: () {})],
-    );
-  }
 }
