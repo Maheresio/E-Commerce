@@ -9,13 +9,17 @@ class FirestoreServices {
 
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
-  Future<String> getPath() async => (_fireStore.collection(FirestoreConstants.products).doc()).id;
+  Future<String> getPath() async =>
+      (_fireStore.collection(FirestoreConstants.products).doc()).id;
 
   Future<void> deleteCollection({required String path}) async {
-    final CollectionReference<Map<String, dynamic>> collection = _fireStore.collection(path);
-    final QuerySnapshot<Map<String, dynamic>> snapshots = await collection.get();
+    final CollectionReference<Map<String, dynamic>> collection = _fireStore
+        .collection(path);
+    final QuerySnapshot<Map<String, dynamic>> snapshots =
+        await collection.get();
 
-    for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshots.docs) {
+    for (final QueryDocumentSnapshot<Map<String, dynamic>> doc
+        in snapshots.docs) {
       await doc.reference.delete();
     }
   }
@@ -23,23 +27,30 @@ class FirestoreServices {
   Future<void> setData({
     required String path,
     required Map<String, dynamic> data,
+    bool merge = false,
   }) async {
-    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(path);
+    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(
+      path,
+    );
     debugPrint('Request Data: $data');
-    await reference.set(data);
+    await reference.set(data, SetOptions(merge: merge));
   }
 
   Future<void> updateData({
     required String path,
     required Map<String, dynamic> data,
   }) async {
-    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(path);
+    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(
+      path,
+    );
     debugPrint('Request Data: $data');
     await reference.update(data);
   }
 
   Future<void> deleteData({required String path}) async {
-    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(path);
+    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(
+      path,
+    );
     await reference.delete();
   }
 
@@ -47,9 +58,15 @@ class FirestoreServices {
     required String path,
     required T Function(Map<String, dynamic>? data, String documentId) builder,
   }) {
-    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(path);
-    final Stream<DocumentSnapshot<Map<String, dynamic>>> snapshots = reference.snapshots();
-    return snapshots.map((DocumentSnapshot<Map<String, dynamic>> snapshot) => builder(snapshot.data(), snapshot.id));
+    final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(
+      path,
+    );
+    final Stream<DocumentSnapshot<Map<String, dynamic>>> snapshots =
+        reference.snapshots();
+    return snapshots.map(
+      (DocumentSnapshot<Map<String, dynamic>> snapshot) =>
+          builder(snapshot.data(), snapshot.id),
+    );
   }
 
   Stream<List<T>> collectionsStream<T>({
@@ -134,7 +151,8 @@ class FirestoreServices {
     final List<T> result =
         snapshot.docs
             .map(
-              (QueryDocumentSnapshot<Object?> doc) => builder(doc.data()! as Map<String, dynamic>, doc.id, doc),
+              (QueryDocumentSnapshot<Object?> doc) =>
+                  builder(doc.data()! as Map<String, dynamic>, doc.id, doc),
             )
             .toList();
 

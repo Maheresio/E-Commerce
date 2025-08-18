@@ -135,6 +135,7 @@ class AuthDataSourceImpl implements AuthDataSource {
 
     await firestoreServices.setData(
       path: FirestoreConstants.user(firebaseUser.uid),
+      merge: true,
       data: newUser.toMap(),
     );
 
