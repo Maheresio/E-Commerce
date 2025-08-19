@@ -57,6 +57,25 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Future<void> _cacheImages(BuildContext context) =>
-      precacheImage(const AssetImage(AppImages.homeBanner), context);
+  Future<void> _cacheImages(BuildContext context) async {
+    final images = [
+      AppImages.homeBanner,
+      AppImages.searchBackground,
+      AppImages.womenNew,
+      AppImages.womenClothes,
+      AppImages.womenShoes,
+      AppImages.womenAccess,
+      AppImages.menNew,
+      AppImages.menClothes,
+      AppImages.menShoes,
+      AppImages.menAccess,
+      AppImages.kidsNew,
+      AppImages.kidsClothes,
+      AppImages.kidsShoes,
+      AppImages.kidsAccess,
+    ];
+    for (final imagePath in images) {
+      await precacheImage(AssetImage(imagePath), context);
+    }
+  }
 }

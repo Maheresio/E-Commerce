@@ -2,6 +2,7 @@ class AppStrings {
   static const String kAppName = 'E-Commerce App';
 
   static const String kEmail = 'Email';
+  static const String kRetry= 'Retry';
   static const String kPassword = 'Password';
   static const String kLogin = 'LOGIN';
   static const String kLoginWithSocialAccount = 'Or login with social account';
@@ -222,4 +223,7 @@ class AppStrings {
   static const String kSomethingWentWrong = 'Something went wrong';
   static const String kCroppingFailed = 'Cropping failed';
   static const String kAiImageSearch = 'AI Image Search';
+   static const String kSearchResults = 'Search Results';
+  static const String kSwitchToListView = 'Switch to List View';
+  static const String kSwitchToGridView = 'Switch to Grid View';
 }

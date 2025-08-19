@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class CacheImageWidget extends StatelessWidget {
-  const CacheImageWidget({super.key, required this.imgUrl});
+class CachedImageWidget extends StatelessWidget {
+  const CachedImageWidget({super.key, required this.imgUrl});
 
   final String imgUrl;
 
