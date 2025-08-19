@@ -7,13 +7,11 @@ class SummaryPriceTile extends StatelessWidget {
   final String title;
   final double price;
   @override
-  Widget build(BuildContext context) {
-    return Row(
+  Widget build(BuildContext context) => Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('$title:', style: AppStyles.font14GreyMedium),
-        Text('$price\$', style: AppStyles.font18BlackSemiBold),
+        Text('$title:', style: AppStyles.font14GreyMedium(context)),
+        Text('$price\$', style: AppStyles.font18BlackSemiBold(context)),
       ],
     );
-  }
 }

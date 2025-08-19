@@ -8,17 +8,16 @@ class ProductInfoTile extends StatelessWidget {
   final VoidCallback? onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      dense: true,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+  Widget build(BuildContext context) => ListTile(
+    dense: true,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
 
-      shape: RoundedRectangleBorder(side: BorderSide(color: Colors.black12)),
+    shape: RoundedRectangleBorder(
+      side: BorderSide(color: Colors.black12.withValues(alpha: .2), width: .3),
+    ),
 
-      title: Text(title, style: AppStyles.font16BlackRegular),
-      trailing: const Icon(Icons.keyboard_arrow_right),
-      onTap: onTap,
-    );
-  }
+    title: Text(title, style: (AppStyles.font16BlackRegular(context))),
+    trailing: const Icon(Icons.keyboard_arrow_right),
+    onTap: onTap,
+  );
 }
-

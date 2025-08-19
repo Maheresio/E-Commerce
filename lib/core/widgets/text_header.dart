@@ -11,15 +11,15 @@ class TextHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-      onTap: () async {
-        final path = FirestoreConstants.userCart(
-          FirebaseAuth.instance.currentUser!.uid,
-        );
-        await FirestoreServices.instance.deleteCollection(path: path);
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Text(title, style: AppStyles.font34BlackBold(context)),
-      ),
-    );
+    onTap: () async {
+      final path = FirestoreConstants.userCart(
+        FirebaseAuth.instance.currentUser!.uid,
+      );
+      await FirestoreServices.instance.deleteCollection(path: path);
+    },
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Text(title, style: AppStyles.font34BlackBold(context)),
+    ),
+  );
 }
