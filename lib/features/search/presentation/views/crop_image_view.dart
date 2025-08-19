@@ -110,13 +110,17 @@ class _CropImageViewState extends ConsumerState<CropImageView> {
         isLoading = false;
       });
 
-      openStyledSnackBar(context, text: '${AppStrings.kCroppingFailed}: $e');
+      openStyledSnackBar(
+        context,
+        text: '${AppStrings.kCroppingFailed}: $e',
+        type: SnackBarType.error,
+      );
     }
   }
 
   void _onSearchPressed() {
     ref.read(searchProvider.notifier).processImage(_croppedImageBytes!);
-    context.pop(); 
+    context.pop();
     context.push(AppRoutes.searchResult);
   }
 }
