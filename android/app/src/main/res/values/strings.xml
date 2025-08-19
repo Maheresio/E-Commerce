@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- These values are set in build.gradle.kts from secrets.properties -->
-    <string name="facebook_app_id" translatable="false">@string/facebook_app_id</string>
-    <string name="facebook_client_token" translatable="false">@string/facebook_client_token</string>
-    <string name="default_web_client_id" translatable="false">@string/default_web_client_id</string>
+    <!-- These values will be replaced in build.gradle.kts from secrets.properties -->
+    <string name="facebook_app_id" translatable="false"></string>
+    <string name="facebook_client_token" translatable="false"></string>
+    <string name="default_web_client_id" translatable="false"></string>
 </resources>
