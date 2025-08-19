@@ -51,7 +51,7 @@ class _ProductDetailsImageSliderState
         onPageChanged: (i, reason) => setState(() => _active = i),
       ),
       itemBuilder: (context, i, realIdx) {
-        final image = CacheImageWidget(imgUrl: images[i]);
+        final image = CachedImageWidget(imgUrl: images[i]);
         final isHeroSlide = i == _active;
 
         return isHeroSlide

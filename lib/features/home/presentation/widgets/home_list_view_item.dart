@@ -71,20 +71,23 @@ class ProductItem extends StatelessWidget {
         ],
       ),
 
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: context.responsive(mobile: 8, tablet: 12),
-        children: [
-          RatingAndReview(
-            rating: product.rating.floor(),
-            reviewCount: product.reviewCount,
-          ),
-          HomeProductInfo(title: product.name, category: product.brand),
-          ProductPrice(
-            price: product.price,
-            discountValue: product.discountValue,
-          ),
-        ],
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: context.responsive(mobile: 8, tablet: 12),
+          children: [
+            RatingAndReview(
+              rating: product.rating.floor(),
+              reviewCount: product.reviewCount,
+            ),
+            HomeProductInfo(title: product.name, category: product.brand),
+            ProductPrice(
+              price: product.price,
+              discountValue: product.discountValue,
+            ),
+          ],
+        ),
       ),
     ],
   );
@@ -195,7 +198,7 @@ class ProductImage extends StatelessWidget {
       aspectRatio: context.responsive(mobile: .8, tablet: 1),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: CacheImageWidget(imgUrl: imgUrl),
+        child: CachedImageWidget(imgUrl: imgUrl),
       ),
     ),
   );

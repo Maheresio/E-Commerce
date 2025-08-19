@@ -1,3 +1,5 @@
+import 'package:e_commerce/features/home/presentation/widgets/home_shimmer.dart';
+
 import '../../../../core/responsive/responsive_value.dart';
 import '../../domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,6 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
-import '../../../../core/widgets/shimmer_loading.dart';
 import 'home_list_view_header.dart';
 import 'home_list_view_item.dart';
 
@@ -97,19 +98,7 @@ class HomeHorizontalListViewSection extends StatelessWidget {
                       ),
                     );
                   },
-                  loading:
-                      () => HorizontalShimmerList(
-                        itemCount: 3,
-                        itemWidth: 160.w,
-                        itemHeight: context.responsive(
-                          mobile: 300.h,
-                          tablet: 450.h,
-                        ),
-                        itemMargin: 16.w,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: AppConstants.horizontalPadding16,
-                        ),
-                      ),
+                  loading: () => const HomeHorizontalListViewShimmer(),
                 );
           },
         ),
