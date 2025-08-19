@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/app_images.dart';
+
 Map<String, Map<String, dynamic>> categoryData = <String, Map<String, dynamic>>{
   'Women': <String, dynamic>{
     'categories': <String, String>{
-      'New': 'assets/images/women_clothes4.jpg',
-      'Clothes': 'assets/images/women_clothes5.jpg',
-      'Shoes': 'assets/images/women_shoes.jpg',
-      'Accessories': 'assets/images/women_acess.jpg',
+      'New': AppImages.womenNew,
+      'Clothes': AppImages.womenClothes,
+      'Shoes': AppImages.womenShoes,
+      'Accessories': AppImages.womenAccess,
     },
     'subCategories': <String, List<String>>{
       'Clothes': <String>[
@@ -37,10 +39,10 @@ Map<String, Map<String, dynamic>> categoryData = <String, Map<String, dynamic>>{
   },
   'Men': <String, dynamic>{
     'categories': <String, String>{
-      'New': 'assets/images/men_clothes.jpg',
-      'Clothes': 'assets/images/men_new.jpg',
-      'Shoes': 'assets/images/men_shoes.jpg',
-      'Accessories': 'assets/images/men_access.jpg',
+      'New': AppImages.menNew,
+      'Clothes': AppImages.menClothes,
+      'Shoes': AppImages.menShoes,
+      'Accessories': AppImages.menAccess,
     },
     'subCategories': <String, List<String>>{
       'Clothes': <String>[
@@ -55,7 +57,13 @@ Map<String, Map<String, dynamic>> categoryData = <String, Map<String, dynamic>>{
         'Suits',
         'Knitwear',
       ],
-      'Shoes': <String>['Sneakers', 'Loafers', 'Boots', 'Sandals', 'Formal Shoes'],
+      'Shoes': <String>[
+        'Sneakers',
+        'Loafers',
+        'Boots',
+        'Sandals',
+        'Formal Shoes',
+      ],
       'Accessories': <String>[
         'Belts',
         'Wallets',
@@ -69,10 +77,10 @@ Map<String, Map<String, dynamic>> categoryData = <String, Map<String, dynamic>>{
   },
   'Kids': <String, dynamic>{
     'categories': <String, String>{
-      'New': 'assets/images/kids_clothes.jpg',
-      'Clothes': 'assets/images/kids_clothes2.jpg',
-      'Shoes': 'assets/images/kids_shoes.jpg',
-      'Accessories': 'assets/images/kids_access.jpg',
+      'New': AppImages.kidsNew,
+      'Clothes': AppImages.kidsClothes,
+      'Shoes': AppImages.kidsShoes,
+      'Accessories': AppImages.kidsAccess,
     },
     'subCategories': <String, List<String>>{
       'Clothes': <String>[
@@ -86,7 +94,13 @@ Map<String, Map<String, dynamic>> categoryData = <String, Map<String, dynamic>>{
         'Pajamas',
         'Bodysuits',
       ],
-      'Shoes': <String>['Sneakers', 'Sandals', 'Boots', 'School Shoes', 'Slippers'],
+      'Shoes': <String>[
+        'Sneakers',
+        'Sandals',
+        'Boots',
+        'School Shoes',
+        'Slippers',
+      ],
       'Accessories': <String>[
         'Hats',
         'Backpacks',
@@ -158,7 +172,12 @@ final Map<Color, List<String>> colorLogicMap = <Color, List<String>>{
     'Lavender Pearl',
     'Razzle',
   ],
-  Colors.green: <String>['Green', 'Linen Green', 'Green Garden Suede', 'Dark Leaf'],
+  Colors.green: <String>[
+    'Green',
+    'Linen Green',
+    'Green Garden Suede',
+    'Dark Leaf',
+  ],
   Colors.grey: <String>[
     'Gray',
     'Mist',
@@ -264,4 +283,10 @@ const List<String> brands = <String>[
   'PUMA',
 ];
 
-const List<String> uiCategories = <String>['All', 'Women', 'Men', 'Kids', 'Unisex'];
+const List<String> uiCategories = <String>[
+  'All',
+  'Women',
+  'Men',
+  'Kids',
+  'Unisex',
+];

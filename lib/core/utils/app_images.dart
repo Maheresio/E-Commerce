@@ -28,15 +28,24 @@ class AppImages {
   static const String homeBanner = 'assets/images/home_banner.png';
   static const String photo = 'assets/images/photo.png';
   static const String searchBackground = 'assets/images/search_background.png';
-  static const String menNew = 'assets/images/men_new.jpg';
 
   // ========== Animations ==========
   static const String searchLottie = 'assets/lotties/search_lottie.json';
 
+  static const String womenNew = 'assets/images/women_new.jpg';
+  static const String womenClothes = 'assets/images/women_clothes.jpg';
+  static const String womenShoes = 'assets/images/women_shoes.jpg';
+  static const String womenAccess = 'assets/images/women_access.jpg';
 
+  static const String menNew = 'assets/images/men_new.jpg';
+  static const String menClothes = 'assets/images/men_clothes.jpg';
+  static const String menShoes = 'assets/images/men_shoes.jpg';
+  static const String menAccess = 'assets/images/men_access.jpg';
 
+  static const String kidsNew = 'assets/images/kids_new.jpg';
+  static const String kidsClothes = 'assets/images/kids_clothes.jpg';
+  static const String kidsShoes = 'assets/images/kids_shoes.jpg';
+  static const String kidsAccess = 'assets/images/kids_access.jpg';
 
-
-
-  static const String userAvatar='assets/images/user_avatar.jpg';
+  static const String userAvatar = 'assets/images/user_avatar.jpg';
 }
