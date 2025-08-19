@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:e_commerce/core/services/firestore_sevice.dart';
+import '../../../../core/services/firestore_sevice.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/network/dio_client.dart';
@@ -10,42 +10,40 @@ import '../../data/datasources/search_remote_data_source.dart';
 import '../../data/repositories/search_repository_impl.dart';
 
 class CropImageState {
-  final bool isLoading;
-  final bool isCropped;
-  final Uint8List? croppedBytes;
-
   CropImageState({
     this.isLoading = false,
     this.isCropped = false,
     this.croppedBytes,
   });
+  final bool isLoading;
+  final bool isCropped;
+  final Uint8List? croppedBytes;
 
   CropImageState copyWith({
     bool? isLoading,
     bool? isCropped,
     Uint8List? croppedBytes,
-  }) {
-    return CropImageState(
-      isLoading: isLoading ?? this.isLoading,
-      isCropped: isCropped ?? this.isCropped,
-      croppedBytes: croppedBytes ?? this.croppedBytes,
-    );
-  }
+  }) => CropImageState(
+    isLoading: isLoading ?? this.isLoading,
+    isCropped: isCropped ?? this.isCropped,
+    croppedBytes: croppedBytes ?? this.croppedBytes,
+  );
 }
 
 class CropImageController extends AutoDisposeNotifier<CropImageState> {
-  final SearchRepositoryImpl _repo;
-
   CropImageController(this._repo);
+  final SearchRepositoryImpl _repo;
 
   @override
   CropImageState build() => CropImageState();
 
   Future<String?> cropImage(ui.Image bitmap) async {
     try {
-      final byteData = await bitmap.toByteData(format: ui.ImageByteFormat.png);
+      final ByteData? byteData = await bitmap.toByteData(
+        format: ui.ImageByteFormat.png,
+      );
       if (byteData == null) return 'Failed to convert image.';
-      final cropped = byteData.buffer.asUint8List();
+      final Uint8List cropped = byteData.buffer.asUint8List();
 
       state = state.copyWith(croppedBytes: cropped, isCropped: true);
       return null;
@@ -69,9 +67,8 @@ class CropImageController extends AutoDisposeNotifier<CropImageState> {
   }
 }
 
-// TODO: Recfactor this code
-
-final cropImageControllerProvider =
+final AutoDisposeNotifierProvider<CropImageController, CropImageState>
+cropImageControllerProvider =
     NotifierProvider.autoDispose<CropImageController, CropImageState>(
       () => CropImageController(
         SearchRepositoryImpl(

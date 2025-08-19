@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/widgets/styled_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,27 +15,29 @@ class SearchViewBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(isLoadingProvider);
-    final controller = ref.read(selectImageControllerProvider);
+    final bool isLoading = ref.watch(isLoadingProvider);
+    final SelectImageController controller = ref.read(
+      selectImageControllerProvider,
+    );
 
     return Stack(
       fit: StackFit.expand,
-      children: [
+      children: <Widget>[
         Image.asset(AppImages.searchBackground, fit: BoxFit.cover),
 
-        if (isLoading) const Center(child: CircularProgressIndicator()),
+        if (isLoading) const Center(child: StyledLoading()),
 
         if (!isLoading)
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 Text(
                   AppStrings.kSearchForAnOutfit,
-                  style: AppStyles.font24WhiteSemiBold,
+                  style: AppStyles.font24WhiteSemiBold(context),
                 ),
-                SizedBox(height: 28),
+                const SizedBox(height: 28),
                 CircularElevatedButton(
                   text: AppStrings.kTakePhoto.toUpperCase(),
                   onPressed:
@@ -43,7 +46,7 @@ class SearchViewBody extends ConsumerWidget {
                         ImageSource.camera,
                       ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 CircularElevatedButton(
                   text: AppStrings.kUploadAnImage.toUpperCase(),
                   color: Colors.transparent,

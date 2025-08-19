@@ -2,13 +2,14 @@ import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failure.dart';
-import 'package:e_commerce/features/search/domain/repositories/search_repository.dart';
+import '../repositories/search_repository.dart';
 
 class UploadImageUsecase {
+  UploadImageUsecase(this.repository);
   final SearchRepository repository;
 
-  UploadImageUsecase(this.repository);
-
-  Future<Either<Failure, String>> execute(Uint8List bytes) async =>
-      await repository.uploadImage(bytes);
+  Future<Either<Failure, String>> execute(
+    Uint8List bytes, {
+    String? fileName,
+  }) async => repository.uploadImage(bytes, fileName: fileName);
 }

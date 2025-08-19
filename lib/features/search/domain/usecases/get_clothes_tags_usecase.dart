@@ -4,10 +4,9 @@ import '../../../../core/error/failure.dart';
 import '../repositories/search_repository.dart';
 
 class GetClothesTagsUsecase {
+  GetClothesTagsUsecase(this.repository);
   final SearchRepository repository;
 
-  GetClothesTagsUsecase(this.repository);
-
   Future<Either<Failure, List<String>>> execute(String imageUrl) async =>
-      await repository.getTags(imageUrl);
+      repository.getTags(imageUrl);
 }
