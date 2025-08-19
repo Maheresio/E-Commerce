@@ -217,4 +217,9 @@ class AppStrings {
   static const String kSuccess = 'Success';
   static const String kOrderDeliveryMessage =
       'Your order will be delivered soon.\nThank you for choosing our app!';
+
+  static const String kUploadAnImageToSimilarProducts = 'Upload an Image to find similar products';
+  static const String kSomethingWentWrong = 'Something went wrong';
+  static const String kCroppingFailed = 'Cropping failed';
+  static const String kAiImageSearch = 'AI Image Search';
 }
