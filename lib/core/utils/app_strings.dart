@@ -1,8 +1,11 @@
 class AppStrings {
+  static const String kNoShippingAddress = 'No shipping address';
+  static const String kAddYourDeliveryAddress = 'Add your delivery address';
+  static const String kAdd = 'Add';
   static const String kAppName = 'E-Commerce App';
 
   static const String kEmail = 'Email';
-  static const String kRetry= 'Retry';
+  static const String kRetry = 'Retry';
   static const String kPassword = 'Password';
   static const String kLogin = 'LOGIN';
   static const String kLoginWithSocialAccount = 'Or login with social account';
@@ -198,11 +201,37 @@ class AppStrings {
 
   static const String kRemoveFromFavorites = 'Remove from Favorites';
   static const String kRemoveFromCart = 'Remove from Cart';
+
+  // Checkout related strings
+  static const String kNoPaymentMethodsAdded = 'No payment methods added';
+  static const String kRemoveCard = 'Remove Card';
+  static const String kNoShippingAddressesAvailable =
+      'No shipping addresses available';
+  static const String kErrorLoadingAddresses = 'Error loading addresses';
+  static const String kCardRemoved = 'Card ending in %s removed';
+  static const String kRemoveCardConfirmation =
+      'Are you sure you want to remove card ending in %s? This action cannot be undone.';
+  static const String kProcessingYourOrder =
+      'Processing your order... Please wait';
+  static const String kPleaseLogInToContinue = 'Please log in to continue';
+  static const String kPleaseAddShippingAddress =
+      'Please add a shipping address first';
+  static const String kPleaseAddPaymentMethod =
+      'Please add a payment method first';
+  static const String kPleaseSelectDeliveryMethod =
+      'Please select a delivery method';
+  static const String kYourCartIsEmpty = 'Your cart is empty';
+  static const String kOrderSubmittedSuccessfully =
+      'Order submitted successfully!';
   static const String kRemoveFromFavoritesConfirmation =
       'Are you sure you want to remove this item from your favorites?';
   static const String kRemoveFromCartConfirmation =
       'Are you sure you want to remove this item from your cart?';
-  static const String kRemove = 'Remove';
+
+  static const String kRemoveAllCards = 'Remove All Cards';
+  static const String kRemoveAllCardsConfirmation =
+      'Are you sure you want to remove all payment methods? This action cannot be undone.';
+  static const String kRemoveAll = 'Remove All';
 
   static const String kSelectColorAndSizeBeforeAdd =
       'Select Color and Size before adding to cart';
@@ -211,7 +240,6 @@ class AppStrings {
 
   static const String kNoDeliveryMethodsAvailable =
       'No delivery methods available at the moment';
-  static const String kNoPaymentMethodsAdded = 'No payment methods added';
 
   static const String kNoVisaCardsFound =
       'No Visa cards found. Please add a card to proceed.';
@@ -219,11 +247,17 @@ class AppStrings {
   static const String kOrderDeliveryMessage =
       'Your order will be delivered soon.\nThank you for choosing our app!';
 
-  static const String kUploadAnImageToSimilarProducts = 'Upload an Image to find similar products';
+  static const String kUploadAnImageToSimilarProducts =
+      'Upload an Image to find similar products';
   static const String kSomethingWentWrong = 'Something went wrong';
   static const String kCroppingFailed = 'Cropping failed';
   static const String kAiImageSearch = 'AI Image Search';
-   static const String kSearchResults = 'Search Results';
+  static const String kSearchResults = 'Search Results';
   static const String kSwitchToListView = 'Switch to List View';
   static const String kSwitchToGridView = 'Switch to Grid View';
+  static const String kItemAddedToFavorites = 'Item added to favorites';
+  static const String kRemove = 'Remove';
+  static const String kAllCardsRemovedSuccessfully =
+      'All cards removed successfully';
+  static const String kFailedToRemoveCards = 'Failed to remove cards: %s';
 }

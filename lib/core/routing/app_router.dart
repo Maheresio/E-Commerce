@@ -42,7 +42,7 @@ import '../../features/shop/presentation/views/category_view.dart';
 // Search feature imports
 import '../../features/search/presentation/views/search_view.dart';
 import '../../features/search/presentation/views/crop_image_view.dart';
-import '../../features/search/presentation/widgets/search_result_view.dart';
+import '../../features/search/presentation/views/search_result_view.dart';
 
 // Common feature imports
 import '../../features/common/presentation/views/see_all_view.dart';

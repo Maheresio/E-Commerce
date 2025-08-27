@@ -1,46 +1,39 @@
-import '../../../../core/utils/app_images.dart';
+import '../../domain/entities/delivery_method_entity.dart';
 
-List<DeliveryMethodModel> deliveryMethods = [
-  DeliveryMethodModel(
-    name: 'FedEx Delivery',
-    duration: '2-3 days',
-    image: AppImages.fedex,
-  ),
-  // DeliveryMethodModel(
-  //   name: 'DHL Delivery',
-  //   duration: '2-3 days',
-  //   image: AppImages.usps,
-  // ),
-  // DeliveryMethodModel(
-  //   name: 'DHL Delivery',
-  //   duration: '2-3 days',
-  //   image: AppImages.dhl,
-  // ),
-  // DeliveryMethodModel(
-  //   name: 'Stripe Delivery',
-  //   duration: '2-3 days',
-  //   image: AppImages.stripe,
-  // ),
-  DeliveryMethodModel(
-    name: 'USPS Delivery',
-    duration: '2-3 days',
-    image: AppImages.paypal,
-  ),
-  // DeliveryMethodModel(
-  //   name: 'USPS Delivery',
-  //   duration: '2-3 days',
-  //   image: AppImages.dhl,
-  // ),
-];
-
-class DeliveryMethodModel {
-  final String name;
-  final String duration;
-  final String image;
-
-  DeliveryMethodModel({
-    required this.name,
-    required this.duration,
-    required this.image,
+class DeliveryMethodModel extends DeliveryMethodEntity {
+  const DeliveryMethodModel({
+    required super.id,
+    required super.name,
+    required super.duration,
+    required super.cost,
+    required super.imageUrl,
+    super.discount = 0.0,
   });
+
+  factory DeliveryMethodModel.fromMap(Map<String, dynamic> json, String id) =>
+      DeliveryMethodModel(
+        id: id,
+        name: json['name'],
+        duration: json['duration'],
+        cost: (json['cost'] as num).toDouble(),
+        discount: (json['discount'] as num?)?.toDouble() ?? 0.0,
+        imageUrl: json['imageUrl'] ?? '',
+      );
+
+  Map<String, dynamic> toMap() => {
+    'name': name,
+    'duration': duration,
+    'cost': cost,
+    'discount': discount,
+    'imageUrl': imageUrl,
+  };
+
+  DeliveryMethodEntity toEntity() => DeliveryMethodEntity(
+    id: id,
+    name: name,
+    duration: duration,
+    cost: cost,
+    discount: discount,
+    imageUrl: imageUrl,
+  );
 }

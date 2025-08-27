@@ -1,40 +1,46 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/styled_modal_barrier.dart';
+import '../controller/visa_card/visa_card_notifier.dart';
 import '../widgets/add_floating_action_button.dart';
-import '../widgets/checkout_app_bar.dart';
+import '../widgets/styled_app_bar.dart';
 import '../widgets/payment_methods_view_body.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/add_visa_card_bottom_sheet.dart';
 
-class PaymentMethodsView extends StatelessWidget {
+class PaymentMethodsView extends ConsumerWidget {
   const PaymentMethodsView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool isLoading = ref.watch(visaCardLoadingState);
     return Scaffold(
-      appBar: checkoutAppBar(context, AppStrings.kpaymentMethods),
-      body: PaymentMethodsViewBody(),
+      appBar: styledAppBar(context, title: AppStrings.kpaymentMethods),
+      body: Stack(
+        children: <Widget>[
+          const PaymentMethodsViewBody(),
+          if (isLoading) const StyledModalBarrier(),
+        ],
+      ),
       floatingActionButton: Builder(
-        builder: (context) {
-          return addFloatingButton(
-            context,
-            onPressed: () async => await _showAddCardBottomSheet(context),
-          );
-        },
+        builder:
+            (BuildContext context) => addFloatingButton(
+              context,
+              onPressed: () async => await _showAddCardBottomSheet(context),
+            ),
       ),
     );
   }
 
-  Future _showAddCardBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-      showDragHandle: true,
-      enableDrag: true,
-      isScrollControlled: true,
+  Future _showAddCardBottomSheet(BuildContext context) => showModalBottomSheet(
+    showDragHandle: true,
+    enableDrag: true,
+    isScrollControlled: true,
 
-      elevation: 10,
-      context: context,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      builder: (context) => AddVisaCardBottomSheet(),
-    );
-  }
+    elevation: 10,
+    context: context,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    builder: (context) => const AddVisaCardBottomSheet(),
+  );
 }
