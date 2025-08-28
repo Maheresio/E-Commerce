@@ -1,3 +1,5 @@
+import 'package:e_commerce/core/widgets/styled_loading.dart';
+
 import '../../domain/entities/visa_card_entity.dart';
 import '../controller/visa_card/visa_card_notifier.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,12 @@ class AddVisaCardBottomSheet extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = useTextEditingController();
-    final TextEditingController cardNumberController = useTextEditingController();
-    final TextEditingController expireDateController = useTextEditingController();
-    final TextEditingController securityCodeController = useTextEditingController();
+    final TextEditingController cardNumberController =
+        useTextEditingController();
+    final TextEditingController expireDateController =
+        useTextEditingController();
+    final TextEditingController securityCodeController =
+        useTextEditingController();
     final GlobalKey<FormState> formKey = useMemoized(GlobalKey<FormState>.new);
     final ValueNotifier<bool> isDefault = useState(false);
     return Padding(
@@ -97,31 +102,36 @@ class AddVisaCardBottomSheet extends HookWidget {
                 },
               ),
               Consumer(
-                builder: (BuildContext context, WidgetRef ref, Widget? child) => ref.watch(visaCardLoadingState)
-                      ? CircularProgressIndicator()
-                      : ElevatedButton(
-                        onPressed: () async {
-                          if (formKey.currentState!.validate()) {
-                            ref.read(visaCardLoadingState.notifier).state =
-                                true;
+                builder:
+                    (BuildContext context, WidgetRef ref, Widget? child) =>
+                        ref.watch(visaCardLoadingState)
+                            ? const StyledLoading()
+                            : ElevatedButton(
+                              onPressed: () async {
+                                if (formKey.currentState!.validate()) {
+                                  ref
+                                      .read(visaCardLoadingState.notifier)
+                                      .state = true;
 
-                            await _addCard(
-                              ref: ref,
-                              cardNumberController: cardNumberController,
-                              expireDateController: expireDateController,
-                              securityCodeController: securityCodeController,
-                              nameController: nameController,
-                              isDefault: isDefault.value,
-                            );
-                            ref.read(visaCardLoadingState.notifier).state =
-                                false;
-                            if (context.mounted) {
-                              context.pop();
-                            }
-                          }
-                        },
-                        child: Text(AppStrings.kAddCard),
-                      ),
+                                  await _addCard(
+                                    ref: ref,
+                                    cardNumberController: cardNumberController,
+                                    expireDateController: expireDateController,
+                                    securityCodeController:
+                                        securityCodeController,
+                                    nameController: nameController,
+                                    isDefault: isDefault.value,
+                                  );
+                                  ref
+                                      .read(visaCardLoadingState.notifier)
+                                      .state = false;
+                                  if (context.mounted) {
+                                    context.pop();
+                                  }
+                                }
+                              },
+                              child: const Text(AppStrings.kAddCard),
+                            ),
               ),
             ],
           ),
@@ -151,10 +161,7 @@ class AddVisaCardBottomSheet extends HookWidget {
     );
     final TokenData cardToken = await Stripe.instance.createToken(
       CreateTokenParams.card(
-        params: CardTokenParams(
-          name: nameController.text,
-          currency: 'usd',
-        ),
+        params: CardTokenParams(name: nameController.text, currency: 'usd'),
       ),
     );
     final String paymentMethod = await ref

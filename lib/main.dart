@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: lightTheme(context),
 
-              darkTheme: darkTheme,
+              darkTheme: darkTheme(context),
               routerConfig: AppRouter.router,
               builder:
                   (context, child) => ThemeContextInitializer(child: child!),

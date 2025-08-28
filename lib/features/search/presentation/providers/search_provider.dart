@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/services/firestore_sevice.dart';
-import 'package:riverpod/src/async_notifier.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../../core/services/supabase_storage_service.dart';

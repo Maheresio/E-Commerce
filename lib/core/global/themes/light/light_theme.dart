@@ -54,11 +54,15 @@ ThemeData lightTheme(BuildContext context) => ThemeData(
           fontWeight: FontWeight.w400,
           color: AppColorsLight.kBlack,
           letterSpacing: 0.5,
+          inherit: false,
         ),
       ),
-      foregroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) => states.contains(WidgetState.pressed)
-            ? AppColorsLight.kPrimary
-            : AppColorsLight.kBlack),
+      foregroundColor: WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) =>
+            states.contains(WidgetState.pressed)
+                ? AppColorsLight.kPrimary
+                : AppColorsLight.kBlack,
+      ),
       overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),
   ),

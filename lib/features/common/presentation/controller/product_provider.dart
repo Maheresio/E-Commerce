@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod/src/notifier.dart';
 
 import '../../../../core/services/firestore_sevice.dart';
 

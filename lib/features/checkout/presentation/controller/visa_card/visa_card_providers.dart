@@ -10,7 +10,7 @@ import '../../../data/repositories/visa_card_repository_impl.dart';
 import '../../../domain/repositories/visa_card_repository.dart';
 
 final Provider<DioClient> dioClientProvider = Provider<DioClient>(
-  (ProviderRef<DioClient> ref) => DioClient(),
+  (ref) => DioClient(),
 );
 
 /// 🔌 Current User Service Provider
@@ -19,9 +19,7 @@ final Provider<CurrentUserService> currentUserServiceProvider =
 
 /// 🔌 Data Source Provider
 final Provider<VisaCardRemoteDataSource> visaCardRemoteDataSourceProvider =
-    Provider<VisaCardRemoteDataSource>((
-      ProviderRef<VisaCardRemoteDataSource> ref,
-    ) {
+    Provider<VisaCardRemoteDataSource>((ref) {
       final DioClient dioClient = ref.read(dioClientProvider);
       final FirestoreServices firestore = ref.read(firestoreServicesProvider);
       final CurrentUserService currentUserService = ref.read(
@@ -37,7 +35,7 @@ final Provider<VisaCardRemoteDataSource> visaCardRemoteDataSourceProvider =
 
 /// 📦 Repository Provider
 final Provider<VisaCardRepository> visaCardRepositoryProvider =
-    Provider<VisaCardRepository>((ProviderRef<VisaCardRepository> ref) {
+    Provider<VisaCardRepository>((ref) {
       final VisaCardRemoteDataSource remote = ref.read(
         visaCardRemoteDataSourceProvider,
       );

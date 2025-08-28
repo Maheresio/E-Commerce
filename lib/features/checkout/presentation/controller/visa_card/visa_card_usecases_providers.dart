@@ -10,41 +10,53 @@ import '../../../domain/usecases/visa_card/set_default_visa_card_usecase.dart';
 import 'visa_card_providers.dart';
 
 // Get All Cards
-final Provider<GetVisaCardsUseCase> getVisaCardsUseCaseProvider = Provider<GetVisaCardsUseCase>((ProviderRef<GetVisaCardsUseCase> ref) {
-  final VisaCardRepository repository = ref.watch(visaCardRepositoryProvider);
-  return GetVisaCardsUseCase(repository);
-});
+final Provider<GetVisaCardsUseCase> getVisaCardsUseCaseProvider =
+    Provider<GetVisaCardsUseCase>((ref) {
+      final VisaCardRepository repository = ref.watch(
+        visaCardRepositoryProvider,
+      );
+      return GetVisaCardsUseCase(repository);
+    });
 
 // Add a Card
-final Provider<AddVisaCardUseCase> addVisaCardUseCaseProvider = Provider<AddVisaCardUseCase>((ProviderRef<AddVisaCardUseCase> ref) {
-  final VisaCardRepository repository = ref.watch(visaCardRepositoryProvider);
-  return AddVisaCardUseCase(repository);
-});
+final Provider<AddVisaCardUseCase> addVisaCardUseCaseProvider =
+    Provider<AddVisaCardUseCase>((ref) {
+      final VisaCardRepository repository = ref.watch(
+        visaCardRepositoryProvider,
+      );
+      return AddVisaCardUseCase(repository);
+    });
 
 // Delete a Card
-final Provider<DeleteVisaCardUseCase> deleteVisaCardUseCaseProvider = Provider<DeleteVisaCardUseCase>((ProviderRef<DeleteVisaCardUseCase> ref) {
-  final VisaCardRepository repository = ref.watch(visaCardRepositoryProvider);
-  return DeleteVisaCardUseCase(repository);
-});
+final Provider<DeleteVisaCardUseCase> deleteVisaCardUseCaseProvider =
+    Provider<DeleteVisaCardUseCase>((ref) {
+      final VisaCardRepository repository = ref.watch(
+        visaCardRepositoryProvider,
+      );
+      return DeleteVisaCardUseCase(repository);
+    });
 
 // Set Default Card
-final Provider<SetDefaultVisaCardUseCase> setDefaultVisaCardUseCaseProvider = Provider<SetDefaultVisaCardUseCase>((
-  ProviderRef<SetDefaultVisaCardUseCase> ref,
-) {
-  final VisaCardRepository repository = ref.watch(visaCardRepositoryProvider);
-  return SetDefaultVisaCardUseCase(repository);
-});
+final Provider<SetDefaultVisaCardUseCase> setDefaultVisaCardUseCaseProvider =
+    Provider<SetDefaultVisaCardUseCase>((ref) {
+      final VisaCardRepository repository = ref.watch(
+        visaCardRepositoryProvider,
+      );
+      return SetDefaultVisaCardUseCase(repository);
+    });
 
-final Provider<GetOrCreateCustomerUsecase> getOrCreateCustomerUseCaseProvider = Provider<GetOrCreateCustomerUsecase>(
-  (ProviderRef<GetOrCreateCustomerUsecase> ref) {
-    final VisaCardRepository repository = ref.watch(visaCardRepositoryProvider);
-    return GetOrCreateCustomerUsecase(repository);
-  },
-);
+final Provider<GetOrCreateCustomerUsecase> getOrCreateCustomerUseCaseProvider =
+    Provider<GetOrCreateCustomerUsecase>((ref) {
+      final VisaCardRepository repository = ref.watch(
+        visaCardRepositoryProvider,
+      );
+      return GetOrCreateCustomerUsecase(repository);
+    });
 
-final Provider<CreateEphemeralKeyUsecase> createEphemeralKeyUseCaseProvider = Provider<CreateEphemeralKeyUsecase>((
-  ProviderRef<CreateEphemeralKeyUsecase> ref,
-) {
-  final VisaCardRepository repository = ref.watch(visaCardRepositoryProvider);
-  return CreateEphemeralKeyUsecase(repository);
-});
+final Provider<CreateEphemeralKeyUsecase> createEphemeralKeyUseCaseProvider =
+    Provider<CreateEphemeralKeyUsecase>((ref) {
+      final VisaCardRepository repository = ref.watch(
+        visaCardRepositoryProvider,
+      );
+      return CreateEphemeralKeyUsecase(repository);
+    });
