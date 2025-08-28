@@ -1,4 +1,23 @@
 class AppStrings {
+  static const String kMyProfile = 'My Profile';
+  static const String kError = 'Error:';
+  static const String kLogout = 'Logout';
+  static const String kLogoutDialogMessage =
+      'Are you sure you want to logout from your account?';
+  static const String kCancel = 'Cancel';
+  static const String kNoOrdersFound = 'No orders found';
+  static const String kErrorLoadingOrders = 'Error loading orders:';
+  static const String kProfileUserName = 'User Name';
+  static const String kProfileUserEmail = 'user@email.com';
+  static const String kProfileLogout = 'Logout';
+  static const String kProfileLogoutConfirm =
+      'Are you sure you want to logout from your account?';
+  static const String kProfileCancel = 'Cancel';
+  static const String kProfileNoDiscount = 'No Discount';
+  static const String kProfilePersonalPromo = '% Personal Promo code';
+  static const String kProfileBrand = 'Brand: ';
+  static const String kProfileTrackingNumber = 'Tracking Number:  ';
+  static const String kDateFormatHint = 'DD/MM/YYYY';
   static const String kNoShippingAddress = 'No shipping address';
   static const String kAddYourDeliveryAddress = 'Add your delivery address';
   static const String kAdd = 'Add';
@@ -33,7 +52,6 @@ class AppStrings {
   static const String kViewAllItems = 'View all items';
   static const String kChooseCategory = 'Choose category';
   static const String kPriceRange = 'Price range';
-  static const String kCancel = 'Cancel';
   static const String kColors = 'Colors';
   static const String kColor = 'Color';
   static const String kSizes = 'Sizes';
@@ -92,7 +110,6 @@ class AppStrings {
   static const String kDeleteFromList = 'Delete from the list';
   static const String kLeaveFeedback = 'Leave feedback';
   static const String kReorder = 'Reorder';
-  static const String kMyProfile = 'My profile';
   static const String kSettings = 'Settings';
   static const String kNotifications = 'Notifications';
   static const String kPasswordChange = 'Password Change';
@@ -260,4 +277,87 @@ class AppStrings {
   static const String kAllCardsRemovedSuccessfully =
       'All cards removed successfully';
   static const String kFailedToRemoveCards = 'Failed to remove cards: %s';
+
+  // Profile related strings
+  static const String kMyAddresses = 'My Addresses';
+  static const String kPaymentMethods = 'Payment Methods';
+  static const String kAlreadyHaveOrders = 'Already have (%s) orders';
+  static const String kAddressesCount = '(%s) addresses';
+  static const String kVisaCardFormat = 'Visa **%s**';
+  static const String kNotificationsSettings = 'Notifications, password';
+  static const String kSettingsPreferences = 'Settings and preferences';
+  static const String kSignOutAccount = 'Sign out of your account';
+  static const String kUserNotLoggedIn = 'User not logged in';
+  static const String kErrorGettingDefaultCard =
+      'Error getting default card: %s';
+  static const String kOrderCode = 'Order %s';
+  static const String kItems = 'items';
+  static const String kOrderCodeFormat = 'Order #%s';
+  static const String kNoDiscount = 'No Discount';
+  static const String kPersonalPromoCode = '%s%% Personal Promo code';
+  static const String kBrandLabel = 'Brand: %s';
+  static const String kCardEndingIn = '**** **** **** %s';
+  static const String kDeliveryMethodInfo = '%s, %s, \$%s';
+  static const String kErrorLoadingProfile = 'Error: %s';
+
+  // Profile logout dialog strings
+  static const String kLogoutTitle = 'Logout';
+  static const String kLogoutConfirmation =
+      'Are you sure you want to logout from your account?';
+  static const String kCancelButton = 'Cancel';
+  static const String kLogoutButton = 'Logout';
+
+  // Profile header strings
+  static const String kDefaultUserName = 'User Name';
+  static const String kDefaultUserEmail = 'user@email.com';
+
+  // Profile specific strings
+  static const String kPaymentMethodLabel = 'Payment Method';
+
+  // Profile specific strings
+  static const String kPasswordSection = 'Password';
+  static const String kPasswordSectionSubtitle = 'Change your password';
+  static const String kNotificationsSection = 'Notifications';
+  static const String kNotificationsSectionSubtitle =
+      'Manage your notification preferences';
+  static const String kPasswordMask = '********';
+  static const String kBack = 'Back';
+  static const String kNext = 'Next';
+  static const String kSave = 'Save';
+  static const String kDelete = 'Delete';
+  static const String kConfirm = 'Confirm';
+  static const String kYes = 'Yes';
+  static const String kNo = 'No';
+  static const String kNotAvailable = 'N/A';
+
+  static const String kRemoveShippingAddress = 'Remove Shipping Address';
+  static const String kRemoveShippingAddressConfirmation =
+      'Are you sure you want to remove this shipping address?';
+
+  // Review strings
+  static const String kEditReview = 'Edit Review';
+  static const String kDeleteReview = 'Delete Review';
+  static const String kDeleteReviewConfirmation =
+      'Are you sure you want to delete this review? This action cannot be undone.';
+  static const String kReviewUpdated = 'Review updated successfully!';
+  static const String kReviewDeleted = 'Review deleted successfully!';
+  static const String kEditYourReview = 'Edit Your Review';
+  static const String kUpdateReview = 'Update Review';
+
+  // Review validation strings
+  static const String kPleaseProvideRating = 'Please provide a rating';
+  static const String kPleaseWriteReview = 'Please write a review';
+  static const String kReviewAddedSuccessfully = 'Review added successfully!';
+  static const String kLoginRequired = 'Login Required';
+  static const String kLoginToWriteReview =
+      'Please login to write a review for this product.';
+  static const String kLoginButton = 'Login';
+  static const String kImagePickerNotImplemented =
+      'Image picker not implemented yet';
+  static const String kProductNotFound = 'Product not found';
+  static const String kUserAlreadyHasReview =
+      'User already has a review for this product';
+  static const String kReviewNotFound = 'Review not found';
+  static const String kUserAlreadyMarkedHelpful =
+      'User already marked this review as helpful';
 }
