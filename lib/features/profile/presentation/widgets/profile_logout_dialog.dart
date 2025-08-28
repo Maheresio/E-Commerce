@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/app_styles.dart';
 
 Future<void> showLogoutDialog(
   BuildContext context,
@@ -8,7 +12,8 @@ Future<void> showLogoutDialog(
   Future<void> Function() onLogout,
 ) async {
   final theme = Theme.of(context);
-  final confirmed = await showDialog<bool>(
+
+  final bool? result = await showDialog<bool>(
     context: context,
     barrierDismissible: false,
     builder:
@@ -18,10 +23,7 @@ Future<void> showLogoutDialog(
           ),
           titlePadding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
           contentPadding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
-          actionsPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 12,
-          ),
+          actionsPadding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
           title: Row(
             children: <Widget>[
               const Icon(Icons.logout, color: Colors.redAccent),
@@ -34,35 +36,36 @@ Future<void> showLogoutDialog(
               ),
             ],
           ),
-          content: Text(
-            AppStrings.kLogoutConfirmation,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: Colors.grey[700],
+          content: Padding(
+            padding: EdgeInsets.only(bottom: 16.h),
+            child: Text(
+              AppStrings.kLogoutConfirmation,
+              style: AppStyles.font12GreyMedium(context),
             ),
           ),
           actions: <Widget>[
-            OutlinedButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              style: OutlinedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => context.pop(false),
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      side: BorderSide(color: theme.colorScheme.primary),
+                    ),
+                    child: Text(
+                      AppStrings.kCancelButton,
+                      style: TextStyle(color: theme.colorScheme.primary),
+                    ),
+                  ),
                 ),
-                side: BorderSide(color: theme.colorScheme.primary),
-              ),
-              child: Text(
-                AppStrings.kCancelButton,
-                style: TextStyle(color: theme.colorScheme.primary),
-              ),
-            ),
-            Consumer(
-              builder:
-                  (context, ref, child) => ElevatedButton(
-                    onPressed: () async {
-                      await onLogout();
-                      if (context.mounted) {
-                        Navigator.of(context).pop(true);
-                      }
-                    },
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () => context.pop(true),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.colorScheme.error,
                       shape: RoundedRectangleBorder(
@@ -74,11 +77,15 @@ Future<void> showLogoutDialog(
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+                ),
+              ],
             ),
           ],
         ),
   );
-  if (confirmed == true) {
+
+  // Only perform logout if user confirmed
+  if (result == true) {
     await onLogout();
   }
 }

@@ -31,6 +31,7 @@ void openStyledSnackBar(
 
       content: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Icon(icon, color: Colors.white),
           const SizedBox(width: 5),
@@ -38,7 +39,7 @@ void openStyledSnackBar(
             child: Text(
               text,
               style: AppStyles.font14WhiteSemiBold(context),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
             ),
           ),
         ],
