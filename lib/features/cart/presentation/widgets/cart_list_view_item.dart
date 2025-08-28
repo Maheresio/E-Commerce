@@ -200,7 +200,7 @@ class CartListViewItem extends StatelessWidget {
                 (success) {
                   openStyledSnackBar(
                     context,
-                    text: AppStrings.kItemAddedToTheCart,
+                    text: AppStrings.kItemAddedToFavorites,
                     type: SnackBarType.success,
                   );
                 },

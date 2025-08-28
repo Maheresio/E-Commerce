@@ -12,32 +12,32 @@ AppBar styledAppBar(
   Function()? onTap,
   automaticallyImplyLeading = true,
 }) => AppBar(
-    toolbarHeight: context.responsive(mobile: 65.h, tablet: 90.h),
-    title: Text(title),
-    titleTextStyle: AppStyles.font18BlackSemiBold(context),
-    centerTitle: true,
-    surfaceTintColor: Colors.transparent,
-    backgroundColor: Colors.white,
-    shadowColor: Colors.transparent,
-    scrolledUnderElevation: 0,
-    automaticallyImplyLeading: automaticallyImplyLeading,
-    leading:
-        automaticallyImplyLeading
-            ? IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios,
-                size: context.responsive(mobile: 25, tablet: 40),
-              ),
-              onPressed: () {
-                onTap?.call();
-                context.pop();
-              },
-            )
-            : null,
-    actions: [
-      IconButton(
-        icon: Icon(icon, size: context.responsive(mobile: 25, tablet: 40)),
-        onPressed: () {},
-      ),
-    ],
-  );
+  toolbarHeight: context.responsive(mobile: 65.h, tablet: 90.h),
+  title: Text(title),
+  titleTextStyle: AppStyles.font18BlackSemiBold(context),
+  centerTitle: true,
+  surfaceTintColor: Colors.transparent,
+  backgroundColor: Colors.white,
+  shadowColor: Colors.transparent,
+  scrolledUnderElevation: 0,
+  automaticallyImplyLeading: automaticallyImplyLeading,
+  leading:
+      automaticallyImplyLeading
+          ? IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              size: context.responsive(mobile: 25, tablet: 40),
+            ),
+            onPressed: () {
+              onTap?.call();
+              context.pop();
+            },
+          )
+          : null,
+  actions: [
+    IconButton(
+      icon: Icon(icon, size: context.responsive(mobile: 25, tablet: 40)),
+      onPressed: () {},
+    ),
+  ],
+);

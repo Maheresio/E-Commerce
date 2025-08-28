@@ -120,6 +120,7 @@ class OrderModel extends OrderEntity {
                 'imageUrl': cartItem.imageUrl,
                 'name': cartItem.name,
                 'price': cartItem.price,
+                'brand': cartItem.brand,
               },
             )
             .toList(),

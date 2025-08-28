@@ -21,154 +21,159 @@ class FavoriteListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeColors = context.color;
     return Consumer(
-    builder: (context, ref, child) {
-      return Dismissible(
-        key: Key(product.id),
-        direction: DismissDirection.endToStart,
-  
-        background: Container(
-          margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(10.r),
+      builder: (context, ref, child) {
+        return Dismissible(
+          key: Key(product.id),
+          direction: DismissDirection.endToStart,
+
+          background: Container(
+            margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(10.r),
+            ),
+            alignment: AlignmentDirectional.centerEnd,
+            padding: EdgeInsets.only(right: 20.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.delete, color: Colors.white, size: 24.sp),
+                SizedBox(height: 4.h),
+                Text(
+                  AppStrings.kRemove,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
+                  ),
+                ),
+              ],
+            ),
           ),
-          alignment: AlignmentDirectional.centerEnd,
-          padding: EdgeInsets.only(right: 20.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          confirmDismiss: (direction) async {
+            return await showFavoriteConfirmationDialog(
+              context,
+              ref,
+              product.id,
+            );
+          },
+          onDismissed: (direction) {
+            ref
+                .read(
+                  favoritesControllerProvider(
+                    FirebaseAuth.instance.currentUser!.uid,
+                  ).notifier,
+                )
+                .removeFavorite(product.id);
+          },
+          child: Stack(
             children: [
-              Icon(Icons.delete, color: Colors.white, size: 24.sp),
-              SizedBox(height: 4.h),
-              Text(
-                AppStrings.kRemove,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.sp,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+                child: Container(
+                  height: 130.h,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: themeColors.onPrimary.withValues(alpha: 0.2),
+                        blurRadius: 3,
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
+                    color: themeColors.onSecondary,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Row(
+                    spacing: 10.w,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: ClipRRect(
+                          borderRadius: BorderRadiusDirectional.only(
+                            topStart: Radius.circular(8.r),
+                            bottomStart: Radius.circular(8.r),
+                          ),
+                          child: CachedImageWidget(
+                            imgUrl: product.imageUrls.values.first.first,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.h),
+                          child: Column(
+                            spacing: 4,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      product.name,
+                                      style: AppStyles.font16BlackSemiBold(
+                                        context,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 8.w,
+                                    ),
+                                    child: GestureDetector(
+                                      child: const Icon(Icons.close),
+                                      onTap: () {
+                                        showFavoriteConfirmationDialog(
+                                          context,
+                                          ref,
+                                          product.id,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                product.brand,
+                                style: AppStyles.font11GreyMedium(context),
+                              ),
+                              RatingAndReview(
+                                rating: product.rating.toInt(),
+                                reviewCount: product.reviewCount,
+                              ),
+                              ProductPrice(
+                                price: product.price,
+                                discountValue: product.discountValue,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned.directional(
+                textDirection: TextDirection.ltr,
+                bottom: 0,
+                end: 0,
+                child: CircleAvatar(
+                  child: Icon(
+                    Icons.local_mall_rounded,
+                    color: themeColors.onSecondary,
+                    size: 18.sp,
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-        confirmDismiss: (direction) async {
-          return await showFavoriteConfirmationDialog(context, ref, product.id);
-        },
-        onDismissed: (direction) {
-          ref
-              .read(
-                favoritesControllerProvider(
-                  FirebaseAuth.instance.currentUser!.uid,
-                ).notifier,
-              )
-              .removeFavorite(product.id);
-        },
-        child: Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
-              child: Container(
-                height: 130.h,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: themeColors.onPrimary.withValues(alpha: 0.2),
-                      blurRadius: 3,
-                      offset: const Offset(0, 1),
-                    ),
-                  ],
-                  color: themeColors.onSecondary,
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Row(
-                  spacing: 10.w,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: ClipRRect(
-                        borderRadius: BorderRadiusDirectional.only(
-                          topStart: Radius.circular(8.r),
-                          bottomStart: Radius.circular(8.r),
-                        ),
-                        child: CachedImageWidget(
-                          imgUrl: product.imageUrls.values.first.first,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 4,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: Column(
-                          spacing: 4,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    product.name,
-                                    style: AppStyles.font16BlackSemiBold(
-                                      context,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 8.w,
-                                  ),
-                                  child: GestureDetector(
-                                    child: const Icon(Icons.close),
-                                    onTap: () {
-                                      showFavoriteConfirmationDialog(
-                                        context,
-                                        ref,
-                                        product.id,
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              product.brand,
-                              style: AppStyles.font11GreyMedium(context),
-                            ),
-                            RatingAndReview(
-                              rating: product.rating.toInt(),
-                              reviewCount: product.reviewCount,
-                            ),
-                            ProductPrice(
-                              price: product.price,
-                              discountValue: product.discountValue,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned.directional(
-              textDirection: TextDirection.ltr,
-              bottom: 0,
-              end: 0,
-              child: CircleAvatar(
-                child: Icon(
-                  Icons.local_mall_rounded,
-                  color: themeColors.onSecondary,
-                  size: 18.sp,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    },
-  );
+        );
+      },
+    );
   }
+
   Future<bool> showFavoriteConfirmationDialog(
     BuildContext context,
     WidgetRef ref,
@@ -199,12 +204,10 @@ class FavoriteListItem extends StatelessWidget {
               ],
             ),
             content: Padding(
-              padding:  EdgeInsets.only(bottom: 16.h),
+              padding: EdgeInsets.only(bottom: 16.h),
               child: Text(
                 AppStrings.kRemoveFromFavoritesConfirmation,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey[700],
-                ),
+                style: AppStyles.font12GreyMedium(context),
               ),
             ),
             actions: <Widget>[
