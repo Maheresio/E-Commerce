@@ -65,9 +65,7 @@ abstract class AppStyles {
     color: AppColorsLight.kGrey,
   );
 
-
-
-static TextStyle font13BlackMedium(BuildContext context) => TextStyle(
+  static TextStyle font13BlackMedium(BuildContext context) => TextStyle(
     fontSize: responsiveFontSize(context, mobile: 13, tablet: 28),
     fontWeight: FontWeight.w500,
     color: context.color.primaryFixed,
@@ -171,7 +169,7 @@ static TextStyle font13BlackMedium(BuildContext context) => TextStyle(
   );
 
   static TextStyle font18BlackSemiBold(BuildContext context) => TextStyle(
-    fontSize: responsiveFontSize(context, mobile: 18,tablet: 28) ,
+    fontSize: responsiveFontSize(context, mobile: 18, tablet: 28),
     fontWeight: FontWeight.w600,
     color: context.color.primaryFixed,
   );

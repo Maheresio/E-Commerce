@@ -45,7 +45,7 @@ class AppStrings {
   static const String kStreetClothes = 'Street clothes';
   static const String kNew = 'New';
   static const String kReviews = 'Reviews';
-  static const String kNeverSeenBefore = 'You’ve never seen it before!';
+  static const String kNeverSeenBefore = 'You\'ve never seen it before!';
   static const String kUpTo50PercentOff = 'Up to 50% off';
   static const String kDateOfBirth = 'Date of Birth';
   static const String kViewAll = 'View all';
@@ -98,6 +98,7 @@ class AppStrings {
   static const String kSelectSize = 'Select size';
   static const String kSelectColor = 'Select color';
   static const String kSizeInfo = 'Size info';
+  static const String kNoInternetConnection = 'No Internet Connection';
   static const String kAddCard = 'ADD CARD';
   static const String kSaveAddress = 'SAVE ADDRESS';
   static const String kEdit = 'Edit';
@@ -360,4 +361,55 @@ class AppStrings {
   static const String kReviewNotFound = 'Review not found';
   static const String kUserAlreadyMarkedHelpful =
       'User already marked this review as helpful';
+
+  // Review form strings
+  static const String kWriteYourReviewHere = 'Write your review here...';
+  static const String kEditReviewAction = 'Edit Review';
+  static const String kAddReviewAction = 'Add Review';
+  static const String kRetryAction = 'Retry';
+
+  // Navigation strings
+  static const String kNavigationHome = 'Home';
+  static const String kNavigationShop = 'Shop';
+  static const String kNavigationBag = 'Bag';
+  static const String kNavigationFavorites = 'Favorites';
+  static const String kNavigationProfile = 'Profile';
+  static const String kGenderWomen = 'women';
+  static const String kGenderMen = 'men';
+  static const String kGenderKids = 'kids';
+  static const String kGenderWomenCapitalized = 'Women';
+  static const String kGenderMenCapitalized = 'Men';
+  static const String kGenderKidsCapitalized = 'Kids';
+
+  // Auth welcome strings
+  static const String kWelcomeMessage = 'Welcome %s!';
+
+  // Card display strings
+  static const String kCardNumberMask = '**** **** **** %s';
+  static const String kCardExpiryFormat = '%s/%s';
+
+  // Currency strings
+  static const String kCurrencyUSD = 'usd';
+
+  // Error and loading strings
+  static const String kErrorPrefix = 'Error: %s';
+  static const String kErrorLoadingImage = 'Error Loading Image';
+  static const String kTryAgain = 'Try Again';
+  static const String kFailedToConvertResizedImage =
+      'Failed to convert resized image to bytes.';
+  static const String kFailedToConvertImage =
+      'Failed to convert image to bytes.';
+  static const String kNoCroppedImageAvailable = 'No cropped image available';
+  static const String kSomethingWentWrongGeneric = 'Something went wrong';
+  static const String kErrorGeneric = 'Error: %s';
+
+  // Image processing strings
+  static const String kImageFileNotFound =
+      'Image file not found. Please try again.';
+  static const String kErrorLoadingImageGeneric = 'Error loading image: %s';
+
+  // Dynamic title construction strings
+  static const String kGenderPossessiveFormat = "%s's %s";
+  static const String kGenderCapitalizedFormat = '%s';
+  static const String kSubCategoryCapitalizedFormat = '%s';
 }
