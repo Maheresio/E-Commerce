@@ -1,10 +1,10 @@
-import '../controller/shipping_address/shipping_address_providers.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/styled_modal_barrier.dart';
 import '../../domain/entities/shipping_address_entity.dart';
+import '../controller/shipping_address/shipping_address_providers.dart';
 import '../widgets/adding_shipping_address_view_body.dart';
 import '../widgets/styled_app_bar.dart';
 

@@ -1,14 +1,14 @@
-import '../../../profile/presentation/controller/profile_provider.dart';
-import '../../domain/entities/shipping_address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/helpers/extensions/context_extensions.dart';
-import '../../../../core/routing/app_router.dart';
+import '../../../../core/routing/app_route_constants.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../../profile/presentation/controller/profile_provider.dart';
+import '../../domain/entities/shipping_address_entity.dart';
 import '../controller/shipping_address/shipping_address_providers.dart';
 import 'shipping_check_box.dart';
 
@@ -120,10 +120,10 @@ class _CardBody extends StatelessWidget {
                       onTap: () {
                         isEditable
                             ? context.push(
-                              AppRouter.kAddShippingAddress,
+                              AppRoutes.addShippingAddress,
                               extra: address,
                             )
-                            : context.push(AppRouter.kShippingAddress);
+                            : context.push(AppRoutes.shippingAddress);
                       },
                       child: Text(
                         isEditable ? AppStrings.kEdit : AppStrings.kChange,

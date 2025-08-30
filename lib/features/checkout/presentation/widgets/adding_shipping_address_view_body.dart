@@ -1,6 +1,3 @@
-import '../../domain/entities/shipping_address_entity.dart';
-import '../controller/shipping_address/shipping_address_providers.dart';
-import '../utils/shipping_address_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +7,9 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/styled_text_form_field.dart';
+import '../../domain/entities/shipping_address_entity.dart';
+import '../controller/shipping_address/shipping_address_providers.dart';
+import '../utils/shipping_address_validators.dart';
 
 class AddingShippingAddressViewBody extends HookWidget {
   const AddingShippingAddressViewBody(this.address, {super.key});

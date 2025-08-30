@@ -1,13 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/styled_modal_barrier.dart';
 import '../controller/visa_card/visa_card_notifier.dart';
 import '../widgets/add_floating_action_button.dart';
-import '../widgets/styled_app_bar.dart';
-import '../widgets/payment_methods_view_body.dart';
-import 'package:flutter/material.dart';
-
 import '../widgets/add_visa_card_bottom_sheet.dart';
+import '../widgets/payment_methods_view_body.dart';
+import '../widgets/styled_app_bar.dart';
 
 class PaymentMethodsView extends ConsumerWidget {
   const PaymentMethodsView({super.key});

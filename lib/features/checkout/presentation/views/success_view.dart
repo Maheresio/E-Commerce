@@ -1,4 +1,5 @@
-import '../../../../core/routing/app_router.dart';
+import 'package:e_commerce/core/routing/app_route_constants.dart';
+
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
@@ -45,7 +46,7 @@ class SuccessView extends StatelessWidget {
                 children: [
                   CircularElevatedButton(
                     text: AppStrings.kContinueShopping,
-                    onPressed: () => context.go(AppRouter.kNavBar),
+                    onPressed: () => context.go(AppRoutes.navBar),
                   ),
                   const SizedBox(height: 40),
                 ],

@@ -1,12 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_strings.dart';
-
 import '../../domain/entities/shipping_address_entity.dart';
 import '../controller/shipping_address/shipping_address_providers.dart';
 import 'shipping_address_card.dart';
+import 'shipping_address_shimmer.dart';
 
 class ShippingAddressViewBody extends ConsumerWidget {
   const ShippingAddressViewBody({super.key});
@@ -39,7 +39,7 @@ class ShippingAddressViewBody extends ConsumerWidget {
                 (BuildContext context, int index) => SizedBox(height: 24.h),
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const ShippingAddressListShimmer(),
         error:
             (Object error, StackTrace stackTrace) => Center(
               child: Text('${AppStrings.kErrorLoadingAddresses}: $error'),

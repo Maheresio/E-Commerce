@@ -1,4 +1,3 @@
-import '../../domain/entities/visa_card_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../domain/entities/visa_card_entity.dart';
 import '../controller/visa_card/visa_card_notifier.dart';
 import 'shipping_check_box.dart';
 
@@ -37,7 +37,7 @@ class VisaCardItem extends StatelessWidget {
               SvgPicture.asset(AppImages.chip),
               const SizedBox(height: 29),
               Text(
-                '**** **** **** ${card.last4}',
+                AppStrings.kCardNumberMask.replaceFirst('%s', card.last4),
                 style: AppStyles.font24WhiteSemiBold(
                   context,
                 ).copyWith(letterSpacing: 3.5),

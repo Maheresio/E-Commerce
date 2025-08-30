@@ -1,8 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/helpers/methods/styled_snack_bar.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/visa_card_entity.dart';
@@ -124,7 +126,7 @@ class PaymentMethodsViewBody extends ConsumerWidget {
                                 actions: <Widget>[
                                   OutlinedButton(
                                     onPressed:
-                                        () => Navigator.of(context).pop(false),
+                                        () =>context.pop(false),
                                     style: OutlinedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -142,7 +144,7 @@ class PaymentMethodsViewBody extends ConsumerWidget {
                                   ),
                                   ElevatedButton(
                                     onPressed:
-                                        () => Navigator.of(context).pop(true),
+                                        () =>context.pop(true),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: theme.colorScheme.error,
                                       shape: RoundedRectangleBorder(
@@ -170,16 +172,13 @@ class PaymentMethodsViewBody extends ConsumerWidget {
                                 );
 
                             if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    AppStrings.kCardRemoved.replaceFirst(
-                                      '%s',
-                                      card.last4,
-                                    ),
-                                  ),
-                                  backgroundColor: Colors.green,
+                              openStyledSnackBar(
+                                context,
+                                text: AppStrings.kCardRemoved.replaceFirst(
+                                  '%s',
+                                  card.last4,
                                 ),
+                                type: SnackBarType.success,
                               );
                             }
                           }
@@ -200,8 +199,11 @@ class PaymentMethodsViewBody extends ConsumerWidget {
       },
       loading: () => const Center(child: CircularProgressIndicator()),
       error:
-          (Object error, StackTrace stackTrace) =>
-              Center(child: Text('Error: $error')),
+          (Object error, StackTrace stackTrace) => Center(
+            child: Text(
+              AppStrings.kErrorPrefix.replaceFirst('%s', error.toString()),
+            ),
+          ),
     );
   }
 }

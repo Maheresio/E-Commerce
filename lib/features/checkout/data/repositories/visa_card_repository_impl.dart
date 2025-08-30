@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
-import '../datasources/visa_card_remote_data_source.dart';
+
 import '../../../../../core/error/failure.dart';
 import '../../../../core/error/handle_repository_exceptions.dart';
 import '../../../../core/services/current_user_service.dart';
 import '../../domain/entities/visa_card_entity.dart';
 import '../../domain/repositories/visa_card_repository.dart';
+import '../datasources/visa_card_remote_data_source.dart';
 import '../models/visa_card_model.dart';
 
 class VisaCardRepositoryImpl implements VisaCardRepository {

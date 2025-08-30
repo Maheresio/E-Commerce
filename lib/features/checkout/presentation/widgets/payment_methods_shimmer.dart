@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../../../../core/widgets/shimmer.dart';
 
 class PaymentMethodsShimmer extends StatelessWidget {

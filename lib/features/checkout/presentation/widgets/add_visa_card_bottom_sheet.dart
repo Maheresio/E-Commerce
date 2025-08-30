@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/widgets/styled_loading.dart';
+import '../../../../core/widgets/styled_loading.dart';
 
 import '../../domain/entities/visa_card_entity.dart';
 import '../controller/visa_card/visa_card_notifier.dart';
@@ -161,7 +161,10 @@ class AddVisaCardBottomSheet extends HookWidget {
     );
     final TokenData cardToken = await Stripe.instance.createToken(
       CreateTokenParams.card(
-        params: CardTokenParams(name: nameController.text, currency: 'usd'),
+        params: CardTokenParams(
+          name: nameController.text,
+          currency: AppStrings.kCurrencyUSD,
+        ),
       ),
     );
     final String paymentMethod = await ref

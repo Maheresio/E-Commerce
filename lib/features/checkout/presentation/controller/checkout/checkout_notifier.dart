@@ -1,20 +1,20 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../core/error/failure.dart';
 import '../../../../cart/domain/entities/cart_item_entity.dart';
 import '../../../../cart/presentation/controller/cart_provider.dart';
 import '../../../data/models/visa_card_model.dart';
 import '../../../domain/entities/delivery_method_entity.dart';
-import '../../../domain/entities/visa_card_entity.dart';
-import '../../../domain/usecases/checkout/checkout_providers.dart';
 import '../../../domain/entities/order_entity.dart';
 import '../../../domain/entities/payment_entity.dart';
 import '../../../domain/entities/shipping_address_entity.dart';
-import '../../../../../core/error/failure.dart';
-import '../shipping_address/shipping_address_providers.dart';
-import '../visa_card/visa_card_notifier.dart';
+import '../../../domain/entities/visa_card_entity.dart';
+import '../../../domain/usecases/checkout/checkout_providers.dart';
 import '../delivery_method/delivery_method_providers.dart';
 import '../order/order_usecase_providers.dart';
+import '../shipping_address/shipping_address_providers.dart';
+import '../visa_card/visa_card_notifier.dart';
 
 class CheckoutData {
   CheckoutData({

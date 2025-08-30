@@ -1,32 +1,31 @@
-import 'package:e_commerce/core/helpers/methods/styled_snack_bar.dart';
-import 'package:e_commerce/core/widgets/styled_loading.dart';
-import 'package:smooth_sheets/smooth_sheets.dart';
-
-import '../../../../core/routing/app_router.dart';
-import '../../data/models/visa_card_model.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:smooth_sheets/smooth_sheets.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/helpers/methods/styled_snack_bar.dart';
+import '../../../../core/routing/app_route_constants.dart';
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../../core/widgets/circular_elevated_button.dart';
+import '../../../../core/widgets/styled_loading.dart';
 import '../../../../core/widgets/summary_price.dart';
 import '../../../cart/presentation/controller/cart_provider.dart';
+import '../../data/models/visa_card_model.dart';
 import '../../domain/entities/delivery_method_entity.dart';
 import '../../domain/entities/shipping_address_entity.dart';
 import '../../domain/entities/visa_card_entity.dart';
 import '../controller/checkout/checkout_notifier.dart';
 import '../controller/delivery_method/delivery_method_providers.dart';
 import '../controller/shipping_address/shipping_address_providers.dart';
-import '../controller/visa_card/visa_card_notifier.dart';
 import '../controller/submission_protection_provider.dart';
+import '../controller/visa_card/visa_card_notifier.dart';
 import 'delivery_methods_shimmer.dart';
 import 'payment_methods_shimmer.dart';
 import 'shipping_address_card.dart';
@@ -162,7 +161,7 @@ class SubmitSection extends ConsumerWidget {
               text: AppStrings.kOrderSubmittedSuccessfully,
               type: SnackBarType.success,
             );
-            context.go(AppRouter.kSuccessView);
+            context.go(AppRoutes.success);
           }
         },
       );
@@ -237,7 +236,7 @@ class ShippingAddressSection extends StatelessWidget {
               if (addresses.isEmpty) {
                 return NoShippingAddressWidget(
                   onAddAddress: () {
-                    context.push(AppRouter.kAddShippingAddress);
+                    context.push(AppRoutes.addShippingAddress);
                   },
                 );
               }
@@ -254,7 +253,15 @@ class ShippingAddressSection extends StatelessWidget {
             },
 
             loading: () => const ShippingAddressCardShimmer(),
-            error: (error, stackTrace) => Center(child: Text('Error: $error')),
+            error:
+                (error, stackTrace) => Center(
+                  child: Text(
+                    AppStrings.kErrorPrefix.replaceFirst(
+                      '%s',
+                      error.toString(),
+                    ),
+                  ),
+                ),
           );
         },
       ),
@@ -340,7 +347,7 @@ class PaymentSection extends StatelessWidget {
                   padding: EdgeInsetsDirectional.only(end: 24.w),
                   child: InkWell(
                     onTap: () {
-                      context.push(AppRouter.kPaymentMethods);
+                      context.push(AppRoutes.paymentMethods);
                     },
                     child: Text(
                       AppStrings.kChange,
@@ -383,7 +390,7 @@ class PaymentSection extends StatelessWidget {
                     ),
 
                     Text(
-                      '**** **** **** ${card.last4}',
+                      AppStrings.kCardNumberMask.replaceFirst('%s', card.last4),
                       style: AppStyles.font14BlackMedium(context),
                     ),
                   ],
@@ -391,7 +398,14 @@ class PaymentSection extends StatelessWidget {
               },
               loading: () => const PaymentMethodsShimmer(),
               error: (error, stackTrace) {
-                return Center(child: Text('Error: $error'));
+                return Center(
+                  child: Text(
+                    AppStrings.kErrorPrefix.replaceFirst(
+                      '%s',
+                      error.toString(),
+                    ),
+                  ),
+                );
               },
             );
           },
@@ -473,10 +487,7 @@ class PaymentSection extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12),
                                       child: InkWell(
                                         borderRadius: BorderRadius.circular(12),
-                                        onTap:
-                                            () => Navigator.of(
-                                              context,
-                                            ).pop(false),
+                                        onTap: () => context.pop(false),
                                         child: Container(
                                           height: 48,
                                           decoration: BoxDecoration(
@@ -509,9 +520,7 @@ class PaymentSection extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12),
                                       child: InkWell(
                                         borderRadius: BorderRadius.circular(12),
-                                        onTap:
-                                            () =>
-                                                Navigator.of(context).pop(true),
+                                        onTap: () => context.pop(true),
                                         child: Container(
                                           height: 48,
                                           decoration: BoxDecoration(
@@ -629,7 +638,14 @@ class DeliveryMethodSection extends StatelessWidget {
                 },
                 loading: () => const DeliveryMethodsShimmer(),
                 error: (error, stackTrace) {
-                  return Center(child: Text('Error: $error'));
+                  return Center(
+                    child: Text(
+                      AppStrings.kErrorPrefix.replaceFirst(
+                        '%s',
+                        error.toString(),
+                      ),
+                    ),
+                  );
                 },
               );
             },

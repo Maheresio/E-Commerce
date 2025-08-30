@@ -1,10 +1,10 @@
-import '../../../../../core/services/firestore_services_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/network/dio_client.dart';
 import '../../../../../core/services/current_user_service.dart';
-import '../../../../../core/services/service_locator.dart';
+import '../../../../../core/services/firestore_services_provider.dart';
 import '../../../../../core/services/firestore_sevice.dart';
+import '../../../../../core/services/service_locator.dart';
 import '../../../data/datasources/visa_card_remote_data_source.dart';
 import '../../../data/repositories/visa_card_repository_impl.dart';
 import '../../../domain/repositories/visa_card_repository.dart';

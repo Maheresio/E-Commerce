@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../../../../../core/error/failure.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../core/error/failure.dart';
 import '../../../domain/entities/visa_card_entity.dart';
 import 'visa_card_actions.dart';
 

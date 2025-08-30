@@ -1,4 +1,5 @@
-import '../../../../core/routing/app_router.dart';
+import 'package:e_commerce/core/routing/app_route_constants.dart';
+
 import '../../../../core/widgets/styled_modal_barrier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class ShippingAddressView extends ConsumerWidget {
     return Scaffold(
       floatingActionButton: addFloatingButton(
         context,
-        onPressed: () => context.push(AppRouter.kAddShippingAddress),
+        onPressed: () => context.push(AppRoutes.addShippingAddress),
       ),
       appBar: styledAppBar(context, title: AppStrings.kShippingAddresses),
       body: Stack(

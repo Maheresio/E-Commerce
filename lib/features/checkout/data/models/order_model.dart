@@ -1,9 +1,9 @@
+import '../../../cart/domain/entities/cart_item_entity.dart';
+import '../../domain/entities/delivery_method_entity.dart';
 import '../../domain/entities/order_entity.dart';
+import '../../domain/entities/payment_entity.dart';
 import '../../domain/entities/shipping_address_entity.dart';
 import '../../domain/entities/visa_card_entity.dart';
-import '../../domain/entities/delivery_method_entity.dart';
-import '../../domain/entities/payment_entity.dart';
-import '../../../cart/domain/entities/cart_item_entity.dart';
 
 class OrderModel extends OrderEntity {
   const OrderModel({

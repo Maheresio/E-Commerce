@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-import 'shipping_address_entity.dart';
-import 'visa_card_entity.dart';
+import '../../../cart/domain/entities/cart_item_entity.dart';
 import 'delivery_method_entity.dart';
 import 'payment_entity.dart';
-import '../../../cart/domain/entities/cart_item_entity.dart';
+import 'shipping_address_entity.dart';
+import 'visa_card_entity.dart';
 
 enum OrderStatus {
   pending, // Order created but payment not started

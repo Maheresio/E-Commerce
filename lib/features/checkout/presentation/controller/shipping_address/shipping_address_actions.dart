@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'shipping_address_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../../core/error/failure.dart';
 import '../../../domain/entities/shipping_address_entity.dart';
-
+import 'shipping_address_providers.dart';
 import 'shipping_address_usecase_providers.dart';
 
 typedef EitherFailureOr<T> = Either<Failure, T>;
