@@ -40,9 +40,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   intl: ^0.20.2
   hooks_riverpod: ^2.6.1
-  cherry_toast: ^1.13.0
   uuid: ^4.5.1
-  cloud_functions: ^5.6.2
   flutter_stripe: ^11.5.0
   bloc: ^8.1.4
   flutter_facebook_auth: ^7.1.2
@@ -55,13 +53,13 @@ dependencies:
   smooth_sheets: ^0.14.0
   vector_math: ^2.2.0
   animations: ^2.0.11
+  flutter_native_splash: ^2.4.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^5.0.0
- 
 
 flutter:
   uses-material-design: true
@@ -70,6 +68,7 @@ flutter:
     - assets/svg/
     - assets/images/
     - assets/lotties/
+    - assets/images/splash/splash.png
     - .env
 
   fonts:

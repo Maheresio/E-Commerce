@@ -1,4 +1,5 @@
-import 'package:e_commerce/core/utils/app_images.dart';
+import 'core/utils/app_images.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'core/global/themes/app_theme_context.dart';
 import 'core/responsive/responsive_app.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
-import 'core/global/themes/dark/dark_theme.dart';
 import 'core/global/themes/light/light_theme.dart';
 import 'core/routing/app_router.dart';
 import 'core/services/firebase_init.dart';
@@ -17,7 +17,8 @@ import 'core/services/service_locator.dart';
 import 'core/services/supabase_init.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final binding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: binding);
   await ScreenUtil.ensureScreenSize();
   await dotenv.load();
   await firebaseInit();
@@ -31,13 +32,15 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   runApp(const ProviderScope(child: MyApp()));
+
+  FlutterNativeSplash.remove();
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     _cacheImages(context);
 
     return ResponsiveApp(
@@ -47,11 +50,13 @@ class MyApp extends StatelessWidget {
             child: MaterialApp.router(
               debugShowCheckedModeBanner: false,
               theme: lightTheme(context),
-
-              darkTheme: darkTheme(context),
               routerConfig: AppRouter.router,
               builder:
-                  (context, child) => ThemeContextInitializer(child: child!),
+                  (context, child) => Stack(
+                    children: [
+                      ThemeContextInitializer(child: child!),
+                    ],
+                  ),
             ),
           ),
     );
