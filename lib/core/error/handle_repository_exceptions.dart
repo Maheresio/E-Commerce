@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
@@ -25,8 +25,7 @@ Future<Either<Failure, T>> handleRepositoryExceptions<T>(
     return Left(StripeFailure.fromException(e));
   } on FirebaseAuthException catch (e) {
     return Left(FirebaseFailure.fromCode(e.code));
-  }
-   on FirebaseException catch (e) {
+  } on FirebaseException catch (e) {
     return Left(FirestoreFailure.fromCode(e.code));
   } on DioException catch (e) {
     return Left(ServerFailure.fromDioError(e));
@@ -36,10 +35,13 @@ Future<Either<Failure, T>> handleRepositoryExceptions<T>(
     return Left(ServerFailure('HTTP error: ${e.message}'));
   } on FormatException {
     return const Left(Failure('Data format error'));
-  }on MissingPluginException catch (e) {
-    return Left(FirebaseFailure('Plugin configuration error: ${e.message}. Please check platform setup for Facebook auth.'));
-  } 
-  catch (e) {
+  } on MissingPluginException catch (e) {
+    return Left(
+      FirebaseFailure(
+        'Plugin configuration error: ${e.message}. Please check platform setup for Facebook auth.',
+      ),
+    );
+  } catch (e) {
     // Check if it's a Stripe-related error by examining the error message
     final String errorString = e.toString().toLowerCase();
     if (errorString.contains('stripe') ||

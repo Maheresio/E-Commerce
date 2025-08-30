@@ -1,7 +1,8 @@
 // lib/core/theme/app_theme_context.dart
-import '../../responsive/responsive_provider.dart';
 import 'package:flutter/material.dart';
+
 import '../../responsive/device_type.dart';
+import '../../responsive/responsive_provider.dart';
 
 class AppThemeContext {
   static late ThemeData theme;

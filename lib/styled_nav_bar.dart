@@ -1,17 +1,17 @@
-import 'features/favorite/presentation/views/favorite_view.dart';
-import 'features/profile/presentation/controller/profile_provider.dart';
-import 'features/profile/presentation/views/profile_view.dart';
-import 'features/shop/presentation/views/shop_view.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'core/global/themes/light/app_colors_light.dart';
-import 'core/utils/app_styles.dart';
-import 'features/cart/presentation/views/cart_view.dart';
-import 'features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import 'core/global/themes/light/app_colors_light.dart';
+import 'core/utils/app_strings.dart';
+import 'core/utils/app_styles.dart';
+import 'features/cart/presentation/views/cart_view.dart';
+import 'features/favorite/presentation/views/favorite_view.dart';
+import 'features/home/presentation/views/home_view.dart';
+import 'features/profile/presentation/controller/profile_provider.dart';
+import 'features/profile/presentation/views/profile_view.dart';
 import 'features/shop/presentation/controller/filter_models.dart';
+import 'features/shop/presentation/views/shop_view.dart';
 
 class StyledNavBar extends StatelessWidget {
   StyledNavBar({super.key});
@@ -19,12 +19,12 @@ class StyledNavBar extends StatelessWidget {
   final PersistentTabController _controller = PersistentTabController();
 
   // Navigation item data
-  static const Map<String, IconData> _navItems = <String, IconData>{
-    'Home': Icons.home,
-    'Shop': Icons.shopping_cart_outlined,
-    'Bag': Icons.shopping_bag_outlined,
-    'Favorites': Icons.favorite_border_outlined,
-    'Profile': Icons.person,
+  static final Map<String, IconData> _navItems = <String, IconData>{
+    AppStrings.kNavigationHome: Icons.home,
+    AppStrings.kNavigationShop: Icons.shopping_cart_outlined,
+    AppStrings.kNavigationBag: Icons.shopping_bag_outlined,
+    AppStrings.kNavigationFavorites: Icons.favorite_border_outlined,
+    AppStrings.kNavigationProfile: Icons.person,
   };
 
   // Screen builders
@@ -66,7 +66,9 @@ class StyledNavBar extends StatelessWidget {
           if (index == 1) {
             ref
                 .read(filterParamsProvider.notifier)
-                .update((state) => state.copyWith(gender: 'women'));
+                .update(
+                  (state) => state.copyWith(gender: AppStrings.kGenderWomen),
+                );
           }
           if (index == 4) {
             ref.invalidate(profileProvider);

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'responsive_provider.dart';
+
 import 'device_type.dart';
+import 'responsive_provider.dart';
 
 T responsiveValue<T>({
   required BuildContext context,

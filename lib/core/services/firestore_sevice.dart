@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../constants/firestore_constants.dart';
-import 'package:flutter/foundation.dart';
 
 class FirestoreServices {
   FirestoreServices._();
@@ -32,7 +32,6 @@ class FirestoreServices {
     final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(
       path,
     );
-    debugPrint('Request Data: $data');
     await reference.set(data, SetOptions(merge: merge));
   }
 
@@ -43,7 +42,6 @@ class FirestoreServices {
     final DocumentReference<Map<String, dynamic>> reference = _fireStore.doc(
       path,
     );
-    debugPrint('Request Data: $data');
     await reference.update(data);
   }
 
@@ -139,7 +137,6 @@ class FirestoreServices {
       query = query.orderBy(FieldPath.documentId);
     }
 
-    debugPrint('📄 LastDocument: ${lastDocument?.id}');
     if (lastDocument != null) {
       query = query.startAfterDocument(lastDocument);
     }

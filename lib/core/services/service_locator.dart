@@ -1,7 +1,3 @@
-import '../network/dio_client.dart';
-import 'firestore_sevice.dart';
-import 'supabase_storage_service.dart';
-import 'current_user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -18,9 +14,13 @@ import '../../features/auth/register/presentation/bloc/register_bloc.dart';
 import '../../features/auth/shared/data/data_source/auth_data_source.dart';
 import '../../features/auth/shared/data/repositories/auth_repository_impl.dart';
 import '../../features/auth/shared/domain/repositories/auth_repository.dart';
-import '../../features/auth/shared/domain/usecases/sign_in_with_google_usecase.dart';
 import '../../features/auth/shared/domain/usecases/sign_in_with_facebook_usecase.dart';
+import '../../features/auth/shared/domain/usecases/sign_in_with_google_usecase.dart';
 import '../../features/auth/shared/presentation/bloc/auth_bloc.dart';
+import '../network/dio_client.dart';
+import 'current_user_service.dart';
+import 'firestore_sevice.dart';
+import 'supabase_storage_service.dart';
 
 final GetIt sl = GetIt.instance;
 

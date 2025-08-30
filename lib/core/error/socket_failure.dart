@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'failure.dart';
 
 class SocketFailure extends Failure {

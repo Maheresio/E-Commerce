@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/utils/app_styles.dart';
+import '../../utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 enum SnackBarType { success, error, info }
