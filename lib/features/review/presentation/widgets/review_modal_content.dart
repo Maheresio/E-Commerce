@@ -1,15 +1,14 @@
-import '../../../../core/helpers/extensions/context_extensions.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/app_styles.dart';
 import '../../domain/entities/review_entity.dart';
 import '../providers/review_form_provider.dart';
-import 'review_rating_bar.dart';
 import 'review_action_buttons.dart';
-import 'review_image_section.dart';
+import 'review_rating_bar.dart';
 
 class ReviewModalContent extends ConsumerStatefulWidget {
   const ReviewModalContent({
@@ -58,7 +57,7 @@ class _ReviewModalContentState extends ConsumerState<ReviewModalContent> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _buildModalTitle(context),
+              ReviewModalTitle(currentUserReview: widget.currentUserReview),
               const SizedBox(height: 8),
               ReviewRatingBar(
                 initialRating: formState.rating,
@@ -68,25 +67,11 @@ class _ReviewModalContentState extends ConsumerState<ReviewModalContent> {
                         .updateRating(rating),
               ),
               SizedBox(height: 20.h),
-              _buildContentLabel(context),
+              const ReviewContentLabel(),
               SizedBox(height: 20.h),
-              _buildTextField(context),
+              ReviewContentTextField(controller: _reviewController),
               SizedBox(height: 20.h),
-              ReviewImageSection(
-                selectedImages: formState.selectedImages,
-                onRemoveImage:
-                    (String imageUrl) => ref
-                        .read(reviewFormProvider.notifier)
-                        .removeImage(imageUrl),
-                onAddPhoto: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Image picker not implemented yet'),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(height: 20.h),
+
               ReviewActionButtons(
                 currentUserReview: widget.currentUserReview,
                 onSubmit: () => widget.onSubmit(_reviewController.text.trim()),
@@ -98,27 +83,44 @@ class _ReviewModalContentState extends ConsumerState<ReviewModalContent> {
       ),
     );
   }
+}
 
-  Widget _buildModalTitle(BuildContext context) => Text(
-    widget.currentUserReview != null
+class ReviewModalTitle extends StatelessWidget {
+  const ReviewModalTitle({super.key, required this.currentUserReview});
+  final ReviewEntity? currentUserReview;
+
+  @override
+  Widget build(BuildContext context) => Text(
+    currentUserReview != null
         ? AppStrings.kEditYourReview
         : AppStrings.kWhatIsYourRate,
     style: AppStyles.font18BlackSemiBold(context),
     textAlign: TextAlign.center,
   );
+}
 
-  Widget _buildContentLabel(BuildContext context) => Text(
+class ReviewContentLabel extends StatelessWidget {
+  const ReviewContentLabel({super.key});
+
+  @override
+  Widget build(BuildContext context) => Text(
     AppStrings.kPleaseShareYourOpinionAboutTheProduct,
     style: AppStyles.font18BlackSemiBold(context),
     textAlign: TextAlign.center,
   );
+}
 
-  Widget _buildTextField(BuildContext context) => TextField(
-    controller: _reviewController,
+class ReviewContentTextField extends StatelessWidget {
+  const ReviewContentTextField({super.key, required this.controller});
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) => TextField(
+    controller: controller,
     maxLines: 10,
     enableInteractiveSelection: true,
     decoration: InputDecoration(
-      hintText: 'Write your review here...',
+      hintText: AppStrings.kWriteYourReviewHere,
       filled: true,
       fillColor: context.color.onSecondary.withValues(alpha: 0.1),
       disabledBorder: OutlineInputBorder(

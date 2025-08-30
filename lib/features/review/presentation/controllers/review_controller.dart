@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../core/error/failure.dart';
+import '../../../home/presentation/controller/home_provider.dart';
 import '../../domain/entities/review_entity.dart';
 import '../../domain/usecases/add_review_use_case.dart';
 import '../../domain/usecases/delete_review_use_case.dart';
@@ -9,7 +11,6 @@ import '../../domain/usecases/get_user_review_for_product_use_case.dart';
 import '../../domain/usecases/mark_review_helpful_use_case.dart';
 import '../../domain/usecases/update_review_use_case.dart';
 import '../providers/review_providers.dart';
-import '../../../home/presentation/controller/home_provider.dart';
 
 // State for reviews list
 class ProductReviewsNotifier
@@ -165,7 +166,7 @@ class ReviewActionsNotifier extends AsyncNotifier<void> {
     final MarkReviewHelpfulUseCase useCase = ref.read(
       markReviewHelpfulUseCaseProvider,
     );
-    final Either<Failure, String> result = await useCase((
+    final Either<Failure, String> result = await useCase.execute((
       productId: productId,
       reviewId: reviewId,
       userId: userId,

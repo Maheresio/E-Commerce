@@ -1,7 +1,8 @@
-import '../../../../core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/helpers/extensions/context_extensions.dart';
 
 class ReviewRatingBar extends StatelessWidget {
   const ReviewRatingBar({

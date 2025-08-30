@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/error/failure.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../repositories/review_repository.dart';
@@ -11,7 +12,7 @@ class MarkReviewHelpfulUseCase
   final ReviewRepository repository;
 
   @override
-  Future<Either<Failure, String>> call(
+  Future<Either<Failure, String>> execute(
     ({String productId, String reviewId, String userId}) params,
   ) async {
     return await repository.markReviewHelpful(

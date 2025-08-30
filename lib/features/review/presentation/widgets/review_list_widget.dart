@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
-
 import '../../domain/entities/review_entity.dart';
 import 'review_item_widget.dart';
 

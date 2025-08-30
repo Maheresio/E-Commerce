@@ -28,19 +28,55 @@ class ReviewMainContent extends StatelessWidget {
   Widget build(BuildContext context) => reviewsAsync.when(
     data: (reviews) {
       final updatedProduct = product.copyWith(reviews: reviews);
-      return _buildReviewViewBody(updatedProduct, currentUser);
-    },
-    loading: () => _buildReviewViewBody(product, currentUser),
-    error: (error, stack) => _buildReviewViewBody(product, currentUser),
-  );
-
-  Widget _buildReviewViewBody(ProductEntity product, User? currentUser) =>
-      ReviewViewBody(
-        product: product,
+      return _ReviewViewBodyWrapper(
+        product: updatedProduct,
+        currentUser: currentUser,
         onHelpfulPressed: onHelpfulPressed,
         onEditReview: onEditReview,
         onDeleteReview: onDeleteReview,
-        isUserLoggedIn: currentUser != null,
-        currentUserId: currentUser?.uid,
       );
+    },
+    loading:
+        () => _ReviewViewBodyWrapper(
+          product: product,
+          currentUser: currentUser,
+          onHelpfulPressed: onHelpfulPressed,
+          onEditReview: onEditReview,
+          onDeleteReview: onDeleteReview,
+        ),
+    error:
+        (error, stack) => _ReviewViewBodyWrapper(
+          product: product,
+          currentUser: currentUser,
+          onHelpfulPressed: onHelpfulPressed,
+          onEditReview: onEditReview,
+          onDeleteReview: onDeleteReview,
+        ),
+  );
+}
+
+class _ReviewViewBodyWrapper extends StatelessWidget {
+  const _ReviewViewBodyWrapper({
+    required this.product,
+    required this.currentUser,
+    required this.onHelpfulPressed,
+    required this.onEditReview,
+    required this.onDeleteReview,
+  });
+
+  final ProductEntity product;
+  final User? currentUser;
+  final Function(String)? onHelpfulPressed;
+  final Function(ReviewEntity)? onEditReview;
+  final Function(String)? onDeleteReview;
+
+  @override
+  Widget build(BuildContext context) => ReviewViewBody(
+    product: product,
+    onHelpfulPressed: onHelpfulPressed,
+    onEditReview: onEditReview,
+    onDeleteReview: onDeleteReview,
+    isUserLoggedIn: currentUser != null,
+    currentUserId: currentUser?.uid,
+  );
 }

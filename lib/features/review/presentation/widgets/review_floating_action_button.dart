@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/utils/app_strings.dart';
 import '../../domain/entities/review_entity.dart';
 
 class ReviewFloatingActionButton extends StatelessWidget {
@@ -27,7 +28,11 @@ class ReviewFloatingActionButton extends StatelessWidget {
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
         icon: Icon(currentUserReview != null ? Icons.edit : Icons.add),
-        label: Text(currentUserReview != null ? 'Edit Review' : 'Add Review'),
+        label: Text(
+          currentUserReview != null
+              ? AppStrings.kEditReviewAction
+              : AppStrings.kAddReviewAction,
+        ),
       );
     },
     orElse:
@@ -36,7 +41,7 @@ class ReviewFloatingActionButton extends StatelessWidget {
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
           icon: const Icon(Icons.add),
-          label: const Text('Add Review'),
+          label: const Text(AppStrings.kAddReviewAction),
         ),
   );
 }

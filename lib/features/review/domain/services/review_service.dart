@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/checkout/presentation/controller/visa_card/visa_card_providers.dart';
+import '../../../checkout/presentation/controller/visa_card/visa_card_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

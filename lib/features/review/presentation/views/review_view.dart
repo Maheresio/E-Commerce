@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/helpers/methods/styled_snack_bar.dart';
 import '../../../../core/widgets/styled_modal_barrier.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../checkout/presentation/controller/visa_card/visa_card_providers.dart';
@@ -104,20 +105,18 @@ class ReviewView extends ConsumerWidget {
       context: context,
       builder:
           (BuildContext context) => AlertDialog(
-            title: const Text('Login Required'),
-            content: const Text(
-              'Please login to write a review for this product.',
-            ),
+            title: const Text(AppStrings.kLoginRequired),
+            content: const Text(AppStrings.kLoginToWriteReview),
             actions: <Widget>[
               TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Cancel'),
+                onPressed: () => context.pop(),
+                child: const Text(AppStrings.kCancel),
               ),
               ElevatedButton(
                 onPressed: () {
                   context.pop();
                 },
-                child: const Text('Login'),
+                child: const Text(AppStrings.kLoginButton),
               ),
             ],
           ),
@@ -189,9 +188,17 @@ class ReviewView extends ConsumerWidget {
 
     if (!reviewService.validateForm(formState.rating, content)) {
       if (formState.rating == 0) {
-        _showSnackBar(context, 'Please provide a rating');
+        _showSnackBar(
+          context,
+          AppStrings.kPleaseProvideRating,
+          SnackBarType.error,
+        );
       } else if (content.trim().isEmpty) {
-        _showSnackBar(context, 'Please write a review');
+        _showSnackBar(
+          context,
+          AppStrings.kPleaseWriteReview,
+          SnackBarType.error,
+        );
       }
       return;
     }
@@ -203,7 +210,11 @@ class ReviewView extends ConsumerWidget {
 
     // Only add new reviews
     reviewService.addReview(product.id, content);
-    _showSnackBar(context, 'Review added successfully!');
+    _showSnackBar(
+      context,
+      AppStrings.kReviewAddedSuccessfully,
+      SnackBarType.success,
+    );
 
     context.pop();
   }
@@ -214,9 +225,17 @@ class ReviewView extends ConsumerWidget {
 
     if (!reviewService.validateForm(formState.rating, content)) {
       if (formState.rating == 0) {
-        _showSnackBar(context, 'Please provide a rating');
+        _showSnackBar(
+          context,
+          AppStrings.kPleaseProvideRating,
+          SnackBarType.error,
+        );
       } else if (content.trim().isEmpty) {
-        _showSnackBar(context, 'Please write a review');
+        _showSnackBar(
+          context,
+          AppStrings.kPleaseWriteReview,
+          SnackBarType.error,
+        );
       }
       return;
     }
@@ -228,7 +247,7 @@ class ReviewView extends ConsumerWidget {
 
     // Update existing review
     reviewService.updateReview(product.id, content);
-    _showSnackBar(context, AppStrings.kReviewUpdated);
+    _showSnackBar(context, AppStrings.kReviewUpdated, SnackBarType.success);
 
     context.pop();
   }
@@ -250,15 +269,19 @@ class ReviewView extends ConsumerWidget {
             content: const Text(AppStrings.kDeleteReviewConfirmation),
             actions: <Widget>[
               TextButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => context.pop(),
                 child: const Text(AppStrings.kCancel),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  context.pop();
                   // Delete the review
                   reviewService.deleteReview(product.id, reviewId);
-                  _showSnackBar(context, AppStrings.kReviewDeleted);
+                  _showSnackBar(
+                    context,
+                    AppStrings.kReviewDeleted,
+                    SnackBarType.success,
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
@@ -271,9 +294,7 @@ class ReviewView extends ConsumerWidget {
     );
   }
 
-  void _showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+  void _showSnackBar(BuildContext context, String message, SnackBarType type) {
+    openStyledSnackBar(context, text: message, type: type);
   }
 }
