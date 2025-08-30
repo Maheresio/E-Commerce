@@ -1,10 +1,9 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../home/data/models/product_model.dart';
-import '../../../home/domain/entities/product_entity.dart';
-
 import '../../../../core/error/failure.dart';
 import '../../../../core/error/handle_repository_exceptions.dart';
+import '../../../home/data/models/product_model.dart';
+import '../../../home/domain/entities/product_entity.dart';
 import '../../domain/repositories/favorite_repository.dart';
 import '../datasources/favorite_data_source.dart';
 

@@ -1,18 +1,16 @@
-import 'package:e_commerce/core/routing/app_route_constants.dart';
-import 'package:e_commerce/features/checkout/presentation/controller/visa_card/visa_card_providers.dart';
-import 'package:e_commerce/features/favorite/presentation/widgets/favorite_shimmer.dart';
-
-import '../../../../core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/routing/app_route_constants.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../../core/widgets/text_header.dart';
-
+import '../../../checkout/presentation/controller/visa_card/visa_card_providers.dart';
 import '../controller/favorite_controller.dart';
 import 'favorite_list_item.dart';
+import 'favorite_shimmer.dart';
 
 class FavoriteViewBody extends StatelessWidget {
   const FavoriteViewBody({super.key});

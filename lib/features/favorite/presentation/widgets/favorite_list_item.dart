@@ -1,14 +1,13 @@
-import 'package:e_commerce/core/widgets/cached_image_widget.dart';
-
-import '../../../../core/helpers/extensions/context_extensions.dart';
-import '../../../../core/utils/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../../../core/widgets/cached_image_widget.dart';
 import '../../../home/domain/entities/product_entity.dart';
 import '../../../home/presentation/widgets/home_list_view_item.dart';
 import '../controller/favorite_controller.dart';

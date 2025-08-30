@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import '../../../home/domain/entities/product_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../core/error/failure.dart';
+import '../../../home/domain/entities/product_entity.dart';
 import '../../domain/usecases/add_to_favorites_usecase.dart';
 import '../../domain/usecases/get_user_favorites_usecase.dart';
 import '../../domain/usecases/is_favorite_usecase.dart';

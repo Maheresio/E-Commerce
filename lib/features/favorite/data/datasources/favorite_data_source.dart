@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../core/constants/firestore_constants.dart';
-import '../../../home/data/models/product_model.dart';
 
+import '../../../../core/constants/firestore_constants.dart';
 import '../../../../core/services/firestore_sevice.dart';
+import '../../../home/data/models/product_model.dart';
 
 abstract class FavoriteDataSource {
   Future<void> addFavorite(String userId, ProductModel product);

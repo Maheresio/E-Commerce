@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/services/firestore_sevice.dart';
-
 import '../../data/datasources/favorite_data_source.dart';
 import '../../data/repositories/favorite_repository_impl.dart';
 import '../../domain/usecases/add_to_favorites_usecase.dart';
