@@ -1,13 +1,13 @@
-import '../../../../core/utils/app_strings.dart';
-import '../../../../core/widgets/cached_image_widget.dart';
-import '../controller/product_details_provider.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import '../../../../core/responsive/responsive_value.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/responsive/responsive_value.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/cached_image_widget.dart';
 import '../../domain/entities/product_entity.dart';
+import '../controller/product_details_provider.dart';
 
 class ProductDetailsImageSlider extends ConsumerStatefulWidget {
   const ProductDetailsImageSlider({super.key, required this.product});
@@ -21,7 +21,6 @@ class ProductDetailsImageSlider extends ConsumerStatefulWidget {
 
 class _ProductDetailsImageSliderState
     extends ConsumerState<ProductDetailsImageSlider> {
-  int _active = 0;
 
   List<String> _currentImages() {
     final selection = ref.watch(productSelectionProvider);
@@ -48,15 +47,10 @@ class _ProductDetailsImageSliderState
         height: context.responsive(mobile: 413.h, tablet: 500.h),
         initialPage: 0, // <-- always start at index 0
         enableInfiniteScroll: images.length > 1,
-        onPageChanged: (i, reason) => setState(() => _active = i),
       ),
       itemBuilder: (context, i, realIdx) {
         final image = CachedImageWidget(imgUrl: images[i]);
-        final isHeroSlide = i == _active;
-
-        return isHeroSlide
-            ? Hero(tag: widget.product.id, child: image)
-            : HeroMode(enabled: false, child: image);
+        return image;
       },
     );
   }

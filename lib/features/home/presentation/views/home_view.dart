@@ -1,10 +1,9 @@
-import 'package:e_commerce/core/routing/app_route_constants.dart';
-
-import '../../../../core/helpers/extensions/context_extensions.dart';
-import '../../../../core/responsive/responsive_value.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/responsive/responsive_value.dart';
+import '../../../../core/routing/app_route_constants.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../widgets/home_view_body.dart';
 

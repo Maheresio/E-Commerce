@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/routing/app_route_constants.dart';
+import '../../../../core/routing/app_route_constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

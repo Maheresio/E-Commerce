@@ -1,6 +1,6 @@
-import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import '../../domain/entities/product_entity.dart';
 import '../widgets/product_details_view_body.dart';
 

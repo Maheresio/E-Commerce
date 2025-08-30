@@ -1,7 +1,7 @@
-import '../../../../core/responsive/responsive_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/responsive/responsive_value.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/widgets/shimmer.dart';
 
