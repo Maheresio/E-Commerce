@@ -1,17 +1,16 @@
-import 'package:e_commerce/features/home/presentation/widgets/home_shimmer.dart';
-
-import '../../../../core/responsive/responsive_value.dart';
-import '../../domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/error/failure.dart';
+import '../../../../core/responsive/responsive_value.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../domain/entities/product_entity.dart';
 import 'home_list_view_header.dart';
 import 'home_list_view_item.dart';
+import 'home_shimmer.dart';
 
 class HomeHorizontalListViewSection extends StatelessWidget {
   const HomeHorizontalListViewSection({

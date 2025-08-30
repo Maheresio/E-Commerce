@@ -1,5 +1,5 @@
-import 'package:e_commerce/core/routing/app_route_constants.dart';
-import 'package:e_commerce/features/checkout/presentation/controller/visa_card/visa_card_providers.dart';
+import '../../../../core/routing/app_route_constants.dart';
+import '../../../checkout/presentation/controller/visa_card/visa_card_providers.dart';
 
 import '../../../../core/responsive/responsive_value.dart';
 import 'package:flutter/material.dart';
@@ -28,10 +28,7 @@ class HomeListViewItem extends StatelessWidget {
       width: context.responsive(mobile: 150.w, tablet: 250.w),
       child: Stack(
         children: [
-          Hero(
-            tag: product.id,
-            child: ProductItem(product, favoriteIcon: favoriteIcon),
-          ),
+          ProductItem(product, favoriteIcon: favoriteIcon),
           if (product.discountValue != 0)
             Positioned.directional(
               textDirection: TextDirection.ltr,
@@ -230,12 +227,19 @@ class DiscountText extends StatelessWidget {
   }
 }
 
-class HomeFavoriteWidget extends ConsumerWidget {
+class HomeFavoriteWidget extends ConsumerStatefulWidget {
   const HomeFavoriteWidget({super.key, required this.product});
   final ProductEntity product;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeFavoriteWidget> createState() => _HomeFavoriteWidgetState();
+}
+
+class _HomeFavoriteWidgetState extends ConsumerState<HomeFavoriteWidget> {
+  bool _isProcessing = false;
+
+  @override
+  Widget build(BuildContext context) {
     final themeColors = context.color;
     final String userId = ref.read(currentUserServiceProvider).currentUserId!;
 
@@ -243,8 +247,9 @@ class HomeFavoriteWidget extends ConsumerWidget {
       favoritesControllerProvider(userId).select(
         (AsyncValue<List<ProductEntity>> async) => async.when(
           data:
-              (List<ProductEntity> favorites) =>
-                  favorites.any((ProductEntity fav) => fav.id == product.id),
+              (List<ProductEntity> favorites) => favorites.any(
+                (ProductEntity fav) => fav.id == widget.product.id,
+              ),
           loading: () => null,
           error: (_, _) => false,
         ),
@@ -256,20 +261,28 @@ class HomeFavoriteWidget extends ConsumerWidget {
     );
 
     return GestureDetector(
-      onTap: () async {
-        final List<ProductEntity> currentFavorites =
-            ref.read(favoritesControllerProvider(userId)).value ??
-            <ProductEntity>[];
-        final bool isFavorite = currentFavorites.any(
-          (ProductEntity fav) => fav.id == product.id,
-        );
+      onTap:
+          _isProcessing
+              ? null
+              : () async {
+                final List<ProductEntity> currentFavorites =
+                    ref.read(favoritesControllerProvider(userId)).value ??
+                    <ProductEntity>[];
+                final bool isFavorite = currentFavorites.any(
+                  (ProductEntity fav) => fav.id == widget.product.id,
+                );
 
-        if (isFavorite) {
-          await provider.removeFavorite(product.id);
-        } else {
-          await provider.addFavorite(product);
-        }
-      },
+                setState(() => _isProcessing = true);
+                try {
+                  if (isFavorite) {
+                    await provider.removeFavorite(widget.product.id);
+                  } else {
+                    await provider.addFavorite(widget.product);
+                  }
+                } finally {
+                  if (mounted) setState(() => _isProcessing = false);
+                }
+              },
       child: Container(
         width: context.responsive(mobile: 32.w, tablet: 60.w),
         height: context.responsive(mobile: 32.h, tablet: 60.h),
@@ -293,7 +306,26 @@ class HomeFavoriteWidget extends ConsumerWidget {
                 return ScaleTransition(scale: animation, child: child);
               },
               child:
-                  favoritesAsync == null
+                  _isProcessing
+                      ? SizedBox(
+                        width: context.responsive(mobile: 18.w, tablet: 28.w),
+                        height: context.responsive(mobile: 18.h, tablet: 28.h),
+                        child: TweenAnimationBuilder<double>(
+                          duration: const Duration(seconds: 1),
+                          tween: Tween(begin: 0, end: 1),
+                          builder: (context, value, child) {
+                            return Transform.rotate(
+                              angle: value * 2 * 3.14159,
+                              child: Icon(
+                                Icons.favorite_border,
+                                color: context.color.primary,
+                                size: 18,
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                      : favoritesAsync == null
                       ? Icon(
                         Icons.favorite_outline,
                         key: const ValueKey('loading_heart'),

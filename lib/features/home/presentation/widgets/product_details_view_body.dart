@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/helpers/methods/styled_snack_bar.dart';
+import '../../../../core/helpers/methods/styled_snack_bar.dart';
 
 import '../../../cart/domain/entities/cart_item_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,66 +54,103 @@ class ProductDetailsViewBody extends StatelessWidget {
   );
 }
 
-class AddToCartButton extends ConsumerWidget {
+class AddToCartButton extends ConsumerStatefulWidget {
   const AddToCartButton({super.key, required this.product});
 
   final ProductEntity product;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final ProductSelection selected = ref.watch(productSelectionProvider);
-    return ElevatedButton(
-      onPressed: () async {
-        if (selected.color != AppStrings.kColor &&
-            selected.size != AppStrings.kSize) {
-          final ProductSelection params = ref.read(productSelectionProvider);
-          await ref
-              .read(
-                cartControllerProvider(
-                  FirebaseAuth.instance.currentUser!.uid,
-                ).notifier,
-              )
-              .addOrUpdate(
-                CartItemEntity(
-                  id: const Uuid().v4(),
-                  productId: product.id,
-                  quantity: 1, // This will be handled by smartAddOrUpdate
-                  selectedSize: params.size,
-                  selectedColor: params.color,
-                  imageUrl: product.imageUrls[selected.color]!.first,
-                  name: product.name,
-                  price: product.price,
-                  brand: product.brand,
-                ),
-              );
+  ConsumerState<AddToCartButton> createState() => _AddToCartButtonState();
+}
 
-          ref.read(productSelectionProvider.notifier).reset();
-          if (context.mounted) {
-            openStyledSnackBar(
-              context,
-              text: AppStrings.kItemAddedToTheCart,
-              type: SnackBarType.success,
-            );
-          }
-        } else {
-          openStyledSnackBar(
-            context,
-            text: AppStrings.kSelectColorAndSizeBeforeAdd,
-            type: SnackBarType.error,
-          );
-        }
-      },
-      child: Text(AppStrings.kAddToCart.toUpperCase()),
+class _AddToCartButtonState extends ConsumerState<AddToCartButton> {
+  bool _isAdding = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final ProductSelection selected = ref.watch(productSelectionProvider);
+    final bool canAdd =
+        selected.color != AppStrings.kColor &&
+        selected.size != AppStrings.kSize;
+    return ElevatedButton(
+      onPressed:
+          _isAdding
+              ? null
+              : () async {
+                if (!canAdd) {
+                  openStyledSnackBar(
+                    context,
+                    text: AppStrings.kSelectColorAndSizeBeforeAdd,
+                    type: SnackBarType.error,
+                  );
+                  return;
+                }
+
+                setState(() => _isAdding = true);
+                try {
+                  final ProductSelection params = ref.read(
+                    productSelectionProvider,
+                  );
+                  await ref
+                      .read(
+                        cartControllerProvider(
+                          FirebaseAuth.instance.currentUser!.uid,
+                        ).notifier,
+                      )
+                      .addOrUpdate(
+                        CartItemEntity(
+                          id: const Uuid().v4(),
+                          productId: widget.product.id,
+                          quantity: 1,
+                          selectedSize: params.size,
+                          selectedColor: params.color,
+                          imageUrl:
+                              widget.product.imageUrls[selected.color]!.first,
+                          name: widget.product.name,
+                          price: widget.product.price,
+                          brand: widget.product.brand,
+                        ),
+                      );
+
+                  ref.read(productSelectionProvider.notifier).reset();
+                  if (context.mounted) {
+                    openStyledSnackBar(
+                      context,
+                      text: AppStrings.kItemAddedToTheCart,
+                      type: SnackBarType.success,
+                    );
+                  }
+                } finally {
+                  if (mounted) setState(() => _isAdding = false);
+                }
+              },
+      child:
+          _isAdding
+              ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              )
+              : Text(AppStrings.kAddToCart.toUpperCase()),
     );
   }
 }
 
-class ProductDetailsFavoriteWidget extends ConsumerWidget {
+class ProductDetailsFavoriteWidget extends ConsumerStatefulWidget {
   const ProductDetailsFavoriteWidget({super.key, required this.product});
   final ProductEntity product;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProductDetailsFavoriteWidget> createState() =>
+      _ProductDetailsFavoriteWidgetState();
+}
+
+class _ProductDetailsFavoriteWidgetState
+    extends ConsumerState<ProductDetailsFavoriteWidget> {
+  bool _isProcessing = false;
+
+  @override
+  Widget build(BuildContext context) {
     final String userId = FirebaseAuth.instance.currentUser!.uid;
     final themeColors = context.color;
 
@@ -123,8 +160,9 @@ class ProductDetailsFavoriteWidget extends ConsumerWidget {
       favoritesControllerProvider(userId).select(
         (AsyncValue<List<ProductEntity>> async) => async.when(
           data:
-              (List<ProductEntity> favorites) =>
-                  favorites.any((ProductEntity fav) => fav.id == product.id),
+              (List<ProductEntity> favorites) => favorites.any(
+                (ProductEntity fav) => fav.id == widget.product.id,
+              ),
           loading: () => null,
           error: (_, __) => false,
         ),
@@ -136,21 +174,28 @@ class ProductDetailsFavoriteWidget extends ConsumerWidget {
     );
 
     return GestureDetector(
-      onTap: () async {
-        final List<ProductEntity> currentFavorites =
-            ref.read(favoritesControllerProvider(userId)).value ??
-            <ProductEntity>[];
-        final bool isFavorite = currentFavorites.any(
-          (ProductEntity fav) => fav.id == product.id,
-        );
+      onTap:
+          _isProcessing
+              ? null
+              : () async {
+                final List<ProductEntity> currentFavorites =
+                    ref.read(favoritesControllerProvider(userId)).value ??
+                    <ProductEntity>[];
+                final bool isFavorite = currentFavorites.any(
+                  (ProductEntity fav) => fav.id == widget.product.id,
+                );
 
-        // Optimistic update for immediate UI feedback
-        if (isFavorite) {
-          await provider.removeFavorite(product.id);
-        } else {
-          await provider.addFavorite(product);
-        }
-      },
+                setState(() => _isProcessing = true);
+                try {
+                  if (isFavorite) {
+                    await provider.removeFavorite(widget.product.id);
+                  } else {
+                    await provider.addFavorite(widget.product);
+                  }
+                } finally {
+                  if (mounted) setState(() => _isProcessing = false);
+                }
+              },
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: themeColors.onSecondary,
@@ -172,7 +217,26 @@ class ProductDetailsFavoriteWidget extends ConsumerWidget {
                 return ScaleTransition(scale: animation, child: child);
               },
               child:
-                  isFavoriteAsync == null
+                  _isProcessing
+                      ? SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: TweenAnimationBuilder<double>(
+                          duration: const Duration(seconds: 1),
+                          tween: Tween(begin: 0, end: 1),
+                          builder: (context, value, child) {
+                            return Transform.rotate(
+                              angle: value * 2 * 3.14159,
+                              child: Icon(
+                                Icons.favorite_border,
+                                color: context.color.primary,
+                                size: 18,
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                      : isFavoriteAsync == null
                       ? Icon(
                         Icons.favorite_outline,
                         key: const ValueKey('loading_heart'),
