@@ -1,17 +1,16 @@
-import 'package:e_commerce/features/cart/presentation/widgets/cart_shimmer.dart';
-import 'package:e_commerce/features/checkout/presentation/controller/visa_card/visa_card_providers.dart';
-
-import '../../../../core/utils/app_styles.dart';
-import '../controller/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/app_styles.dart';
 import '../../../../core/widgets/summary_price.dart';
 import '../../../../core/widgets/text_header.dart';
+import '../../../checkout/presentation/controller/visa_card/visa_card_providers.dart';
+import '../controller/cart_provider.dart';
 import 'cart_list_view.dart';
 import 'cart_promo_field.dart';
+import 'cart_shimmer.dart';
 import 'checkout_button.dart';
 
 class CartViewBody extends StatelessWidget {

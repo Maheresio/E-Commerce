@@ -1,7 +1,5 @@
 import '../../../../core/constants/firestore_constants.dart';
 import '../../../../core/services/firestore_sevice.dart';
-import 'package:flutter/material.dart';
-
 import '../models/cart_item_model.dart';
 
 abstract class CartDataSource {
@@ -35,7 +33,6 @@ class CartDataSourceImpl implements CartDataSource {
   @override
   Future<void> removeItem(String userId, String itemId) async {
     final String path = FirestoreConstants.userCartItem(userId, itemId);
-    debugPrint('Removing item at path: $path');
     await firestore.deleteData(path: path);
   }
 

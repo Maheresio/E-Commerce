@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../../favorite/presentation/controller/favorite_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../core/error/failure.dart';
+import '../../../favorite/presentation/controller/favorite_controller.dart';
 import '../../domain/entities/cart_item_entity.dart';
 import '../../domain/usecases/add_or_update_cart_item_usecase.dart';
 import '../../domain/usecases/add_to_favorites_usecase.dart';

@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/widgets/shimmer.dart';
+import '../../../../core/widgets/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

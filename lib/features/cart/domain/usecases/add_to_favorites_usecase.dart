@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../../home/domain/repositories/home_repository.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../favorite/domain/repositories/favorite_repository.dart';
 import '../../../home/domain/entities/product_entity.dart';
+import '../../../home/domain/repositories/home_repository.dart';
 
 class AddToFavoritesUseCase {
   AddToFavoritesUseCase({

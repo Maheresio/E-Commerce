@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/helpers/methods/styled_snack_bar.dart';
-import 'package:e_commerce/core/widgets/cached_image_widget.dart';
-import 'package:e_commerce/features/checkout/presentation/controller/visa_card/visa_card_providers.dart';
+import '../../../../core/helpers/methods/styled_snack_bar.dart';
+import '../../../../core/widgets/cached_image_widget.dart';
+import '../../../checkout/presentation/controller/visa_card/visa_card_providers.dart';
 
 import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../controller/cart_provider.dart';

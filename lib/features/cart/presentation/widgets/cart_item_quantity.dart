@@ -1,12 +1,12 @@
-import '../../domain/entities/cart_item_entity.dart';
-import '../controller/cart_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../domain/entities/cart_item_entity.dart';
+import '../controller/cart_provider.dart';
 
 class CartItemQuantity extends ConsumerWidget {
   const CartItemQuantity({super.key, required this.cartItem});

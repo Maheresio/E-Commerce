@@ -1,7 +1,6 @@
-import '../../../../core/services/firestore_sevice.dart';
-import '../../domain/usecases/add_or_update_cart_item_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/services/firestore_sevice.dart';
 import '../../../favorite/data/repositories/favorite_repository_impl.dart';
 import '../../../favorite/presentation/controller/favorite_usecase_providers.dart';
 import '../../../home/domain/repositories/home_repository.dart';
@@ -9,14 +8,15 @@ import '../../../home/presentation/controller/home_provider.dart';
 import '../../data/datasources/cart_data_source.dart';
 import '../../data/repositories/cart_repository_impl.dart';
 import '../../domain/repositories/cart_repository.dart';
+import '../../domain/usecases/add_or_update_cart_item_usecase.dart';
+import '../../domain/usecases/add_to_favorites_usecase.dart';
 import '../../domain/usecases/calculate_cart_total_use_case.dart';
 import '../../domain/usecases/check_cart_item_exists_use_case.dart';
 import '../../domain/usecases/clear_cart_usecase.dart';
-import '../../domain/usecases/get_cart_usecase.dart';
-import '../../domain/usecases/remove_cart_item_usecase.dart';
-import '../../domain/usecases/increment_cart_item_quantity_use_case.dart';
 import '../../domain/usecases/decrement_cart_item_quantity_use_case.dart';
-import '../../domain/usecases/add_to_favorites_usecase.dart';
+import '../../domain/usecases/get_cart_usecase.dart';
+import '../../domain/usecases/increment_cart_item_quantity_use_case.dart';
+import '../../domain/usecases/remove_cart_item_usecase.dart';
 
 final Provider<FirestoreServices> firestoreServicesProvider =
     Provider<FirestoreServices>((ref) => FirestoreServices.instance);
