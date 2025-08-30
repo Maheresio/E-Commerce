@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/checkout/presentation/widgets/styled_app_bar.dart';
+import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/app_strings.dart';

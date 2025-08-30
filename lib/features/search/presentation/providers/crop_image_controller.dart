@@ -14,19 +14,23 @@ class CropImageState {
     this.isLoading = false,
     this.isCropped = false,
     this.croppedBytes,
+    this.errorMessage,
   });
   final bool isLoading;
   final bool isCropped;
   final Uint8List? croppedBytes;
+  final String? errorMessage;
 
   CropImageState copyWith({
     bool? isLoading,
     bool? isCropped,
     Uint8List? croppedBytes,
+    String? errorMessage,
   }) => CropImageState(
     isLoading: isLoading ?? this.isLoading,
     isCropped: isCropped ?? this.isCropped,
     croppedBytes: croppedBytes ?? this.croppedBytes,
+    errorMessage: errorMessage ?? this.errorMessage,
   );
 }
 
@@ -39,31 +43,58 @@ class CropImageController extends AutoDisposeNotifier<CropImageState> {
 
   Future<String?> cropImage(ui.Image bitmap) async {
     try {
+      if (bitmap.width <= 0 || bitmap.height <= 0) {
+        return 'Invalid image dimensions.';
+      }
+
       final ByteData? byteData = await bitmap.toByteData(
         format: ui.ImageByteFormat.png,
       );
-      if (byteData == null) return 'Failed to convert image.';
+
+      if (byteData == null) {
+        return 'Failed to convert image.';
+      }
+
       final Uint8List cropped = byteData.buffer.asUint8List();
 
-      state = state.copyWith(croppedBytes: cropped, isCropped: true);
+      if (cropped.isEmpty) {
+        return 'Cropped image is empty.';
+      }
+
+      state = state.copyWith(
+        croppedBytes: cropped,
+        isCropped: true,
+        errorMessage: null,
+      );
       return null;
-    } catch (_) {
-      return 'Cropping failed.';
+    } catch (e) {
+      final errorMsg = 'Cropping failed: $e';
+      state = state.copyWith(errorMessage: errorMsg);
+      return errorMsg;
     }
   }
 
   Future<String?> uploadImage() async {
-    if (state.croppedBytes == null) return 'No image to upload.';
+    if (state.croppedBytes == null || state.croppedBytes!.isEmpty) {
+      return 'No image to upload.';
+    }
 
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(isLoading: true, errorMessage: null);
+
     try {
       await _repo.uploadImage(state.croppedBytes!);
       return null;
-    } catch (_) {
-      return 'Upload failed.';
+    } catch (e) {
+      final errorMsg = 'Upload failed: $e';
+      state = state.copyWith(errorMessage: errorMsg);
+      return errorMsg;
     } finally {
       state = state.copyWith(isLoading: false);
     }
+  }
+
+  void clearError() {
+    state = state.copyWith(errorMessage: null);
   }
 }
 
