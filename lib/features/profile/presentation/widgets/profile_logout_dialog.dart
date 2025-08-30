@@ -12,7 +12,7 @@ Future<void> showLogoutDialog(
   Future<void> Function() onLogout,
 ) async {
   final theme = Theme.of(context);
-  bool _isLoading = false;
+  bool isLoading = false;
 
   final bool? result = await showDialog<bool>(
     context: context,
@@ -88,11 +88,11 @@ Future<void> showLogoutDialog(
                             height: 44,
                             child: ElevatedButton(
                               onPressed:
-                                  _isLoading
+                                  isLoading
                                       ? null
                                       : () async {
                                         setState(() {
-                                          _isLoading = true;
+                                          isLoading = true;
                                         });
                                         context.pop(true);
                                       },

@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/utils/app_strings.dart';
 import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import '../widgets/category_view_body.dart';
-import 'package:flutter/material.dart';
 
 class CategoryView extends StatelessWidget {
   const CategoryView({

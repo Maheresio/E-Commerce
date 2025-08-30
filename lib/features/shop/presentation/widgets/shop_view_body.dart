@@ -1,11 +1,12 @@
-import '../../../../core/helpers/methods/product_lists.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/utils/app_styles.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../../../core/global/themes/light/app_colors_light.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/global/themes/light/app_colors_light.dart';
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/helpers/methods/product_lists.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/app_styles.dart';
 import '../controller/filter_models.dart';
 import 'gender_tab_view.dart';
 
@@ -65,7 +66,7 @@ class _ShopViewBodyState extends State<ShopViewBody>
                       unselectedLabelStyle: AppStyles.font14GreyRegular(
                         context,
                       ),
-                      indicatorColor: AppColorsLight.kPrimary,
+                      indicatorColor: context.color.primary,
                       indicatorWeight: 3,
                       indicatorSize: TabBarIndicatorSize.tab,
                       dividerColor: Colors.transparent,

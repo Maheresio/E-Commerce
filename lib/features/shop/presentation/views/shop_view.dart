@@ -1,7 +1,7 @@
-import '../../../../core/utils/app_strings.dart';
-import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/app_strings.dart';
+import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import '../widgets/shop_view_body.dart';
 
 class ShopView extends StatelessWidget {

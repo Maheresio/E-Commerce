@@ -1,13 +1,12 @@
-import '../../../../core/routing/app_route_constants.dart';
-
-import '../controller/filter_models.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/routing/app_route_constants.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../controller/filter_models.dart';
 import 'shop_summer_sales.dart';
 
 class GenderTabView extends ConsumerWidget {

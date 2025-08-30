@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-import 'core/global/themes/light/app_colors_light.dart';
+import 'core/helpers/extensions/context_extensions.dart';
 import 'core/utils/app_strings.dart';
 import 'core/utils/app_styles.dart';
 import 'features/cart/presentation/views/cart_view.dart';
@@ -42,7 +42,7 @@ class StyledNavBar extends StatelessWidget {
         return PersistentBottomNavBarItem(
           icon: Icon(entry.value),
           title: entry.key,
-          activeColorPrimary: AppColorsLight.kPrimary,
+          activeColorPrimary: context.color.primary,
           textStyle: AppStyles.font11GreyMedium(context),
           inactiveColorPrimary: Colors.grey,
         );
