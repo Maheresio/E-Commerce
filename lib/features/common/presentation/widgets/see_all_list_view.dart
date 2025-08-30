@@ -1,7 +1,7 @@
-import '../../../home/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../home/domain/entities/product_entity.dart';
 import 'see_all_list_view_item.dart';
 
 class SeeAllListView extends StatelessWidget {

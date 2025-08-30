@@ -1,5 +1,5 @@
-import 'package:e_commerce/core/responsive/responsive_value.dart';
-import 'package:e_commerce/core/utils/app_strings.dart';
+import '../../../../core/responsive/responsive_value.dart';
+import '../../../../core/utils/app_strings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../checkout/presentation/widgets/styled_app_bar.dart';
@@ -100,6 +100,34 @@ class SeeAllView extends ConsumerWidget {
   final bool enablePagination;
   final bool isSearchResults;
 
+  String _buildDynamicTitle(String gender, String subCategory) {
+    final String genderCapitalized =
+        gender.isNotEmpty
+            ? gender[0].toUpperCase() + gender.substring(1)
+            : gender;
+    final String subCategoryCapitalized =
+        subCategory.isNotEmpty
+            ? subCategory[0].toUpperCase() + subCategory.substring(1)
+            : subCategory;
+
+    if (gender.isNotEmpty && subCategory.isNotEmpty) {
+      return AppStrings.kGenderPossessiveFormat
+          .replaceFirst('%s', genderCapitalized)
+          .replaceFirst('%s', subCategoryCapitalized);
+    } else if (gender.isNotEmpty) {
+      return AppStrings.kGenderCapitalizedFormat.replaceFirst(
+        '%s',
+        genderCapitalized,
+      );
+    } else if (subCategory.isNotEmpty) {
+      return AppStrings.kSubCategoryCapitalizedFormat.replaceFirst(
+        '%s',
+        subCategoryCapitalized,
+      );
+    }
+    return '';
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (isSearchResults) {
@@ -159,8 +187,7 @@ class SeeAllView extends ConsumerWidget {
               .update((FilterParams param) => param.copyWith(subCategory: ''));
         },
         context,
-        title:
-            "${params.gender.isNotEmpty ? params.gender[0].toUpperCase() + params.gender.substring(1) : params.gender}'s ${params.subCategory.isNotEmpty ? params.subCategory[0].toUpperCase() + params.subCategory.substring(1) : params.subCategory}",
+        title: _buildDynamicTitle(params.gender, params.subCategory),
       ),
       body: SeeAllViewBody(
         provider: provider,

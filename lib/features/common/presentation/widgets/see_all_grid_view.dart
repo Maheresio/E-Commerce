@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/widgets/styled_loading.dart';
+import '../../../../core/widgets/styled_loading.dart';
 
 import '../../../home/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';

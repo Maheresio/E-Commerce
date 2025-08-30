@@ -1,6 +1,7 @@
-import 'package:e_commerce/core/helpers/extensions/context_extensions.dart';
+import '../../../core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_sheets/smooth_sheets.dart';
 
 import '../../../core/utils/app_strings.dart';
@@ -83,7 +84,7 @@ Future<void> sortModelSheet(
                                   ),
                                   onTap: () {
                                     _handleSortOption(option, ref);
-                                    Navigator.pop(context); // Dismiss the sheet
+                                    context.pop(context); // Dismiss the sheet
                                     notifier.reSort(); // Perform re-sort
                                   },
                                 );

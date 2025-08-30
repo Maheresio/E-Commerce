@@ -1,23 +1,22 @@
 import 'package:animations/animations.dart';
-import 'package:e_commerce/core/helpers/methods/styled_snack_bar.dart';
-import 'package:e_commerce/core/utils/app_strings.dart';
-import 'package:e_commerce/core/widgets/styled_loading.dart';
-import 'package:e_commerce/features/common/presentation/widgets/see_all_shimmer.dart';
-
-import '../../../../core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/helpers/methods/styled_snack_bar.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../../../core/widgets/styled_loading.dart';
 import '../../../home/domain/entities/product_entity.dart';
 import '../../../shop/presentation/controller/pagination_async_notifier.dart';
 import '../controller/product_provider.dart';
 import 'horizontal_filter_sort_display.dart';
 import 'see_all_grid_view.dart';
 import 'see_all_list_view.dart';
+import 'see_all_shimmer.dart';
 
 class SeeAllViewBody extends HookConsumerWidget {
   const SeeAllViewBody({

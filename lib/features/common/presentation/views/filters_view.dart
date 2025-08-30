@@ -1,13 +1,13 @@
-import '../../../../core/helpers/extensions/context_extensions.dart';
-import '../../../../core/routing/app_router.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../../../core/widgets/circular_elevated_button.dart';
-import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/routing/app_route_constants.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/circular_elevated_button.dart';
+import '../../../checkout/presentation/widgets/styled_app_bar.dart';
 import '../../../shop/presentation/controller/filter_models.dart';
 import '../widgets/filters_view_body.dart';
 
@@ -50,7 +50,7 @@ class FiltersView extends StatelessWidget {
                       final temp = ref.read(tempFilterParamsProvider);
                       ref.read(filterParamsProvider.notifier).state = temp;
                       context.push(
-                        AppRouter.kSeeAllView,
+                        AppRoutes.seeAll,
                         extra: {'type': 'filtered'},
                       );
                     },

@@ -1,16 +1,16 @@
-import '../../../../core/helpers/extensions/context_extensions.dart';
-import '../controller/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/routing/app_router.dart';
+import '../../../../core/helpers/extensions/context_extensions.dart';
+import '../../../../core/routing/app_route_constants.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../shop/presentation/controller/filter_models.dart';
 import '../../../shop/presentation/controller/pagination_async_notifier.dart';
 import '../../helpers/handle_sort_products.dart';
+import '../controller/product_provider.dart';
 
 class HorizontalFilterSortDisplay extends StatelessWidget {
   const HorizontalFilterSortDisplay(this.notifier, {super.key});
@@ -28,8 +28,8 @@ class HorizontalFilterSortDisplay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
-            onTap: () => context.push(AppRouter.kFilterView),
-  
+            onTap: () => context.push(AppRoutes.filters),
+
             child: Row(
               spacing: 10,
               children: [
