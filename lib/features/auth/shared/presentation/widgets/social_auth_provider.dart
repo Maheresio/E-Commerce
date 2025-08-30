@@ -1,10 +1,11 @@
-import 'package:e_commerce/core/helpers/methods/styled_snack_bar.dart';
-import 'package:e_commerce/core/widgets/styled_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/helpers/methods/styled_snack_bar.dart';
 import '../../../../../core/routing/app_route_constants.dart';
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/widgets/styled_loading.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/social_section.dart';
 
@@ -21,7 +22,10 @@ class SocialAuthProvider extends StatelessWidget {
         if (state is AuthSuccess) {
           openStyledSnackBar(
             context,
-            text: 'Welcome ${state.user.name}!',
+            text: AppStrings.kWelcomeMessage.replaceFirst(
+              '%s',
+              state.user.name,
+            ),
             type: SnackBarType.success,
           );
 

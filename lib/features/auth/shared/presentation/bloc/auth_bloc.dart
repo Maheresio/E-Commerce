@@ -1,10 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/usecases/sign_in_with_google_usecase.dart';
-import '../../domain/usecases/sign_in_with_facebook_usecase.dart';
-import '../../domain/entity/user_entity.dart';
 import '../../../../../core/usecase/usecase.dart';
+import '../../domain/entity/user_entity.dart';
+import '../../domain/usecases/sign_in_with_facebook_usecase.dart';
+import '../../domain/usecases/sign_in_with_google_usecase.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -16,7 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }) : super(const AuthInitial()) {
     on<GoogleSignInRequested>((event, emit) async {
       emit(const AuthLoading());
-      final result = await signInWithGoogleUseCase.call(const NoParams());
+      final result = await signInWithGoogleUseCase.execute(const NoParams());
       result.fold((failure) => emit(AuthFailure(failure.message)), (user) {
         if (user != null) {
           emit(AuthSuccess(user));
@@ -28,7 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<FacebookSignInRequested>((event, emit) async {
       emit(const AuthLoading());
-      final result = await signInWithFacebookUseCase.call(const NoParams());
+      final result = await signInWithFacebookUseCase.execute(const NoParams());
       result.fold((failure) => emit(AuthFailure(failure.message)), (user) {
         if (user != null) {
           emit(AuthSuccess(user));

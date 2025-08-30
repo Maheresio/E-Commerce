@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../../../core/constants/firestore_constants.dart';
 import '../../../../../core/services/firebase_auth_service.dart';
 import '../../../../../core/services/firestore_sevice.dart';
-import '../../../../../core/constants/firestore_constants.dart';
 import '../model/user_model.dart';
 
 class FirebaseAuthServiceImpl implements FirebaseAuthService {

@@ -1,10 +1,9 @@
-import 'package:e_commerce/core/routing/app_route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/helpers/methods/styled_snack_bar.dart';
-import '../../../../../core/routing/app_router.dart';
+import '../../../../../core/routing/app_route_constants.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../shared/presentation/widgets/header_section.dart';
 import '../../../shared/presentation/widgets/navigation_button.dart';
@@ -82,7 +81,7 @@ class LoginForm extends StatelessWidget {
         child: NavigationButton(
           text: AppStrings.kDontHaveAccount,
           onPressed: () {
-            context.go(AppRouter.kRegister);
+            context.go(AppRoutes.register);
           },
         ),
       ),

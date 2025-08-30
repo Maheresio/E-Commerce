@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/helpers/methods/styled_snack_bar.dart';
 import '../../../../../core/routing/app_route_constants.dart';
-import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../shared/presentation/widgets/navigation_button.dart';
@@ -46,7 +45,7 @@ class RegisterForm extends StatelessWidget {
         alignment: AlignmentDirectional.centerEnd,
         child: NavigationButton(
           text: AppStrings.kAlreadyHaveAccount,
-          onPressed: () => context.go(AppRouter.kLogin),
+          onPressed: () => context.go(AppRoutes.login),
         ),
       ),
       const SizedBox(height: 20),
