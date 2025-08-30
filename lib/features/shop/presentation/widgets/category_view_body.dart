@@ -1,5 +1,5 @@
 import '../../../../core/helpers/extensions/context_extensions.dart';
-import '../../../../core/routing/app_router.dart';
+import '../../../../core/routing/app_route_constants.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../../core/widgets/circular_elevated_button.dart';
@@ -44,7 +44,7 @@ class CategoryViewBody extends StatelessWidget {
                       text: AppStrings.kViewAllItems.toUpperCase(),
                       onPressed: () {
                         context.push(
-                          AppRouter.kSeeAllView,
+                          AppRoutes.seeAll,
                           extra: <String, String>{
                             'type': 'byGender',
                             'gender':
@@ -90,7 +90,7 @@ class CategoryViewBody extends StatelessWidget {
                                       ),
                                     );
                                 context.push(
-                                  AppRouter.kSeeAllView,
+                                  AppRoutes.seeAll,
                                   extra: {
                                     'type': 'byGenderAndSub',
                                     'gender':

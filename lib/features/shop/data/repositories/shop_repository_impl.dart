@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/error/failure.dart';
 import '../../../../core/error/handle_repository_exceptions.dart';
 import '../../../home/domain/entities/product_entity.dart';
-import '../datasources/shop_data_source.dart';
 import '../../domain/repositories/shop_repository.dart';
-
 import '../../presentation/controller/filter_models.dart';
+import '../datasources/shop_data_source.dart';
 
 class ShopRepositoryImpl implements ShopRepository {
   ShopRepositoryImpl(this.shopDataSource);

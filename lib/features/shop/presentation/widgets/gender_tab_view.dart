@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/routing/app_route_constants.dart';
+import '../../../../core/routing/app_route_constants.dart';
 
 import '../controller/filter_models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,7 +32,7 @@ class GenderTabView extends ConsumerWidget {
                   onTap: () {
                     if (index == 0) {
                       context.push(
-                       AppRoutes.seeAll,
+                        AppRoutes.seeAll,
                         extra: <String, String>{
                           'type': 'newestByGender',
                           'gender':
@@ -44,7 +44,7 @@ class GenderTabView extends ConsumerWidget {
                       );
                     } else {
                       context.push(
-                       AppRoutes.category,
+                        AppRoutes.category,
                         extra: (genderList, index),
                       );
                     }

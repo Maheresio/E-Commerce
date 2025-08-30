@@ -1,11 +1,12 @@
-import '../../domain/usecases/get_sale_products_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../domain/usecases/get_all_products_usecase.dart';
 import '../../domain/usecases/get_filtered_products_usecase.dart';
 import '../../domain/usecases/get_new_products_usecase.dart';
 import '../../domain/usecases/get_newest_products_by_gender_usecase.dart';
 import '../../domain/usecases/get_products_by_gender_and_subcategory_usecase.dart';
 import '../../domain/usecases/get_products_by_gender_usecase.dart';
+import '../../domain/usecases/get_sale_products_usecase.dart';
 import 'shop_providers.dart';
 
 // -------------------- Use Case Providers --------------------
