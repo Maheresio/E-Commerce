@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../services/service_locator.dart';
+
 import '../../features/auth/shared/presentation/bloc/auth_bloc.dart';
+import '../services/service_locator.dart';
 
 /// Wrapper widget that provides AuthBloc to its child widgets
 ///

@@ -1,7 +1,7 @@
-import '../utils/app_styles.dart';
+import 'package:flutter/material.dart';
 
 import '../helpers/extensions/context_extensions.dart';
-import 'package:flutter/material.dart';
+import '../utils/app_styles.dart';
 
 class CircularElevatedButton extends StatelessWidget {
   const CircularElevatedButton({

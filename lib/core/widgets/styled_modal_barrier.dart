@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/widgets/styled_loading.dart';
-
 import 'package:flutter/material.dart';
+
+import 'styled_loading.dart';
 
 class StyledModalBarrier extends StatelessWidget {
   const StyledModalBarrier({super.key});

@@ -1,8 +1,8 @@
-import '../services/firestore_sevice.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/firestore_constants.dart';
+import '../services/firestore_sevice.dart';
 import '../utils/app_styles.dart';
 
 class TextHeader extends StatelessWidget {
