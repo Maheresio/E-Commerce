@@ -210,45 +210,66 @@ class FavoriteListItem extends StatelessWidget {
               ),
             ),
             actions: <Widget>[
-              // Row for placing buttons side by side
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  // Wrap the first button in an Expanded or Flexible widget
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () => context.pop(false),
-                      style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+              SizedBox(
+                width: double.infinity,
+                child: Table(
+                  // Two equal columns -> equal button widths
+                  columnWidths: const {
+                    0: FlexColumnWidth(1),
+                    1: FlexColumnWidth(1),
+                  },
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  children: [
+                    TableRow(
+                      children: [
+                        // Left button (Cancel)
+                        Padding(
+                          padding: EdgeInsets.only(
+                            right: 8.w,
+                          ), // spacing between buttons
+                          child: SizedBox(
+                            height: 44, // keep heights consistent (optional)
+                            child: OutlinedButton(
+                              onPressed: () => context.pop(false),
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                side: BorderSide(
+                                  color: theme.colorScheme.primary,
+                                ),
+                              ),
+                              child: Text(
+                                AppStrings.kCancel,
+                                style: TextStyle(
+                                  color: theme.colorScheme.primary,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                        side: BorderSide(color: theme.colorScheme.primary),
-                      ),
-                      child: Text(
-                        AppStrings.kCancel,
-                        style: TextStyle(color: theme.colorScheme.primary),
-                      ),
-                    ),
-                  ),
 
-                  SizedBox(width: 8.w), // Add spacing between buttons
-                  // Wrap the second button in an Expanded or Flexible widget
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () => context.pop(true),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.error,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                        // Right button (Remove)
+                        SizedBox(
+                          height: 44,
+                          child: ElevatedButton(
+                            onPressed: () => context.pop(true),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: theme.colorScheme.error,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: const Text(
+                              AppStrings.kRemove,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        AppStrings.kRemove,
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

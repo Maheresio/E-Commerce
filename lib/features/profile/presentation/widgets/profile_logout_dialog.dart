@@ -12,6 +12,7 @@ Future<void> showLogoutDialog(
   Future<void> Function() onLogout,
 ) async {
   final theme = Theme.of(context);
+  bool _isLoading = false;
 
   final bool? result = await showDialog<bool>(
     context: context,
@@ -44,47 +45,80 @@ Future<void> showLogoutDialog(
             ),
           ),
           actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () => context.pop(false),
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+            // Give AlertDialog a single full-width child so it doesn't ask for intrinsics
+            SizedBox(
+              width: double.infinity,
+              child: Table(
+                columnWidths: const {
+                  0: FlexColumnWidth(1),
+                  1: FlexColumnWidth(1),
+                },
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                children: [
+                  TableRow(
+                    children: [
+                      // Cancel
+                      Padding(
+                        padding: EdgeInsets.only(right: 8.w),
+                        child: SizedBox(
+                          height: 44,
+                          child: OutlinedButton(
+                            onPressed: () => context.pop(false),
+                            style: OutlinedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              side: BorderSide(
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                            child: Text(
+                              AppStrings.kCancelButton,
+                              style: TextStyle(
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      side: BorderSide(color: theme.colorScheme.primary),
-                    ),
-                    child: Text(
-                      AppStrings.kCancelButton,
-                      style: TextStyle(color: theme.colorScheme.primary),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => context.pop(true),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.colorScheme.error,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      // Logout
+                      StatefulBuilder(
+                        builder: (context, setState) {
+                          return SizedBox(
+                            height: 44,
+                            child: ElevatedButton(
+                              onPressed:
+                                  _isLoading
+                                      ? null
+                                      : () async {
+                                        setState(() {
+                                          _isLoading = true;
+                                        });
+                                        context.pop(true);
+                                      },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: theme.colorScheme.error,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              child: const Text(
+                                AppStrings.kLogoutButton,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    ),
-                    child: const Text(
-                      AppStrings.kLogoutButton,
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
   );
 
-  // Only perform logout if user confirmed
   if (result == true) {
     await onLogout();
   }
