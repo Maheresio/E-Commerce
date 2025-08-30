@@ -1,18 +1,17 @@
-import '../../../../core/services/current_user_service.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../../checkout/domain/entities/visa_card_entity.dart';
-import '../../../checkout/presentation/controller/order/order_notifier.dart';
-import '../../../checkout/presentation/controller/shipping_address/shipping_address_providers.dart';
-import 'profile_model.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/services/current_user_service.dart';
 import '../../../../core/services/service_locator.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../auth/shared/domain/entity/user_entity.dart';
 import '../../../auth/shared/domain/repositories/auth_repository.dart';
 import '../../../checkout/domain/entities/order_entity.dart';
 import '../../../checkout/domain/entities/shipping_address_entity.dart';
+import '../../../checkout/domain/entities/visa_card_entity.dart';
+import '../../../checkout/presentation/controller/order/order_notifier.dart';
+import '../../../checkout/presentation/controller/shipping_address/shipping_address_providers.dart';
 import '../../../checkout/presentation/controller/visa_card/visa_card_notifier.dart';
-import '../../../auth/shared/domain/entity/user_entity.dart';
+import 'profile_model.dart';
 
 // Provider for AuthRepository
 final authRepositoryProvider = Provider<AuthRepository>(
@@ -55,14 +54,35 @@ class ProfileProvider extends AsyncNotifier<ProfileModel> {
     int addressesCount,
     VisaCardEntity? defaultCard,
   ) => [
-    {'title': AppStrings.kMyOrders, 'subtitle': AppStrings.kAlreadyHaveOrders.replaceAll('%s', ordersCount.toString())},
-    {'title': AppStrings.kMyAddresses, 'subtitle': AppStrings.kAddressesCount.replaceAll('%s', addressesCount.toString())},
+    {
+      'title': AppStrings.kMyOrders,
+      'subtitle': AppStrings.kAlreadyHaveOrders.replaceAll(
+        '%s',
+        ordersCount.toString(),
+      ),
+    },
+    {
+      'title': AppStrings.kMyAddresses,
+      'subtitle': AppStrings.kAddressesCount.replaceAll(
+        '%s',
+        addressesCount.toString(),
+      ),
+    },
     {
       'title': AppStrings.kPaymentMethods,
-      'subtitle': AppStrings.kVisaCardFormat.replaceAll('%s', defaultCard?.last4.substring(2) ?? AppStrings.kNotAvailable),
+      'subtitle': AppStrings.kVisaCardFormat.replaceAll(
+        '%s',
+        defaultCard?.last4.substring(2) ?? AppStrings.kNotAvailable,
+      ),
     },
-    {'title': AppStrings.kNotifications, 'subtitle': AppStrings.kNotificationsSettings},
-    {'title': AppStrings.kSettings, 'subtitle': AppStrings.kSettingsPreferences},
+    {
+      'title': AppStrings.kNotifications,
+      'subtitle': AppStrings.kNotificationsSettings,
+    },
+    {
+      'title': AppStrings.kSettings,
+      'subtitle': AppStrings.kSettingsPreferences,
+    },
     {'title': AppStrings.kLogout, 'subtitle': AppStrings.kSignOutAccount},
   ];
 
@@ -109,7 +129,6 @@ class ProfileProvider extends AsyncNotifier<ProfileModel> {
 
       return ref.read(visaCardNotifierProvider.notifier).getDefaultCard();
     } catch (e) {
-      debugPrint(AppStrings.kErrorGettingDefaultCard.replaceAll('%s', e.toString()));
       return null;
     }
   }

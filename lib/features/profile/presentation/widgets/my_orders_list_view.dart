@@ -4,6 +4,7 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../checkout/domain/entities/order_entity.dart';
 import '../../../checkout/presentation/controller/order/order_notifier.dart';
 import 'my_orders_list_view_item.dart';
+import 'my_orders_shimmer.dart';
 
 class MyOrdersListView extends ConsumerWidget {
   final double horizontalPadding;
@@ -56,7 +57,8 @@ class MyOrdersListView extends ConsumerWidget {
                 ],
               ),
             ),
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading:
+            () => MyOrdersListShimmer(horizontalPadding: horizontalPadding),
       ),
     );
   }

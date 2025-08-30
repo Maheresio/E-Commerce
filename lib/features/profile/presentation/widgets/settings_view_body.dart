@@ -1,3 +1,5 @@
+import 'settings_header.dart';
+
 import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
@@ -24,10 +26,8 @@ class SettingsViewBody extends StatelessWidget {
               child: const Icon(Icons.arrow_back_ios, size: 28),
             ),
             const SizedBox(height: 30),
-            Text(
-              AppStrings.kSettings,
-              style: AppStyles.font34BlackBold(context),
-            ),
+
+            const SettingsHeader(),
             const SizedBox(height: 23),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
