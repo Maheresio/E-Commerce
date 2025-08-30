@@ -1,67 +1,60 @@
 // Core Flutter imports
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-// Core app imports
-import '../services/service_locator.dart';
-import '../widgets/auth_wrapper.dart' show AuthWrapper;
-import '../../styled_nav_bar.dart';
-import 'app_route_constants.dart';
-import 'refresh_stream.dart';
-
-// Entity imports
-import '../../features/checkout/domain/entities/order_entity.dart';
-import '../../features/checkout/domain/entities/shipping_address_entity.dart';
-import '../../features/home/domain/entities/product_entity.dart';
 
 // Auth feature imports
 import '../../features/auth/login/presentation/bloc/login_bloc.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
 import '../../features/auth/register/presentation/bloc/register_bloc.dart';
 import '../../features/auth/register/presentation/views/register_view.dart';
-
+// Cart & Checkout feature imports
+import '../../features/cart/presentation/views/cart_view.dart';
+// Entity imports
+import '../../features/checkout/domain/entities/order_entity.dart';
+import '../../features/checkout/domain/entities/shipping_address_entity.dart';
+import '../../features/checkout/presentation/views/adding_shipping_address_view.dart';
+import '../../features/checkout/presentation/views/checkout_view.dart';
+import '../../features/checkout/presentation/views/payment_methods_view.dart';
+import '../../features/checkout/presentation/views/shipping_address_view.dart';
+import '../../features/checkout/presentation/views/success_view.dart';
+import '../../features/common/presentation/views/filters_view.dart';
+// Common feature imports
+import '../../features/common/presentation/views/see_all_view.dart';
+// Other feature imports
+import '../../features/favorite/presentation/views/favorite_view.dart';
+import '../../features/home/domain/entities/product_entity.dart';
 // Home feature imports
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/home/presentation/views/product_details_view.dart';
-
-// Cart & Checkout feature imports
-import '../../features/cart/presentation/views/cart_view.dart';
-import '../../features/checkout/presentation/views/checkout_view.dart';
-import '../../features/checkout/presentation/views/shipping_address_view.dart';
-import '../../features/checkout/presentation/views/adding_shipping_address_view.dart';
-import '../../features/checkout/presentation/views/payment_methods_view.dart';
-import '../../features/checkout/presentation/views/success_view.dart';
-
-// Shop feature imports
-import '../../features/shop/presentation/views/shop_view.dart';
-import '../../features/shop/presentation/views/category_view.dart';
-
-// Search feature imports
-import '../../features/search/presentation/views/search_view.dart';
-import '../../features/search/presentation/views/crop_image_view.dart';
-import '../../features/search/presentation/views/search_result_view.dart';
-
-// Common feature imports
-import '../../features/common/presentation/views/see_all_view.dart';
-import '../../features/common/presentation/views/filters_view.dart';
-
-// Profile feature imports
-import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/profile/presentation/views/my_orders_view.dart';
 import '../../features/profile/presentation/views/order_details_view.dart';
+// Profile feature imports
+import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/profile/presentation/views/settings_view.dart';
-
-// Other feature imports
-import '../../features/favorite/presentation/views/favorite_view.dart';
 import '../../features/review/presentation/views/review_view.dart';
+import '../../features/search/presentation/views/crop_image_view.dart';
+import '../../features/search/presentation/views/search_result_view.dart';
+// Search feature imports
+import '../../features/search/presentation/views/search_view.dart';
+import '../../features/shop/presentation/views/category_view.dart';
+// Shop feature imports
+import '../../features/shop/presentation/views/shop_view.dart';
+import '../../styled_nav_bar.dart';
+// Core app imports
+import '../services/service_locator.dart';
+import '../widgets/auth_wrapper.dart' show AuthWrapper;
+import 'animated_router.dart';
+import 'app_route_constants.dart';
+import 'refresh_stream.dart';
 
 /// App Router Configuration
 ///
 /// Centralized routing configuration for the e-commerce application.
 /// Uses GoRouter for declarative routing with authentication state management.
+/// Includes custom page transitions for smooth animated navigation.
 abstract class AppRouter {
   // Private constructor to prevent instantiation
   AppRouter._();
@@ -95,12 +88,13 @@ abstract class AppRouter {
   // Firebase Auth instance for authentication state
   static final FirebaseAuth _auth = sl<FirebaseAuth>();
 
-  /// Main router configuration
+  /// Main router configuration with custom page transitions
   static final GoRouter router = GoRouter(
     initialLocation:
         _auth.currentUser != null ? AppRoutes.navBar : AppRoutes.login,
     refreshListenable: GoRouterRefreshStream(_auth.authStateChanges()),
     redirect: _handleRedirect,
+
     routes: [
       // Auth Routes
       ..._authRoutes,
@@ -143,9 +137,9 @@ abstract class AppRouter {
     return null; // No redirect needed
   }
 
-  /// Authentication routes
+  /// Authentication routes with fade scale transitions
   static List<RouteBase> get _authRoutes => [
-    GoRoute(
+    AnimatedRoute.fadeScale(
       path: AppRoutes.login,
       builder:
           (context, state) => AuthWrapper(
@@ -155,7 +149,7 @@ abstract class AppRouter {
             ),
           ),
     ),
-    GoRoute(
+    AnimatedRoute.fadeScale(
       path: AppRoutes.register,
       builder:
           (context, state) => AuthWrapper(
@@ -167,168 +161,160 @@ abstract class AppRouter {
     ),
   ];
 
-  /// Main navigation routes
+  /// Main navigation routes with slide transitions
   static List<RouteBase> get _mainRoutes => [
-    GoRoute(
+    AnimatedRoute.slideRight(
       path: AppRoutes.home,
       builder: (context, state) => const HomeView(),
     ),
-    GoRoute(
+    AnimatedRoute.fadeScale(
       path: AppRoutes.navBar,
       builder: (context, state) => StyledNavBar(),
     ),
   ];
 
-  /// Shopping related routes
+  /// Shopping related routes with hero transitions
   static List<RouteBase> get _shoppingRoutes => [
-    GoRoute(
+    AnimatedRoute.slideRight(
       path: AppRoutes.cart,
       builder: (context, state) => const CartView(),
     ),
-    GoRoute(
+    AnimatedRoute.slideRight(
       path: AppRoutes.shop,
       builder: (context, state) => const ShopView(),
     ),
-    GoRoute(
+    AnimatedRoute.slideRight(
       path: AppRoutes.category,
-      builder: (context, state) {
-        final (Map<String, dynamic>, int) result =
-            state.extra! as (Map<String, dynamic>, int);
-        return CategoryView(genderList: result.$1, index: result.$2);
-      },
+      builder:
+          (context, state) => CategoryView(
+            genderList: (state.extra! as (Map<String, dynamic>, int)).$1,
+            index: (state.extra! as (Map<String, dynamic>, int)).$2,
+          ),
     ),
-    GoRoute(
+    AnimatedRoute.fadeScale(
       path: AppRoutes.productDetails,
-      builder: (context, state) {
-        final ProductEntity product = state.extra! as ProductEntity;
-        return ProductDetailsView(product);
-      },
+      builder:
+          (context, state) => ProductDetailsView(state.extra! as ProductEntity),
     ),
   ];
 
-  /// Checkout flow routes
+  /// Checkout flow routes with smooth checkout transitions
   static List<RouteBase> get _checkoutRoutes => [
-    GoRoute(
+    AnimatedRoute.checkout(
       path: AppRoutes.checkout,
-      builder: (context, state) {
-        final double cartTotal = state.extra! as double;
-        return CheckoutView(cartTotal);
-      },
+      builder: (context, state) => CheckoutView(state.extra! as double),
     ),
-    GoRoute(
+    AnimatedRoute.checkout(
       path: AppRoutes.shippingAddress,
       builder: (context, state) => const ShippingAddressView(),
     ),
-    GoRoute(
+    AnimatedRoute.fadeScale(
       path: AppRoutes.addShippingAddress,
-      builder: (context, state) {
-        if (state.extra != null) {
-          return AddingShippingAddressView(
-            address: state.extra! as ShippingAddressEntity,
-          );
-        }
-        return const AddingShippingAddressView();
-      },
+      builder:
+          (context, state) =>
+              state.extra != null
+                  ? AddingShippingAddressView(
+                    address: state.extra! as ShippingAddressEntity,
+                  )
+                  : const AddingShippingAddressView(),
     ),
-    GoRoute(
+    AnimatedRoute.checkout(
       path: AppRoutes.paymentMethods,
       builder: (context, state) => const PaymentMethodsView(),
     ),
-    GoRoute(
+    AnimatedRoute.fadeScale(
       path: AppRoutes.success,
       builder: (context, state) => const SuccessView(),
     ),
   ];
 
-  /// Search and discovery routes
+  /// Search and discovery routes with search transitions
   static List<RouteBase> get _searchRoutes => [
-    GoRoute(
+    AnimatedRoute.search(
       path: AppRoutes.search,
       builder: (context, state) => const SearchView(),
     ),
-    GoRoute(
+    AnimatedRoute.search(
       path: AppRoutes.searchResult,
       builder: (context, state) => const SearchResultView(),
     ),
-    GoRoute(
+    AnimatedRoute.slideUp(
       path: AppRoutes.cropImage,
       builder: (context, state) {
-        final String imagePath = state.extra! as String;
-        return CropImageView(imagePath: imagePath);
+        if (state.extra == null || state.extra is! String) {
+          return const Scaffold(
+            body: Center(child: Text('Invalid image path. Please try again.')),
+          );
+        }
+        return CropImageView(imagePath: state.extra as String);
       },
     ),
-    GoRoute(
+    AnimatedRoute.slideRight(
       path: AppRoutes.seeAll,
-      builder: (context, state) {
-        final Map<String, dynamic> result =
-            state.extra! as Map<String, dynamic>;
-        final type = result['type'];
+      builder:
+          (context, state) => Consumer(
+            builder: (context, ref, _) {
+              final Map<String, dynamic> result =
+                  state.extra! as Map<String, dynamic>;
+              final type = result['type'];
 
-        return Consumer(
-          builder: (context, ref, _) {
-            switch (type) {
-              case 'filtered':
-                return SeeAllView.filtered(ref);
-              case 'all':
-                return SeeAllView.all(ref);
-              case 'sale':
-                return SeeAllView.sale(ref);
-              case 'byGender':
-                return SeeAllView.byGender(ref, result['gender']);
-              case 'byGenderAndSub':
-                return SeeAllView.byGenderAndSub(
-                  ref,
-                  result['gender'],
-                  result['subCategory'],
-                );
-              case 'newestByGender':
-                return SeeAllView.newestByGender(ref, result['gender']);
-              default:
-                return const Scaffold(
-                  body: Center(child: Text('Invalid type')),
-                );
-            }
-          },
-        );
-      },
+              switch (type) {
+                case 'filtered':
+                  return SeeAllView.filtered(ref);
+                case 'all':
+                  return SeeAllView.all(ref);
+                case 'sale':
+                  return SeeAllView.sale(ref);
+                case 'byGender':
+                  return SeeAllView.byGender(ref, result['gender']);
+                case 'byGenderAndSub':
+                  return SeeAllView.byGenderAndSub(
+                    ref,
+                    result['gender'],
+                    result['subCategory'],
+                  );
+                case 'newestByGender':
+                  return SeeAllView.newestByGender(ref, result['gender']);
+                default:
+                  return const Scaffold(
+                    body: Center(child: Text('Invalid type')),
+                  );
+              }
+            },
+          ),
     ),
-    GoRoute(
+    AnimatedRoute.slideUp(
       path: AppRoutes.filters,
       builder: (context, state) => const FiltersView(),
     ),
   ];
 
-  /// Profile and account routes
+  /// Profile and account routes with profile transitions
   static List<RouteBase> get _profileRoutes => [
-    GoRoute(
+    AnimatedRoute.profile(
       path: AppRoutes.profile,
       builder: (context, state) => const ProfileView(),
     ),
-    GoRoute(
+    AnimatedRoute.slideRight(
       path: AppRoutes.favorite,
       builder: (context, state) => const FavoriteView(),
     ),
-    GoRoute(
+    AnimatedRoute.profile(
       path: AppRoutes.myOrders,
       builder: (context, state) => const MyOrdersView(),
     ),
-    GoRoute(
+    AnimatedRoute.slideRight(
       path: AppRoutes.orderDetails,
-      builder: (context, state) {
-        final OrderEntity order = state.extra! as OrderEntity;
-        return OrderDetailsView(order);
-      },
+      builder:
+          (context, state) => OrderDetailsView(state.extra! as OrderEntity),
     ),
-    GoRoute(
+    AnimatedRoute.profile(
       path: AppRoutes.settings,
       builder: (context, state) => const SettingsView(),
     ),
-    GoRoute(
+    AnimatedRoute.slideUp(
       path: AppRoutes.review,
-      builder: (context, state) {
-        final ProductEntity product = state.extra! as ProductEntity;
-        return ReviewView(product);
-      },
+      builder: (context, state) => ReviewView(state.extra! as ProductEntity),
     ),
   ];
 }
