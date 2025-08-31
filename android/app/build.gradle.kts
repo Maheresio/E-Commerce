@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 val secrets = Properties().apply {
@@ -35,7 +36,6 @@ android {
 
         resValue("string", "facebook_app_id", fbAppId)
         resValue("string", "facebook_client_token", fbClient)
-        resValue("string", "default_web_client_id", webClient)
         resValue("string", "fb_login_protocol_scheme", "fb$fbAppId")
     }
 
