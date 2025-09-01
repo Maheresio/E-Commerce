@@ -24,8 +24,10 @@ void main() async {
   await firebaseInit();
   await supabaseInit();
   serviceLocator();
-  Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';
-  await Stripe.instance.applySettings();
+
+
+    Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';
+    await Stripe.instance.applySettings();
 
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
@@ -52,11 +54,7 @@ class MyApp extends ConsumerWidget {
               theme: lightTheme(context),
               routerConfig: AppRouter.router,
               builder:
-                  (context, child) => Stack(
-                    children: [
-                      ThemeContextInitializer(child: child!),
-                    ],
-                  ),
+                  (context, child) => ThemeContextInitializer(child: child!),
             ),
           ),
     );

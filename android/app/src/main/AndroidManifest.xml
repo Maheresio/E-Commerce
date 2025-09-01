@@ -1,21 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
    
     <!-- Permissions required for the app, including image cropping -->
-    <uses-permission android:name="android.permission.INTERNET"    />
-    <uses-permission android:name="android.permission.CAMERA"    />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"    />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"    />
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"    />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"   />
+    <uses-permission android:name="android.permission.INTERNET"     />
+    <uses-permission android:name="android.permission.CAMERA"     />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"     />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"     />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"     />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"    />
    
-    <application android:label="e_commerce" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
+    <application android:label="e_commerce" android:name="${applicationName}" android:icon="@mipmap/ic_launcher" android:theme="@style/NormalTheme">
         
         <meta-data
         android:name="com.facebook.sdk.ApplicationId"
-        android:value="@string/facebook_app_id"  />
+        android:value="@string/facebook_app_id"   />
         <meta-data
         android:name="com.facebook.sdk.ClientToken"
-        android:value="@string/facebook_client_token"  />
+        android:value="@string/facebook_client_token"   />
 
         <!-- Main Activity for the Flutter app -->
         <activity android:name=".MainActivity"
@@ -29,7 +29,7 @@
             <!-- Theme applied before Flutter UI initializes -->
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme"    />
+                android:resource="@style/NormalTheme"     />
             <!-- Intent filter to make this the launcher activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
         <!-- Meta-data for Flutter embedding v2 -->
         <meta-data
             android:name="flutterEmbedding"
-            android:value="2"    />
+            android:value="2"     />
     </application>
     
     <!-- Queries for text processing intents (used by Flutter plugins) -->

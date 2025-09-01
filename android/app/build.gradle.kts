@@ -7,10 +7,11 @@ plugins {
     id("com.google.gms.google-services")
 }
 
-val secrets = Properties().apply {
-    val f = rootProject.file("secrets.properties")
-    if (f.exists()) f.inputStream().use { load(it) }
-}
+val secrets =
+        Properties().apply {
+            val f = rootProject.file("secrets.properties")
+            if (f.exists()) f.inputStream().use { load(it) }
+        }
 
 android {
     namespace = "com.example.e_commerce_app"
@@ -39,11 +40,12 @@ android {
         resValue("string", "fb_login_protocol_scheme", "fb$fbAppId")
     }
 
-    buildTypes {
-        release {
-            signingConfig = signingConfigs.getByName("debug")
-        }
-    }
+    buildTypes { release { signingConfig = signingConfigs.getByName("debug") } }
+}
+
+dependencies {
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
 }
 
 flutter { source = "../.." }

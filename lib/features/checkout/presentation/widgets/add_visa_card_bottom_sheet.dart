@@ -105,7 +105,7 @@ class AddVisaCardBottomSheet extends HookWidget {
                 builder:
                     (BuildContext context, WidgetRef ref, Widget? child) =>
                         ref.watch(visaCardLoadingState)
-                            ? const StyledLoading()
+                            ? const StyledLoading(size: 30,)
                             : ElevatedButton(
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {
