@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![ECometa Banner](https://via.placeholder.com/800x200/1976D2/FFFFFF?text=ECometa+-+Modern+E-Commerce+App)
+![ECometa Banner](screenshots/banner.png)
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.7.2+-blue.svg)](https://flutter.dev/)
 [![Dart](https://img.shields.io/badge/Dart-3.0+-blue.svg)](https://dart.dev/)
@@ -64,12 +64,14 @@ A modern, feature-rich e-commerce mobile application built with Flutter, offerin
 
 ### 🎥 Demo Video
 <div align="center">
-  <video width="300" controls>
-    <source src="screenshots/video.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <br/>
-  <i>📹 App Demo Video - Complete User Journey</i>
+  
+[![ECometa Demo Video](https://img.shields.io/badge/📹_Watch_Demo-Google_Drive-red?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/1DpG2JOfXETgyPyhHHaKETZnQh3AaOVVc/view?usp=sharing)
+
+**🎬 Complete App Demo - Full User Journey**
+  
+*Click the button above to watch the comprehensive demo*
+
+
 </div>
 
 </div>
